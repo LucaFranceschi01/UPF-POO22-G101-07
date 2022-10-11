@@ -7,7 +7,7 @@ public class WorldGUI extends JPanel {
 	private World W;
 	
 	public WorldGUI() {
-		W = new World(800, 600);
+		W = new World(800, 600, 10);
 
 		// Place the GUI inside a window and show it on the screen
 		JFrame frame = new JFrame("World");

@@ -5,27 +5,31 @@ public class World {
     private int height;
     private Agent[] agents;
     private int margin;
+    private int numAgents;
 
-    public World(int wInit, int hInit){
+    public World(int wInit, int hInit, int cap){
         width = wInit;
         height = hInit;
-        agents = new Agent[10];
+        numAgents = cap;
+        agents = new Agent[numAgents];
         margin = 30;
+        
 
-        for(int i=0; i<10; i++){
+        for(int i=0; i<numAgents; i++){
             agents[i] = new Agent(randomVec2D(), randomRadius());
             agents[i].setTarget(randomVec2D());
             agents[i].setSpeed(1);
         }
     }
 
-    public World(int wInit, int hInit, int marginInit){
+    public World(int wInit, int hInit, int cap, int marginInit){
         width = wInit;
         height = hInit;
-        agents = new Agent[10];
+        numAgents = cap;
+        agents = new Agent[numAgents];
         margin = marginInit;
 
-        for(int i=0; i<10; i++){
+        for(int i=0; i<numAgents; i++){
             agents[i] = new Agent(randomVec2D(), randomRadius());
             agents[i].setTarget(randomVec2D());
             agents[i].setSpeed(1);
@@ -43,18 +47,31 @@ public class World {
     }
 
     public void simulationStep(){
-        for(int i=0; i<10; i++){
+        for(int i=0; i<numAgents; i++){
             if(agents[i].targetReached()){
                 agents[i].setTarget(randomVec2D());
             } else{
                 agents[i].updatePosition(); // ask
+                manageCollisions();
             }
         }
     }
 
     public void paintWorld(Graphics g) {
-        for(int i=0; i<10; i++){
+        for(int i=0; i<numAgents; i++){
             agents[i].paintAgent(g);
         }
 	}
+
+    public void manageCollisions(){
+        for (int i=0; i<numAgents; ++i){
+            for (int j = i+1; j<numAgents; ++j){
+                if(agents[i].isColliding(agents[j])){
+                    agents[i].setDirection(agents[i].getDirection().scalarProdVec2D(-1));
+                } else {
+                    agents[i].setDirection(agents[i].getTarget());
+                }
+            }
+        }
+    }
 }

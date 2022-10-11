@@ -21,16 +21,36 @@ public class Agent {
 
     public void setTarget(double xInit, double yInit){
         target = new Vec2D(xInit, yInit);
-        dir = target;
+        dir = new Vec2D(target);
         dir.subtract(pos);
         dir.normalize();
     }
 
     public void setTarget(Vec2D t){
-        target = new Vec2D(t);
-        dir = target;
+        target = t;
+        dir = new Vec2D(target);
         dir.subtract(pos);
         dir.normalize();
+    }
+
+    public Vec2D getTarget(){
+        return target;
+    }
+
+    public void setDirection(double xInit, double yInit){
+        dir = new Vec2D(xInit, yInit);
+        dir.subtract(pos);
+        dir.normalize();
+    }
+
+    public void setDirection(Vec2D d){
+        dir = new Vec2D(d);
+        dir.subtract(pos);
+        dir.normalize();
+    }
+
+    public Vec2D getDirection(){
+        return dir;
     }
 
     public void setSpeed(double speed){
