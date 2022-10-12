@@ -52,7 +52,7 @@ public class World {
                 agents[i].setTarget(randomVec2D());
             } else{
                 agents[i].updatePosition(); // ask
-                manageCollisions();
+                //manageCollisions();
             }
         }
     }
@@ -63,13 +63,18 @@ public class World {
         }
 	}
 
-    public void manageCollisions(){
+    public void manageCollisions(){// sin exito
         for (int i=0; i<numAgents; ++i){
             for (int j = i+1; j<numAgents; ++j){
                 if(agents[i].isColliding(agents[j])){
-                    agents[i].setDirection(agents[i].getDirection().scalarProdVec2D(-1));
+                    if(agents[i].getRadius() >= agents[j].getRadius()){
+                        agents[j].setDirection(agents[j].oppositeDirection(agents[i]));
+                    } else {
+                        agents[i].setDirection(agents[i].oppositeDirection(agents[j]));
+                    }
                 } else {
-                    agents[i].setDirection(agents[i].getTarget());
+                    agents[i].setDirection(agents[i].getTarget()); 
+                    agents[j].setDirection(agents[j].getTarget());
                 }
             }
         }

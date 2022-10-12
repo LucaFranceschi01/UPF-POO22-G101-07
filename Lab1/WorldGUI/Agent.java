@@ -53,6 +53,10 @@ public class Agent {
         return dir;
     }
 
+    public double getRadius(){
+        return radius;
+    }
+
     public void setSpeed(double speed){
         this.speed = speed;
     }
@@ -73,6 +77,12 @@ public class Agent {
         difference.subtract(pos);
         if(difference.length() <= A.radius+this.radius) return true;
         return false;
+    }
+
+    public Vec2D oppositeDirection(Agent A){
+        Vec2D difference = new Vec2D(A.pos);
+        difference.subtract(pos);
+        return difference;
     }
 
     public void paintAgent(Graphics g) {
