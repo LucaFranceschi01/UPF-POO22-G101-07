@@ -33,10 +33,6 @@ public class Agent {
         dir.normalize();
     }
 
-    public Vec2D getTarget(){
-        return target;
-    }
-
     public void setDirection(double xInit, double yInit){
         dir = new Vec2D(xInit, yInit);
         dir.subtract(pos);
@@ -49,6 +45,14 @@ public class Agent {
         dir.normalize();
     }
 
+    public void setSpeed(double speed){
+        this.speed = speed;
+    }
+
+    public Vec2D getTarget(){
+        return target;
+    }
+
     public Vec2D getDirection(){
         return dir;
     }
@@ -59,10 +63,6 @@ public class Agent {
 
     public double getRadius(){
         return radius;
-    }
-
-    public void setSpeed(double speed){
-        this.speed = speed;
     }
 
     public void updatePosition(){

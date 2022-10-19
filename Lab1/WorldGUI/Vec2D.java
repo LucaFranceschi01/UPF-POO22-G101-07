@@ -2,31 +2,31 @@ public class Vec2D {
 	private double x;
 	private double y;
 
-	// constructors
+	// Constructors
 	public Vec2D(double xInit, double yInit) { x = xInit; y = yInit; }
 	
 	public Vec2D(Vec2D v) { x = v.getX(); y = v.getY(); }
 
-	// getters
+	// Getters
 	public double getX() { return x; }
 	public double getY() { return y; }
 
-	// add or subtract another vector
+	// Add or subtract another vector
 	public void add     (Vec2D v) { x += v.getX(); y += v.getY(); }
 	public void subtract(Vec2D v) { x -= v.getX(); y -= v.getY(); }
 
-	// compute the Euclidean length
+	// Compute the Euclidean length
 	public double length() {
 		return Math.sqrt(x * x + y * y);
 	}
 	
-	// normalize to unit length
+	// Normalize to unit length
 	public void normalize() {
 		double len = length();
 		x = x / len;
 		y = y / len;
 	}
 
-	// scalar product
+	// Scalar product
 	public Vec2D scalarProdVec2D(double scalar) { return new Vec2D(scalar*x, scalar*y); }
 }
