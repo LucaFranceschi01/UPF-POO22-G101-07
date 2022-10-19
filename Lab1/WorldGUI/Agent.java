@@ -53,6 +53,10 @@ public class Agent {
         return dir;
     }
 
+    public Vec2D getPosition(){
+        return pos;
+    }
+
     public double getRadius(){
         return radius;
     }
@@ -68,14 +72,18 @@ public class Agent {
     public boolean targetReached(){
         Vec2D difference = new Vec2D(target);
         difference.subtract(pos);
-        if(difference.length() <= radius) return true;
+        if(difference.length() <= radius){
+            return true;
+        } 
         return false;
     }
 
     public boolean isColliding(Agent A){
         Vec2D difference = new Vec2D(A.pos);
         difference.subtract(pos);
-        if(difference.length() <= A.radius+this.radius) return true;
+        if(difference.length() <= A.radius+this.radius){
+            return true;
+        }
         return false;
     }
 
