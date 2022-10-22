@@ -7,6 +7,7 @@ public class World {
     private int margin;
     private int numAgents;
 
+    // Constructors
     public World(int wInit, int hInit, int cap){
         width = wInit;
         height = hInit;
@@ -14,7 +15,6 @@ public class World {
         agents = new Agent[numAgents];
         margin = 30;
         
-
         for(int i=0; i<numAgents; i++){
             agents[i] = new Agent(randomVec2D(), randomRadius());
             agents[i].setTarget(randomVec2D());
@@ -36,6 +36,7 @@ public class World {
         }
     }
 
+    // Public methods (API)
     public void simulationStep(){
         for(int i=0; i<numAgents; i++){
             if(agents[i].targetReached()){
@@ -53,7 +54,6 @@ public class World {
         }
 	}
 
-    // Manage the collisions between agents
     public void manageCollisions(){
         for (int i=0; i<numAgents; ++i){
             for (int j = i+1; j<numAgents; ++j){
@@ -62,7 +62,8 @@ public class World {
                     Vec2D diffVec = new Vec2D(agents[i].getPosition());
                     diffVec.subtract(agents[j].getPosition()); // This vector goes "from j to i"
                     diffVec.normalize();
-                    // Set new target in the new direction (diffVec) "randomly" so that it does not fall off the window 
+                    
+                    // Set new target in the new direction (diffVec) "randomly" so that it does not fall off the window
                     agents[i].setTarget(randomPosInLine(agents[i].getPosition(), diffVec)); // No need to flip the vector since the direction is OK
                     agents[j].setTarget(randomPosInLine(agents[j].getPosition(), diffVec.scalarProdVec2D(-1))); // We need to flip the vector "from i to j"
                 }
@@ -70,6 +71,7 @@ public class World {
         }
     }
 
+    // Private methods
     private Vec2D randomVec2D(){
         double x = margin + Math.random()*(width-2*margin);
         double y = margin + Math.random()*(height-2*margin);
@@ -107,8 +109,4 @@ public class World {
     private double randomRadius(){
         return 5 + Math.random()*(margin - 5);
     }
-    
-    /*private double randomWithMax(double max){
-        return max*Math.random();
-    }*/    
 }

@@ -1,2 +1,2 @@
 # UPF-POO22-G101-07
-## By Luca Franceschi & Alejandro González
+## OOP Repository of Luca Franceschi & Alejandro González for Lab deliveries 

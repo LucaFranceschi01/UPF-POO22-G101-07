@@ -10,13 +10,11 @@ public class Agent {
     public Agent(double xInit, double yInit, double radiusInit){
         pos = new Vec2D(xInit, yInit);
         radius = radiusInit;
-        //ask
     }
 
     public Agent(Vec2D posInit, double radiusInit){
         pos = new Vec2D(posInit);
         radius = radiusInit;
-        //ask
     }
 
     public void setTarget(double xInit, double yInit){
@@ -66,7 +64,7 @@ public class Agent {
     }
 
     public void updatePosition(){
-        pos.add(dir.scalarProdVec2D(speed)); //ask
+        pos.add(dir.scalarProdVec2D(speed));
     }
 
     public boolean targetReached(){
@@ -85,12 +83,6 @@ public class Agent {
             return true;
         }
         return false;
-    }
-
-    public Vec2D oppositeDirection(Agent A){
-        Vec2D difference = new Vec2D(A.pos);
-        difference.subtract(pos);
-        return difference;
     }
 
     public void paintAgent(Graphics g) {

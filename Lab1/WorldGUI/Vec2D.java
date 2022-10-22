@@ -12,7 +12,7 @@ public class Vec2D {
 	public double getY() { return y; }
 
 	// Add or subtract another vector
-	public void add     (Vec2D v) { x += v.getX(); y += v.getY(); }
+	public void add(Vec2D v) { x += v.getX(); y += v.getY(); }
 	public void subtract(Vec2D v) { x -= v.getX(); y -= v.getY(); }
 
 	// Compute the Euclidean length

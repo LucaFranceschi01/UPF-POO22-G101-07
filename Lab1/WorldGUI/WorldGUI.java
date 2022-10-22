@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import javax.swing.*;
 
@@ -37,5 +36,4 @@ public class WorldGUI extends JPanel {
 		super.paint(g);
 		W.paintWorld(g);
 	}
-
 }
