@@ -22,4 +22,8 @@ public class Student {
     public int getNia() {
         return nia;
     }
+
+    public String toString() {
+        return "[Name: " + getName() + ", Nia: " + getNia() + "]";
+    }
 }

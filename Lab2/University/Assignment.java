@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Assignment {
     private String[] groups;
     private Teacher teacher;
@@ -25,5 +27,9 @@ public class Assignment {
 
     public Course getCourse() {
         return course;
+    }
+
+    public String toString() {
+        return "[Course: " + getCourse().getName() + ", Groups: " + Arrays.toString(getGroups()) + "]";
     }
 }

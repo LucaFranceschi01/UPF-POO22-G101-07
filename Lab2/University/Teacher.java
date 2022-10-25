@@ -16,4 +16,8 @@ public class Teacher {
     public String getName() {
         return name;
     }
+
+    public String toString() {
+        return "[Name: " + getName() + ", Assignments: " + Utility.toString(assignments) + "]";
+    }
 }
