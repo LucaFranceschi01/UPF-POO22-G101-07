@@ -16,4 +16,8 @@ public class Classroom {
     public String getCode() {
         return code;
     }
+
+    public LinkedList<Lecture> getLectures() {
+        return lectures;
+    }
 }

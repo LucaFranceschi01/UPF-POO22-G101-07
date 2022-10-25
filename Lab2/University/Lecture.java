@@ -18,4 +18,20 @@ public class Lecture {
     public void addCourse(Course c) {
         course = c;
     }
+
+    public String getGroup() {
+        return group;
+    }
+    public int getTimeSlot() {
+        return timeSlot;
+    }
+    public int getType() {
+        return type;
+    }
+    public Classroom getClassroom() {
+        return classroom;
+    }
+    public Course getCcourse() {
+        return course;
+    }
 }

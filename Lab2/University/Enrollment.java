@@ -14,4 +14,16 @@ public class Enrollment {
     public void addCourse(Course c) {
         course = c;
     }
+
+    public String getSeminarGroup() {
+        return seminarGroup;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
 }

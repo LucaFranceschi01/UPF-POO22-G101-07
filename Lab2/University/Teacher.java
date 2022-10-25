@@ -12,4 +12,8 @@ public class Teacher {
     public void addAssignment(Assignment a) {
         assignments.add(a);
     }
+
+    public String getName() {
+        return name;
+    }
 }

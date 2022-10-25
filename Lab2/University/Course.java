@@ -28,4 +28,16 @@ public class Course {
     public String getName() {
         return name;
     }
+
+    public LinkedList<Enrollment> getEnrollments() {
+        return enrollments;
+    }
+
+    public LinkedList<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    public LinkedList<Lecture> getLectures() {
+        return lectures;
+    }
 }

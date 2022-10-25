@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class Assignment {
     private String[] groups;
     private Teacher teacher;
@@ -15,5 +13,17 @@ public class Assignment {
 
     public void addCourse(Course c) {
         course = c;
+    }
+
+    public String[] getGroups() {
+        return groups;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public Course getCourse() {
+        return course;
     }
 }

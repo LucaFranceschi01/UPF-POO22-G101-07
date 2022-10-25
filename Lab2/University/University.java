@@ -76,4 +76,20 @@ public class University {
             }
         }
     }
+
+    public LinkedList<String> getStudents() {
+        return Utility.toString(students);
+    }
+
+    public LinkedList<String> getTeachers() {
+        return Utility.toString(teachers);
+    }
+
+    public LinkedList<String> getClassrooms() {
+        return Utility.toString(classrooms);
+    }
+
+    public LinkedList<String> getCourses() {
+        return Utility.toString(courses);
+    }
 }

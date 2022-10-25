@@ -14,4 +14,12 @@ public class Student {
     public void addEnrollment(Enrollment e) {
         enrollments.add(e); 
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getNia() {
+        return nia;
+    }
 }
