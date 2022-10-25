@@ -1,11 +1,11 @@
 import java.util.*;
 
 public class Assignment {
-    private LinkedList<String> groups;
+    private String[] groups;
     private Teacher teacher;
     private Course course;
 
-    public Assignment(LinkedList<String> g) {
+    public Assignment(String[] g) {
         groups = g;
     }
 

@@ -65,11 +65,7 @@ public class University {
         
         LinkedList<String[]> ass = Utility.readXML("assignment");
         for(String[] arr : ass) {
-            LinkedList<String> s = new LinkedList<>();
-            for(int i=2; i<arr.length; i++){
-                s.add(arr[i]);
-            }
-            Assignment as = new Assignment(s);
+            Assignment as = new Assignment(Arrays.copyOfRange(arr, 2, arr.length));
             for(Teacher te : teachers) {
                 as.addTeacher(te);
                 te.addAssignment(as);
