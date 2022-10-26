@@ -23,7 +23,11 @@ public class Student {
         return nia;
     }
 
+    public LinkedList<Enrollment> getEnrollments() {
+        return enrollments;
+    }
+
     public String toString() {
-        return "[Name: " + getName() + ", Nia: " + getNia() + "]";
+        return name;
     }
 }

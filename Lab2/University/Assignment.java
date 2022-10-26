@@ -30,6 +30,6 @@ public class Assignment {
     }
 
     public String toString() {
-        return "[Course: " + getCourse().getName() + ", Groups: " + Arrays.toString(getGroups()) + "]";
+        return Arrays.toString(getGroups());
     }
 }

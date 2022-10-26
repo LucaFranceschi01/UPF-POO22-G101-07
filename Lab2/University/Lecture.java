@@ -34,4 +34,8 @@ public class Lecture {
     public Course getCcourse() {
         return course;
     }
+
+    public String toString() {
+        return group + timeSlot + type; // CHANGE
+    }
 }

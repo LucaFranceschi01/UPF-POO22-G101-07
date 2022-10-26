@@ -34,46 +34,35 @@ public class University {
         }
 
         LinkedList<String[]> lec = Utility.readXML("lecture");
-        for(String[] array : lec) {
-            Lecture le = new Lecture(array[4], Integer.parseInt(array[2]), Integer.parseInt(array[3]));
-            for(Classroom cl : classrooms) {
-                if(cl.getCode().equals(array[0])) {
-                    le.addClassroom(cl);
-                    cl.addLecture(le);
-                }
-            }
-            for(Course co : courses) {
-                if(co.getName().equals(array[1])) {
-                    le.addCourse(co);
-                    co.addLecture(le);
-                }
-            }
+        LinkedList<String[]> enr = Utility.readXML("enrollment");
+        LinkedList<String[]> ass = Utility.readXML("assignment");
+
+        for(String[] arr : lec) {
+            Lecture l = new Lecture(arr[4], Integer.parseInt(arr[2]), Integer.parseInt(arr[3]));
+            Classroom cl = Utility.getObject(arr[0], classrooms);
+            Course co = Utility.getObject(arr[1], courses);
+            l.addClassroom(cl);
+            l.addCourse(co);
+            cl.addLecture(l);
+            co.addLecture(l);
         }
 
-        LinkedList<String[]> enr = Utility.readXML("enrollment");
-        for(String[] array : enr) {
-            Enrollment en = new Enrollment(array[2]);
-            for(Student st : students) {
-                en.addStudent(st);
-                st.addEnrollment(en);
-            }
-            for(Course co : courses) {
-                en.addCourse(co);
-                co.addEnrollment(en);
-            }
+        for(String[] arr : enr) {
+            Enrollment e = new Enrollment(arr[2]);
+            Student st = Utility.getObject(arr[0], students);
+            e.addStudent(new Student(arr[0], st.getNia()));
+            e.addCourse(new Course(arr[1]));
+            st.addEnrollment(e);
         }
-        
-        LinkedList<String[]> ass = Utility.readXML("assignment");
+
         for(String[] arr : ass) {
-            Assignment as = new Assignment(Arrays.copyOfRange(arr, 2, arr.length));
-            for(Teacher te : teachers) {
-                as.addTeacher(te);
-                te.addAssignment(as);
-            }
-            for(Course co : courses) {
-                as.addCourse(co);
-                co.addAssignment(as);
-            }
+            Assignment a = new Assignment(Arrays.copyOfRange(arr, 2, arr.length));
+            Teacher te = Utility.getObject(arr[0], teachers);
+            Course co = Utility.getObject(arr[1], courses);
+            a.addTeacher(te);
+            a.addCourse(co);
+            te.addAssignment(a);
+            co.addAssignment(a);
         }
     }
 
@@ -91,5 +80,9 @@ public class University {
 
     public LinkedList<String> getCourses() {
         return Utility.toString(courses);
+    }
+
+    public LinkedList<Teacher> getStudentsClass(){
+        return teachers;
     }
 }

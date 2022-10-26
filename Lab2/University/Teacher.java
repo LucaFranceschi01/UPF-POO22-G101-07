@@ -17,7 +17,11 @@ public class Teacher {
         return name;
     }
 
+    public LinkedList<Assignment> getAssignments() {
+        return assignments;
+    }
+
     public String toString() {
-        return "[Name: " + getName() + ", Assignments: " + Utility.toString(assignments) + "]";
+        return name;
     }
 }

@@ -20,4 +20,8 @@ public class Classroom {
     public LinkedList<Lecture> getLectures() {
         return lectures;
     }
+
+    public String toString() {
+        return code;
+    }
 }

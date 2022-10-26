@@ -26,4 +26,8 @@ public class Enrollment {
     public Course getCourse() {
         return course;
     }
+
+    public String toString() {
+        return seminarGroup;
+    }
 }
