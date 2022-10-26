@@ -82,7 +82,41 @@ public class University {
         return Utility.toString(courses);
     }
 
-    public LinkedList<Teacher> getStudentsClass(){
+    public LinkedList<Student> getStudentsClass() {
+        return students;
+    }
+
+    public LinkedList<Teacher> getTeachersClass() {
         return teachers;
+    }
+
+    public LinkedList<Course> getCourseClass() {
+        return courses;
+    }
+
+    public void courseOfStudent(Student s) {
+        LinkedList<Course> coursesOfStud = s.coursesOfStudent();
+        System.out.printf("Name: %-22s | Nia: %-10d | Courses: [", s.getName(), s.getNia());
+        for(int i=0; i<coursesOfStud.size(); i++){
+            if(i == coursesOfStud.size()-1) {
+                System.out.printf("%s]", coursesOfStud.get(i));
+            } else {
+                System.out.printf("%s, ", coursesOfStud.get(i));
+            }            
+        }
+        System.out.println();
+    }
+
+    public void teacherOfCourse(Course c) {
+        LinkedList<Teacher> teachersOfCourse = c.teachersOfCourse();
+        System.out.printf("Course: %-20s | Teachers: [", c.getName());
+        for(int i=0; i<teachersOfCourse.size(); i++){
+            if(i == teachersOfCourse.size()-1) {
+                System.out.printf("%s]", teachersOfCourse.get(i));
+            } else {
+                System.out.printf("%s, ", teachersOfCourse.get(i));
+            }            
+        }
+        System.out.println();
     }
 }

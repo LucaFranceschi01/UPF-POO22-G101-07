@@ -30,4 +30,12 @@ public class Student {
     public String toString() {
         return name;
     }
+
+    public LinkedList<Course> coursesOfStudent() {
+        LinkedList<Course> courses = new LinkedList<Course>();
+        for(int i=0; i<enrollments.size(); i++) {
+            courses.add(enrollments.get(i).getCourse());
+        }
+        return courses;
+    }
 }

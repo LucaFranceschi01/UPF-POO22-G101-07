@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class TestUniversity {
     public static void main(String[] args) {
         University university = new University();
@@ -6,9 +8,22 @@ public class TestUniversity {
         System.out.println(university.getClassrooms());
         System.out.println(university.getCourses());
 
-        /*System.out.println("--------------------------------------------------");
+        LinkedList<Student> studentList = university.getStudentsClass();
+        LinkedList<Course> courseList = university.getCourseClass();
 
-        LinkedList<Teacher> teachers = university.getStudentsClass();
+
+        for(int i=0; i<studentList.size(); i++) {
+            university.courseOfStudent(studentList.get(i));
+        }
+
+        System.out.println("-----------------------------------------------------------------------------------------------------");
+
+        for(int i=0; i<courseList.size(); i++) {
+            university.teacherOfCourse(courseList.get(i));
+        }
+        
+
+        /*LinkedList<Teacher> teachers = university.getTeachersClass();
 
         for(int i=0; i<teachers.size(); i++){
             System.out.printf("%s [", teachers.get(i).getName());

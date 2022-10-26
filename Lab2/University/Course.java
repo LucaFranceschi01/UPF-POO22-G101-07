@@ -44,4 +44,12 @@ public class Course {
     public String toString() {
         return getName();
     }
+
+    public LinkedList<Teacher> teachersOfCourse() {
+        LinkedList<Teacher> teachers = new LinkedList<Teacher>();
+        for(int i=0; i<assignments.size(); i++) {
+            teachers.add(assignments.get(i).getTeacher());
+        }
+        return teachers;
+    }
 }
