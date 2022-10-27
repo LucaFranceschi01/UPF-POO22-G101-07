@@ -31,7 +31,7 @@ public class Lecture {
     public Classroom getClassroom() {
         return classroom;
     }
-    public Course getCcourse() {
+    public Course getCourse() {
         return course;
     }
 

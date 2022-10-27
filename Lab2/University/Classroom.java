@@ -24,4 +24,12 @@ public class Classroom {
     public String toString() {
         return code;
     }
+
+    public LinkedList<Course> coursesOfClassroom() { // from all lectures, returns a list of courses
+        LinkedList<Course> courses = new LinkedList<Course>();
+        for(int i=0; i<lectures.size(); i++) {
+            courses.add(lectures.get(i).getCourse());
+        }
+        return courses;
+    }
 }

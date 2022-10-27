@@ -94,6 +94,10 @@ public class University {
         return courses;
     }
 
+    public LinkedList<Classroom> getClassroomClass() {
+        return classrooms;
+    }
+
     public void coursesOfStudent(Student s) { // propagates Student.coursesOfStudent() and prints it in a legible way for all students
         LinkedList<Course> coursesOfStud = s.coursesOfStudent();
         System.out.printf("Name: %-22s | Nia: %-10d | Courses: [", s.getName(), s.getNia());
@@ -119,4 +123,30 @@ public class University {
         }
         System.out.println();
     }
+
+    public void coursesOfClassroom(Classroom c) { // propagates Classroom.coursesOfClassroom() and prints it in a legible way for all classrooms
+        LinkedList<Course> coursesOfClassroom = c.coursesOfClassroom();
+        System.out.printf("Classroom: %-20s | Teachers: [", c.getCode());
+        for(int i=0; i<coursesOfClassroom.size(); i++){
+            if(i == coursesOfClassroom.size()-1) {
+                System.out.printf("%s]", coursesOfClassroom.get(i));
+            } else {
+                System.out.printf("%s, ", coursesOfClassroom.get(i));
+            }
+        }
+        System.out.println();
+    }
+
+    /*public void studentsOfTeacher(Teacher t) { // propagates Course.teachersOfCourse() and prints it in a legible way for all courses
+        LinkedList<Student> studentsOfTeacher = t.studentsOfTeacher();
+        System.out.printf("Teacher: %-20s | Students: [", t.getName());
+        for(int i=0; i<studentsOfTeacher.size(); i++){
+            if(i == studentsOfTeacher.size()-1) {
+                System.out.printf("%s]", studentsOfTeacher.get(i));
+            } else {
+                System.out.printf("%s, ", studentsOfTeacher.get(i));
+            }
+        }
+        System.out.println();
+    }*/
 }

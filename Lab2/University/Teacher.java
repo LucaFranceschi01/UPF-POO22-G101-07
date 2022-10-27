@@ -24,4 +24,13 @@ public class Teacher {
     public String toString() {
         return name;
     }
+
+    /*public LinkedList<Student> studentsOfTeacher() { // from all assignments, returns a list of teachers
+        LinkedList<Student> students = new LinkedList<Student>();
+        for(int i=0; i<assignments.size(); i++) {
+            Course c = assignments.get(i).getCourse();
+            LinkedList<Enrollment> e = c.getEnrollments();
+        }
+        return students;
+    }*/
 }

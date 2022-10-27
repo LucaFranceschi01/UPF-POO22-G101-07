@@ -21,5 +21,19 @@ public class TestUniversity {
         for(int i=0; i<courseList.size(); i++) {
             university.teachersOfCourse(courseList.get(i));
         }
+        
+        System.out.println("-----------------------------------------------------------------------------------------------------");
+
+        LinkedList<Classroom> classroomList = university.getClassroomClass();
+        for(int i=0; i<classroomList.size(); i++) {
+            university.coursesOfClassroom(classroomList.get(i));
+        }
+     
+        /*System.out.println("-----------------------------------------------------------------------------------------------------");
+
+        LinkedList<Teacher> teacherList = university.getTeachersClass();
+        for(int i=0; i<teacherList.size(); i++) {
+            university.studentsOfTeacher(teacherList.get(i));
+        }*/
     }
 }
