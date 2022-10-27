@@ -45,7 +45,7 @@ public class Course {
         return getName();
     }
 
-    public LinkedList<Teacher> teachersOfCourse() {
+    public LinkedList<Teacher> teachersOfCourse() { // from all assignments, returns a list of teachers
         LinkedList<Teacher> teachers = new LinkedList<Teacher>();
         for(int i=0; i<assignments.size(); i++) {
             teachers.add(assignments.get(i).getTeacher());

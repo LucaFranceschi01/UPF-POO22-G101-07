@@ -31,7 +31,7 @@ public class Student {
         return name;
     }
 
-    public LinkedList<Course> coursesOfStudent() {
+    public LinkedList<Course> coursesOfStudent() { // for all enrollments, returns a list of courses
         LinkedList<Course> courses = new LinkedList<Course>();
         for(int i=0; i<enrollments.size(); i++) {
             courses.add(enrollments.get(i).getCourse());
