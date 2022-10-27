@@ -25,11 +25,15 @@ public class Classroom {
         return code;
     }
 
-    public LinkedList<Course> coursesOfClassroom() { // from all lectures, returns a list of courses
-        LinkedList<Course> courses = new LinkedList<Course>();
-        for(int i=0; i<lectures.size(); i++) {
-            courses.add(lectures.get(i).getCourse());
+    public LinkedList<Course> coursesOfClassroom() { // from all classrooms, returns a list of courses
+        Set<Course> courSet = new HashSet<Course>(); // for no duplicate courses
+        for(int i=0; i<lectures.size(); i++) { // duplicate
+            //System.out.println(getLectures().toString());
+
+            //check if course is already held in classroom independently of group/slot/type
+            courSet.add(lectures.get(i).getCourse());
+
         }
-        return courses;
+        return new LinkedList<>(courSet);
     }
 }

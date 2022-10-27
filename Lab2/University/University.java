@@ -126,7 +126,7 @@ public class University {
 
     public void coursesOfClassroom(Classroom c) { // propagates Classroom.coursesOfClassroom() and prints it in a legible way for all classrooms
         LinkedList<Course> coursesOfClassroom = c.coursesOfClassroom();
-        System.out.printf("Classroom: %-20s | Courses: [", c.getCode());
+        System.out.printf("Classroom: %-7s | Courses: [", c.getCode());
         for(int i=0; i<coursesOfClassroom.size(); i++){
             if(i == coursesOfClassroom.size()-1) {
                 System.out.printf("%s]", coursesOfClassroom.get(i));
