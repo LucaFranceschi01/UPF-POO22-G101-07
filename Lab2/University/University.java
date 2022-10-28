@@ -50,9 +50,11 @@ public class University {
         for(String[] arr : enr) {
             Enrollment e = new Enrollment(arr[2]);
             Student st = Utility.getObject(arr[0], students);
+            Course co = Utility.getObject(arr[1], courses);
             e.addStudent(new Student(arr[0], st.getNia()));
             e.addCourse(new Course(arr[1]));
             st.addEnrollment(e);
+            co.addEnrollment(e);            
         }
 
         for(String[] arr : ass) {
@@ -90,11 +92,11 @@ public class University {
         return teachers;
     }
 
-    public LinkedList<Course> getCourseClass() {
+    public LinkedList<Course> getCoursesClass() {
         return courses;
     }
 
-    public LinkedList<Classroom> getClassroomClass() {
+    public LinkedList<Classroom> getClassroomsClass() {
         return classrooms;
     }
 
@@ -136,6 +138,38 @@ public class University {
         }
         System.out.println();
     }
+
+    public void studentsOfTeacher(Teacher t, Classroom c) {
+        HashSet <Lecture> lectures = new HashSet<Lecture>();
+        for(Assignment a : t.getAssignments()){
+            for(int i=0; i<a.getCourse().getLectures().size(); i++)
+            if(a.getCourse().getLectures().get(i).getClassroom().toString().equals(c.toString())){
+                lectures.add(a.getCourse().getLectures().get(i));
+            }
+        }
+        LinkedList <LinkedList<Student>> students = new LinkedList<>();
+        for(Lecture l : lectures){
+
+            students.add(l.getStudentsOfGroup());
+        }
+
+        System.out.printf("Teacher: %s Classroom: %s Students: %s", t.getName(), c.getCode(), students.toString());
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /*public void studentsOfTeacher(Teacher t) { // propagates Course.teachersOfCourse() and prints it in a legible way for all courses
         LinkedList<Student> studentsOfTeacher = t.studentsOfTeacher();

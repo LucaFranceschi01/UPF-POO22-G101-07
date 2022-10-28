@@ -42,7 +42,7 @@ public class Course {
     }
 
     public String toString() {
-        return getName();
+        return name;
     }
 
     public LinkedList<Teacher> teachersOfCourse() { // from all assignments, returns a list of teachers

@@ -25,7 +25,7 @@ public class Teacher {
         return name;
     }
 
-    /*public LinkedList<Student> studentsOfTeacher() { // from all assignments, returns a list of teachers
+    /*public LinkedList<Student> studentsOfTeacher() { // from a teacher, returns a list of students 
         LinkedList<Student> students = new LinkedList<Student>();
         for(int i=0; i<assignments.size(); i++) {
             Course c = assignments.get(i).getCourse();

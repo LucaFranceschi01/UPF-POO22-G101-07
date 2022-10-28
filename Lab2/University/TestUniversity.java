@@ -17,17 +17,21 @@ public class TestUniversity {
 
         System.out.println("-".repeat(120));
 
-        LinkedList<Course> courseList = university.getCourseClass();
+        LinkedList<Course> courseList = university.getCoursesClass();
         for(int i=0; i<courseList.size(); i++) {
             university.teachersOfCourse(courseList.get(i));
         }
         
         System.out.println("-".repeat(120));
 
-        LinkedList<Classroom> classroomList = university.getClassroomClass();
+        LinkedList<Classroom> classroomList = university.getClassroomsClass();
         for(int i=0; i<classroomList.size(); i++) {
             university.coursesOfClassroom(classroomList.get(i));
         }
+
+        System.out.println("-".repeat(120));
+
+        university.studentsOfTeacher(university.getTeachersClass().get(0), university.getClassroomsClass().get(0));
      
         /*
         LinkedList<Teacher> teacherList = university.getTeachersClass();
