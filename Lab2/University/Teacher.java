@@ -25,12 +25,15 @@ public class Teacher {
         return name;
     }
 
-    /*public LinkedList<Student> studentsOfTeacher() { // from a teacher, returns a list of students 
-        LinkedList<Student> students = new LinkedList<Student>();
-        for(int i=0; i<assignments.size(); i++) {
-            Course c = assignments.get(i).getCourse();
-            LinkedList<Enrollment> e = c.getEnrollments();
+    public LinkedList<Lecture> lecturesOfTeacherInClassroom(Classroom c){
+        LinkedList <Lecture> lectures = new LinkedList<Lecture>();
+        for(Assignment a : assignments){
+            for(int i=0; i<a.getCourse().getLectures().size(); i++){
+                if(a.getCourse().getLectures().get(i).getClassroom().toString().equals(c.toString())){
+                    lectures.add(a.getCourse().getLectures().get(i));
+                }
+            }
         }
-        return students;
-    }*/
+        return lectures;
+    }
 }

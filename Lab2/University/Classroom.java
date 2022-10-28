@@ -27,12 +27,9 @@ public class Classroom {
 
     public LinkedList<Course> coursesOfClassroom() { // from all classrooms, returns a list of courses
         Set<Course> courSet = new HashSet<Course>(); // for no duplicate courses
-        for(int i=0; i<lectures.size(); i++) { // duplicate
-            //System.out.println(getLectures().toString());
-
+        for(int i=0; i<lectures.size(); i++) {
             //check if course is already held in classroom independently of group/slot/type
             courSet.add(lectures.get(i).getCourse());
-
         }
         return new LinkedList<>(courSet);
     }

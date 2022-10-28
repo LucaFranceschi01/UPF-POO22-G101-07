@@ -116,15 +116,9 @@ public class University {
     }
 
     public void studentsOfTeacher(Teacher t, Classroom c) {
-        HashSet <Lecture> lectures = new HashSet<Lecture>();
-        for(Assignment a : t.getAssignments()){
-            for(int i=0; i<a.getCourse().getLectures().size(); i++)
-            if(a.getCourse().getLectures().get(i).getClassroom().toString().equals(c.toString())){
-                lectures.add(a.getCourse().getLectures().get(i));
-            }
-        }
+        LinkedList<Lecture> lecturesInClassroom = t.lecturesOfTeacherInClassroom(c);
         LinkedList <LinkedList<Student>> studentsOfTeacher = new LinkedList<>();
-        for(Lecture l : lectures){
+        for(Lecture l : lecturesInClassroom){
             studentsOfTeacher.add(l.getStudentsOfGroup());
         }
 
