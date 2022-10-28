@@ -154,7 +154,7 @@ public class University {
         }
 
         System.out.printf("Teacher: %s Classroom: %s Students: %s", t.getName(), c.getCode(), students.toString());
-        
+        System.out.println();
     }
 
 
