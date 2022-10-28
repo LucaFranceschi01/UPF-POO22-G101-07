@@ -102,41 +102,17 @@ public class University {
 
     public void coursesOfStudent(Student s) { // propagates Student.coursesOfStudent() and prints it in a legible way for all students
         LinkedList<Course> coursesOfStud = s.coursesOfStudent();
-        System.out.printf("Name: %-22s | Nia: %-10d | Courses: [", s.getName(), s.getNia());
-        for(int i=0; i<coursesOfStud.size(); i++){
-            if(i == coursesOfStud.size()-1) {
-                System.out.printf("%s]", coursesOfStud.get(i));
-            } else {
-                System.out.printf("%s, ", coursesOfStud.get(i));
-            }            
-        }
-        System.out.println();
+        System.out.printf("Name: %-22s | Nia: %-10d | Courses: %s%n", s.getName(), s.getNia(), coursesOfStud.toString());
     }
 
     public void teachersOfCourse(Course c) { // propagates Course.teachersOfCourse() and prints it in a legible way for all courses
         LinkedList<Teacher> teachersOfCourse = c.teachersOfCourse();
-        System.out.printf("Course: %-20s | Teachers: [", c.getName());
-        for(int i=0; i<teachersOfCourse.size(); i++){
-            if(i == teachersOfCourse.size()-1) {
-                System.out.printf("%s]", teachersOfCourse.get(i));
-            } else {
-                System.out.printf("%s, ", teachersOfCourse.get(i));
-            }
-        }
-        System.out.println();
+        System.out.printf("Course: %-20s | Teachers: %s%n", c.getName(), teachersOfCourse.toString());
     }
 
-    public void coursesOfClassroom(Classroom c) { // propagates Classroom.coursesOfClassroom() and prints it in a legible way for all classrooms
+    public void coursesOfClassroom(Classroom c) { // propagates Classroom.coursesOfClassroom() and prints it in a legible way
         LinkedList<Course> coursesOfClassroom = c.coursesOfClassroom();
-        System.out.printf("Classroom: %-7s | Courses: [", c.getCode());
-        for(int i=0; i<coursesOfClassroom.size(); i++){
-            if(i == coursesOfClassroom.size()-1) {
-                System.out.printf("%s]", coursesOfClassroom.get(i));
-            } else {
-                System.out.printf("%s, ", coursesOfClassroom.get(i));
-            }
-        }
-        System.out.println();
+        System.out.printf("Classroom: %-7s | Courses: %s%n", c.getCode(), coursesOfClassroom.toString());
     }
 
     public void studentsOfTeacher(Teacher t, Classroom c) {
@@ -147,40 +123,12 @@ public class University {
                 lectures.add(a.getCourse().getLectures().get(i));
             }
         }
-        LinkedList <LinkedList<Student>> students = new LinkedList<>();
+        LinkedList <LinkedList<Student>> studentsOfTeacher = new LinkedList<>();
         for(Lecture l : lectures){
-
-            students.add(l.getStudentsOfGroup());
+            studentsOfTeacher.add(l.getStudentsOfGroup());
         }
 
-        System.out.printf("Teacher: %s Classroom: %s Students: %s", t.getName(), c.getCode(), students.toString());
+        System.out.printf("Teacher: %-20s | Classroom: %s | Students: %s", t.getName(), c.getCode(), studentsOfTeacher.toString());
         System.out.println();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*public void studentsOfTeacher(Teacher t) { // propagates Course.teachersOfCourse() and prints it in a legible way for all courses
-        LinkedList<Student> studentsOfTeacher = t.studentsOfTeacher();
-        System.out.printf("Teacher: %-20s | Students: [", t.getName());
-        for(int i=0; i<studentsOfTeacher.size(); i++){
-            if(i == studentsOfTeacher.size()-1) {
-                System.out.printf("%s]", studentsOfTeacher.get(i));
-            } else {
-                System.out.printf("%s, ", studentsOfTeacher.get(i));
-            }
-        }
-        System.out.println();
-    }*/
 }
