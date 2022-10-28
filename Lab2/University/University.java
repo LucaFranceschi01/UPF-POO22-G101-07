@@ -125,4 +125,22 @@ public class University {
         System.out.printf("Teacher: %-20s | Classroom: %s | Students: %s", t.getName(), c.getCode(), studentsOfTeacher.toString());
         System.out.println();
     }
+
+    public void classroomOfTeacher(Teacher t, int timeSlot) {
+        // lectures held in the course that a teacher gives
+        // and they have a fixed timeslot
+        LinkedList<Lecture> lecturesOfTeacher = t.lecturesOfTeacher();
+        LinkedList<Lecture> lecturesOfTeacherInSlot = new LinkedList<Lecture>();
+
+        for(Lecture l : lecturesOfTeacher){
+            if(l.getTimeSlot() == timeSlot) {
+                lecturesOfTeacherInSlot.add(l);
+            }
+        }
+        LinkedList<Classroom> classroomList = new LinkedList<Classroom>();
+        for(int i=0; i<lecturesOfTeacherInSlot.size(); i++){
+            classroomList.add(lecturesOfTeacherInSlot.get(i).getClassroom());
+        }
+        System.out.printf("Teacher: %-30s | Timeslot: %d | Classrooms: %s%n", t.getName(), timeSlot, classroomList.toString());
+    }
 }

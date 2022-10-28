@@ -38,7 +38,8 @@ public class Lecture {
     }
 
     public String toString() {
-        return group.concat("-").concat(String.valueOf(timeSlot));
+        return String.valueOf(timeSlot);
+        //return group.concat("-").concat(String.valueOf(timeSlot));
     }
 
     public boolean isTheory(){
@@ -61,7 +62,7 @@ public class Lecture {
             // Group 1: if seminar is 111, 112, 121, 122.
             // Group 11: if seminar is 111, 112.
             // Group 111: if seminar is 111.
-        LinkedList <Student> students = new LinkedList<Student>();        
+        LinkedList <Student> students = new LinkedList<Student>();
         for(Enrollment e : course.getEnrollments()){
             if(isSeminar() && e.getSeminarGroup().equals(group)) {
                 students.add(e.getStudent());

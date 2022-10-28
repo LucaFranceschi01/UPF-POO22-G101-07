@@ -36,4 +36,14 @@ public class Teacher {
         }
         return lectures;
     }
+
+    public LinkedList<Lecture> lecturesOfTeacher(){
+        LinkedList <Lecture> lectures = new LinkedList<Lecture>();
+        for(Assignment a : assignments){
+            for(int i=0; i<a.getCourse().getLectures().size(); i++){
+                lectures.add(a.getCourse().getLectures().get(i));
+            }
+        }
+        return lectures;
+    }
 }
