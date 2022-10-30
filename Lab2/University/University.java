@@ -115,7 +115,7 @@ public class University {
         System.out.printf("Classroom: %-7s | Courses: %s%n", c.getCode(), coursesOfClassroom.toString());
     }
 
-    public void studentsOfTeacher(Teacher t, Classroom c) {
+    public void studentsOfTeacher(Teacher t, Classroom c) { // there are some probable encapsulation errors here 
         LinkedList<Lecture> lecturesInClassroom = t.lecturesOfTeacherInClassroom(c);
         LinkedList <LinkedList<Student>> studentsOfTeacher = new LinkedList<>();
         for(Lecture l : lecturesInClassroom){
@@ -126,7 +126,7 @@ public class University {
         System.out.println();
     }
 
-    public void classroomOfTeacher(Teacher t, int timeSlot) {
+    public void classroomOfTeacher(Teacher t, int timeSlot) { // there are some probable encapsulation errors here
         // lectures held in the course that a teacher gives
         // and they have a fixed timeslot
         LinkedList<Lecture> lecturesOfTeacher = t.lecturesOfTeacher();
@@ -156,5 +156,15 @@ public class University {
         if(c != null) {
             System.out.printf("Student: %-22s | TimeSlot: %-3d | Classroom: %s%n", s.getName(), timeslot, c.getCode());
         }
+    }
+
+    public void teacherOfClassroom(Classroom c, int timeSlot) {
+        LinkedList<Teacher> teacherList = c.teacherOfClassroom(timeSlot);
+        System.out.printf("Classroom: %-10s | TimeSlot: %-3d | Teachers: %s%n", c.getCode(), timeSlot, teacherList.toString());
+    }
+
+    public void studentsOfClassroom(Classroom c, int timeSlot) {
+        LinkedList<Student> studentList = c.studentsOfClassroom(timeSlot);
+        System.out.printf("Classroom: %-10s | TimeSlot: %-3d | Students: %s%n", c.getCode(), timeSlot, studentList.toString());
     }
 }

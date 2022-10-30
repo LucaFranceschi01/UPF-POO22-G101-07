@@ -1,3 +1,4 @@
+import java.security.Timestamp;
 import java.util.*;
 
 public class Classroom {
@@ -32,5 +33,29 @@ public class Classroom {
             courSet.add(lectures.get(i).getCourse());
         }
         return new LinkedList<>(courSet);
+    }
+
+    public LinkedList<Teacher> teacherOfClassroom(int timeSlot) {
+        LinkedList<Teacher> teacherList = new LinkedList<Teacher>();
+        for(int i=0; i<lectures.size(); i++) {
+            if(lectures.get(i).getTimeSlot() == timeSlot) {
+                for(int j=0; j<lectures.get(i).getCourse().getAssignments().size(); j++) {
+                    teacherList.add(lectures.get(i).getCourse().getAssignments().get(j).getTeacher());
+                }
+            }
+        }
+        return teacherList;
+    }
+
+    public LinkedList<Student> studentsOfClassroom(int timeSlot) {
+        LinkedList<Student> studentList = new LinkedList<Student>();
+        for(int i=0; i<lectures.size(); i++) {
+            if(lectures.get(i).getTimeSlot() == timeSlot) {
+                for(int j=0; j<lectures.get(i).getCourse().getEnrollments().size(); j++) {
+                    studentList.add(lectures.get(i).getCourse().getEnrollments().get(j).getStudent());
+                }
+            }
+        }
+        return studentList;
     }
 }
