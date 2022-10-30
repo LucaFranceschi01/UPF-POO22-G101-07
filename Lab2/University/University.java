@@ -115,32 +115,13 @@ public class University {
         System.out.printf("Classroom: %-7s | Courses: %s%n", c.getCode(), coursesOfClassroom.toString());
     }
 
-    public void studentsOfTeacher(Teacher t, Classroom c) { // there are some probable encapsulation errors here 
-        LinkedList<Lecture> lecturesInClassroom = t.lecturesOfTeacherInClassroom(c);
-        LinkedList <LinkedList<Student>> studentsOfTeacher = new LinkedList<>();
-        for(Lecture l : lecturesInClassroom){
-            studentsOfTeacher.add(l.getStudentsOfGroup());
-        }
-
-        System.out.printf("Teacher: %-20s | Classroom: %s | Students: %s", t.getName(), c.getCode(), studentsOfTeacher.toString());
-        System.out.println();
+    public void studentsOfTeacher(Teacher t, Classroom c) {
+        LinkedList<LinkedList<Student>> studentList = t.studentsOfTeacher(c);
+        System.out.printf("Teacher: %-20s | Classroom: %s | Students: %s%n", t.getName(), c.getCode(), studentList.toString());
     }
 
-    public void classroomOfTeacher(Teacher t, int timeSlot) { // there are some probable encapsulation errors here
-        // lectures held in the course that a teacher gives
-        // and they have a fixed timeslot
-        LinkedList<Lecture> lecturesOfTeacher = t.lecturesOfTeacher();
-        LinkedList<Lecture> lecturesOfTeacherInSlot = new LinkedList<Lecture>();
-
-        for(Lecture l : lecturesOfTeacher){
-            if(l.getTimeSlot() == timeSlot) {
-                lecturesOfTeacherInSlot.add(l);
-            }
-        }
-        LinkedList<Classroom> classroomList = new LinkedList<Classroom>();
-        for(int i=0; i<lecturesOfTeacherInSlot.size(); i++){
-            classroomList.add(lecturesOfTeacherInSlot.get(i).getClassroom());
-        }
+    public void classroomOfTeacher(Teacher t, int timeSlot) {
+        LinkedList<Classroom> classroomList = t.classroomOfTeacher(timeSlot);
         System.out.printf("Teacher: %-30s | Timeslot: %d | Classrooms: %s%n", t.getName(), timeSlot, classroomList.toString());
     }
 

@@ -54,9 +54,6 @@ public class Student {
 
     public Classroom classroomOfStudent(int timeSlot) {
         for(Enrollment e : enrollments) {
-            // System.out.println(e.getCourse().toString());
-            // System.out.println(e.getStudent().toString());
-            // System.out.println(e.getSeminarGroup().toString());
             LinkedList<Lecture> l = e.getCourse().getLectures();
             for(int i=0; i< l.size(); i++) {
                 if(l.get(i).getTimeSlot() == timeSlot) {

@@ -24,22 +24,25 @@ public class Lecture {
     public String getGroup() {
         return group;
     }
+
     public int getTimeSlot() {
         return timeSlot;
     }
+
     public int getType() {
         return type;
     }
+
     public Classroom getClassroom() {
         return classroom;
     }
+
     public Course getCourse() {
         return course;
     }
 
     public String toString() {
         return String.valueOf(timeSlot);
-        //return group.concat("-").concat(String.valueOf(timeSlot));
     }
 
     public boolean isTheory(){

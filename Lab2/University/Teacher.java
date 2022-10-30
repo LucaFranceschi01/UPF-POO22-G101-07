@@ -25,7 +25,7 @@ public class Teacher {
         return name;
     }
 
-    public LinkedList<Lecture> lecturesOfTeacherInClassroom(Classroom c){
+    public LinkedList<Lecture> lecturesOfTeacher(Classroom c){
         LinkedList <Lecture> lectures = new LinkedList<Lecture>();
         for(Assignment a : assignments){
             for(int i=0; i<a.getCourse().getLectures().size(); i++){
@@ -38,6 +38,15 @@ public class Teacher {
         return lectures;
     }
 
+    public LinkedList<LinkedList<Student>> studentsOfTeacher(Classroom c) {
+        LinkedList<Lecture> lectureList = lecturesOfTeacher(c);
+        LinkedList <LinkedList<Student>> studentsList = new LinkedList<>();
+        for(Lecture l : lectureList){
+            studentsList.add(l.getStudentsOfGroup());
+        }
+        return studentsList;
+    }
+
     public LinkedList<Lecture> lecturesOfTeacher(){
         LinkedList <Lecture> lectures = new LinkedList<Lecture>();
         for(Assignment a : assignments){
@@ -46,5 +55,16 @@ public class Teacher {
             }
         }
         return lectures;
+    }
+
+    public LinkedList<Classroom> classroomOfTeacher(int timeSlot) {
+        LinkedList<Lecture> lectureList = lecturesOfTeacher();
+        LinkedList<Classroom> classroomList = new LinkedList<Classroom>();
+        for(Lecture l : lectureList){
+            if(l.getTimeSlot() == timeSlot) {
+                classroomList.add(l.getClassroom());
+            }
+        }
+        return classroomList;
     }
 }
