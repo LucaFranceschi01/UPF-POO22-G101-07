@@ -52,4 +52,12 @@ public class Course {
         }
         return teachers;
     }
+
+    public LinkedList<Lecture> getLecturesByType(int type) {
+        LinkedList<Lecture> lectureList = new LinkedList<Lecture>();
+        for(Lecture l : lectures) {
+            if(l.getType() == type) { lectureList.add(l); }
+        }
+        return lectureList;
+    }
 }

@@ -38,4 +38,17 @@ public class Student {
         }
         return courses;
     }
+
+    public boolean isEnrolled(Course c) {
+        for(Enrollment e : enrollments) {
+            if(e.getCourse().getName().equals(c.getName())) { return true; }
+        }
+        return false;
+    }
+
+    public LinkedList<Teacher> teacherOfStudent(Course c, int type) {
+        if( isEnrolled(c) == false) { return new LinkedList<Teacher>(); }
+        LinkedList<Lecture> lectureList = c.getLecturesByType(type);
+        return lectureList.get(0).teacherOfLecture();
+    }
 }

@@ -76,4 +76,17 @@ public class Lecture {
         }
         return students;
     }
+
+    public LinkedList<Teacher> teacherOfLecture() {
+        LinkedList<Teacher> teacherList = new LinkedList<Teacher>();
+        for(int i=0; i< course.getAssignments().size(); i++){
+            for(int j=0; j < course.getAssignments().get(i).getGroups().length; j++) {
+                if(group.equals(course.getAssignments().get(i).getGroups()[j])) {
+                    teacherList.add(course.getAssignments().get(i).getTeacher());
+                }
+                
+            }
+        }
+        return teacherList;
+    }
 }

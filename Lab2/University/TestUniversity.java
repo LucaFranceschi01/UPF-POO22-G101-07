@@ -37,7 +37,10 @@ public class TestUniversity {
         for(int i=0; i<teacherList.size(); i++) {
             university.classroomOfTeacher(teacherList.get(i), 0);
         }
-        university.classroomOfTeacher(teacherList.get(1), 0);
 
+        System.out.println("-".repeat(120));
+        for(int i=0; i<courseList.size(); i++) {
+            university.teacherOfStudent(studentList.get(0), courseList.get(i), 1);
+        }
     }
 }

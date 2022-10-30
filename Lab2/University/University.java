@@ -143,4 +143,11 @@ public class University {
         }
         System.out.printf("Teacher: %-30s | Timeslot: %d | Classrooms: %s%n", t.getName(), timeSlot, classroomList.toString());
     }
+
+    public void teacherOfStudent(Student s, Course c, int type) {
+        LinkedList<Teacher> teacherList = s.teacherOfStudent(c, type);
+        if(teacherList.size() == 1) {
+            System.out.printf("Student: %-22s | Course: %-20s | Type: %d | Teacher: %s%n", s.getName(), c.getName(), type, teacherList.get(0).toString());
+        }
+    }
 }

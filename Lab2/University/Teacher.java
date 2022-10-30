@@ -31,6 +31,7 @@ public class Teacher {
             for(int i=0; i<a.getCourse().getLectures().size(); i++){
                 if(a.getCourse().getLectures().get(i).getClassroom().toString().equals(c.toString())){
                     lectures.add(a.getCourse().getLectures().get(i));
+                    
                 }
             }
         }
