@@ -51,8 +51,8 @@ public class University {
             Enrollment e = new Enrollment(arr[2]);
             Student st = Utility.getObject(arr[0], students);
             Course co = Utility.getObject(arr[1], courses);
-            e.addStudent(new Student(arr[0], st.getNia()));
-            e.addCourse(new Course(arr[1]));
+            e.addStudent(st);
+            e.addCourse(co);
             st.addEnrollment(e);
             co.addEnrollment(e);            
         }
@@ -148,6 +148,13 @@ public class University {
         LinkedList<Teacher> teacherList = s.teacherOfStudent(c, type);
         if(teacherList.size() == 1) {
             System.out.printf("Student: %-22s | Course: %-20s | Type: %d | Teacher: %s%n", s.getName(), c.getName(), type, teacherList.get(0).toString());
+        }
+    }
+
+    public void classroomOfStudent(Student s, int timeslot) {
+        Classroom c = s.classroomOfStudent(timeslot);
+        if(c != null) {
+            System.out.printf("Student: %-22s | TimeSlot: %-3d | Classroom: %s%n", s.getName(), timeslot, c.getCode());
         }
     }
 }
