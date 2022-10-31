@@ -1,7 +1,0 @@
-{
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "jar\\core-3.4.0.jar",
-        "jar\\javase-3.4.0.jar"
-    ]
-}
