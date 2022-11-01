@@ -1,9 +1,9 @@
 public class Member {
-    private String name;
-    private int phone;
-    private String email;
-    private Availability availability;
-    private Headquarter headquarter;
+    protected String name;
+    protected int phone;
+    protected String email;
+    protected Availability availability;
+    protected Headquarter headquarter;
 
     public Member(String n, int p, String e, Headquarter h) {
         name = n;
