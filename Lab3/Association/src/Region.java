@@ -15,4 +15,8 @@ public class Region {
     public LinkedList<City> getCities() {
         return cities;
     }
+
+    public String toString() {
+        return name.concat(":").concat(cities.toString());
+    }
 }

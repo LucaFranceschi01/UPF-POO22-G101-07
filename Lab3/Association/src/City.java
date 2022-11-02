@@ -16,6 +16,10 @@ public class City {
     }
 
     public String toString() {
-        return name.concat(String.valueOf(population));
+        return name;
+    }
+
+    public int getPopulation() {
+        return population;
     }
 }

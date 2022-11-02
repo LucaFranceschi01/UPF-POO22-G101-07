@@ -8,7 +8,6 @@ public class TestOrganization {
 
     public static void main(String[] args) {
         TestOrganization myOrganization = new TestOrganization();
-        System.out.println(myOrganization.headquarters.get(1).getCities().toString());
     }
 
     public TestOrganization() {
@@ -23,7 +22,7 @@ public class TestOrganization {
         for(String[] arr : reg) {
             Region region = new Region(arr[0]);
             LinkedList<City> cities = new LinkedList<City>();
-            for(int i=1; i<arr.length/2; i++){
+            for(int i=1; i<=arr.length/2; i++){
                 cities.add(new City(arr[i], Integer.parseInt(arr[i+(arr.length-1)/2])));
             }
             region.setCities(cities);
@@ -38,6 +37,7 @@ public class TestOrganization {
         for(String[] arr : hea) {
             Headquarter headquarter = new Headquarter(arr[0], arr[1], organization);
             headquarter.setCities(getCitiesFromRegions(arr));
+            headquarterList.add(headquarter);
         }
         return headquarterList;
     }
@@ -46,7 +46,8 @@ public class TestOrganization {
         LinkedList<City> cities = new LinkedList<City>();
         for(int i=2; i< array.length; i++) {
             for(Region region : regions) {
-                cities.add(Utility.getObject(array[i], region.getCities()));
+                City city = Utility.getObject(array[i], region.getCities());
+                if(city != null) { cities.add(city); }
             }
         }
         return cities;
