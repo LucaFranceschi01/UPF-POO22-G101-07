@@ -37,7 +37,7 @@ public class Utility {
 	public static LinkedList< String[] > readXML( String type, LinkedList< String > tokens ) {
 		LinkedList< String[] > outputs = new LinkedList< String[] >();
 		try {
-			File input = new File("Lab3/Association/xml" + type + "s.xml");
+			File input = new File("Lab3/Association/xml/" + type + "s.xml");
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			Document doc = db.parse( input );

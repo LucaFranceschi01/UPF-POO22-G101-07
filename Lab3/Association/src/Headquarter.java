@@ -42,4 +42,8 @@ public class Headquarter {
     public void setHead(Delegate h) {
         head = h;
     }
+
+    public void setCities(LinkedList<City> cityList) {
+        cities = cityList;
+    }
 }

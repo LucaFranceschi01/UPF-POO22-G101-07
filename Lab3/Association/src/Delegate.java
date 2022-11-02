@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.LinkedList;
 
 public class Delegate extends Member {
@@ -18,7 +19,7 @@ public class Delegate extends Member {
         dependents.add(r);
     }
 
-    public Image generateDelegate(QRLib q) {
+    /*public Image generateDelegate(QRLib q) {
         // finish
     }
 
@@ -32,7 +33,7 @@ public class Delegate extends Member {
 
     public boolean signUpRegular(Regular r, QRLib q, Image i) {
         // finish
-    }
+    }*/
 
     public void proposeAction(Action a) {
         headOf.getOrganization().addAction(a); // check
