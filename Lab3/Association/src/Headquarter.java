@@ -46,4 +46,8 @@ public class Headquarter {
     public void setCities(LinkedList<City> cityList) {
         cities = cityList;
     }
+
+    public LinkedList<City> getCities() {
+        return cities;
+    }
 }

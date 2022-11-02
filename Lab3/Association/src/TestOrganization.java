@@ -7,12 +7,13 @@ public class TestOrganization {
     private Organization organization;
 
     public static void main(String[] args) {
-        new TestOrganization();
+        TestOrganization myOrganization = new TestOrganization();
+        System.out.println(myOrganization.headquarters.get(1).getCities().toString());
     }
 
     public TestOrganization() {
         organization = new Organization("MyOrganization");
-        regions = readRegions();
+        regions = readRegions(); // maybe not working bc local creation
         headquarters = readHeadquarters();
     }
 
@@ -36,12 +37,18 @@ public class TestOrganization {
         LinkedList<String[]> hea = Utility.readXML("headquarter");
         for(String[] arr : hea) {
             Headquarter headquarter = new Headquarter(arr[0], arr[1], organization);
-            LinkedList<City> cities = new LinkedList<City>();
-            for(int i=2; i< arr.length; i++) {
-                // finish
-            }
-            System.out.println("--------------");
+            headquarter.setCities(getCitiesFromRegions(arr));
         }
-        return null;
+        return headquarterList;
+    }
+
+    public LinkedList<City> getCitiesFromRegions(String[] array) {
+        LinkedList<City> cities = new LinkedList<City>();
+        for(int i=2; i< array.length; i++) {
+            for(Region region : regions) {
+                cities.add(Utility.getObject(array[i], region.getCities()));
+            }
+        }
+        return cities;
     }
 }

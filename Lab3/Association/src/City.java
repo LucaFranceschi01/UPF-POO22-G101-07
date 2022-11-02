@@ -14,4 +14,8 @@ public class City {
     public void addHeadquarter(Headquarter h) {
         headquarters.add(h);
     }
+
+    public String toString() {
+        return name.concat(String.valueOf(population));
+    }
 }

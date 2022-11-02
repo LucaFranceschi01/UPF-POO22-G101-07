@@ -11,4 +11,8 @@ public class Region {
     public void setCities(LinkedList<City> c) {
         cities = c;
     }
+
+    public LinkedList<City> getCities() {
+        return cities;
+    }
 }
