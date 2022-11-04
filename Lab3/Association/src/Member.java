@@ -1,9 +1,9 @@
 public class Member {
-    protected String name;
-    protected int phone;
-    protected String email;
-    protected Availability availability;
-    protected Headquarter headquarter;
+    private String name;
+    private int phone;
+    private String email;
+    private Availability availability;
+    private Headquarter headquarter;
 
     public Member(String n, int p, String e, Headquarter h) {
         name = n;
@@ -12,11 +12,15 @@ public class Member {
         headquarter = h;
     }
 
-    public void setAvailability(Availability a) {
+    protected void setAvailability(Availability a) {
         availability = a;
     }
 
-    public Headquarter getHeadquarter() {
+    protected Headquarter getHeadquarter() {
         return headquarter;
+    }
+
+    protected String getName() {
+        return name;
     }
 }

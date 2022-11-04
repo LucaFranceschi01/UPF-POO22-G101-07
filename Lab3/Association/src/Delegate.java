@@ -15,6 +15,10 @@ public class Delegate extends Member {
         headOf = h;
     }
 
+    public Headquarter getHeadquarter() {
+        return headOf;
+    }
+
     public void addDependents(Regular r) {
         dependents.add(r);
     }
@@ -43,5 +47,9 @@ public class Delegate extends Member {
         // The head of a headquarter can propose new actions to the organization. The
         // delegates can sign up the headquarter for an action developed on a specific date
         // indicating how many of its dependent members will participate.
+    }
+
+    protected String getName() {
+        return super.getName();
     }
 }

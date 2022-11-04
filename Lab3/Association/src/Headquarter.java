@@ -43,11 +43,19 @@ public class Headquarter {
         head = h;
     }
 
+    public Delegate getHead() {
+        return head;
+    }
+
     public void setCities(LinkedList<City> cityList) {
         cities = cityList;
     }
 
     public LinkedList<City> getCities() {
         return cities;
+    }
+
+    public String toString() {
+        return name;
     }
 }
