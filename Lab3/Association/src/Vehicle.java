@@ -6,4 +6,12 @@ public class Vehicle {
         type = t;
         capacity = c;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
 }

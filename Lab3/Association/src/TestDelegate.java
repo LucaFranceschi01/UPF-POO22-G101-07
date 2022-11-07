@@ -15,6 +15,7 @@ public class TestDelegate {
         regions = readRegions();
         headquarters = readHeadquarters();
         delegates = readHeads();
+        organization.setHeadquarters(headquarters);
     }
 
     public LinkedList<Region> readRegions() {

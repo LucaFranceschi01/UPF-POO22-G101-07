@@ -23,19 +23,23 @@ public class Delegate extends Member {
         dependents.add(r);
     }
 
-    /*public Image generateDelegate(QRLib q) {
-        // finish
+    public Image genDelegateQR(QRLib q) { // mal
+        String text = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch.";
+        Image image = new Image("Lab3/Association/img", 600, 600);
+        image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
+        image.getBitmap();
+        return image;
     }
 
-    public Image generateRegular(QRLib q) {
+    /*public Image genRegularQR(QRLib q) {
         // finish
-    }
+    }*/
 
-    public boolean signUpDelegate(Delegate d, QRLib q, Image i) {
-        // finish
-    }
+    /*public boolean signUpDelegate(Delegate d, QRLib q, Image i) {
+        
+    }*/
 
-    public boolean signUpRegular(Regular r, QRLib q, Image i) {
+    /*public boolean signUpRegular(Regular r, QRLib q, Image i) {
         // finish
     }*/
 

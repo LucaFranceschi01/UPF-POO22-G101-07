@@ -12,15 +12,31 @@ public class Member {
         headquarter = h;
     }
 
-    protected void setAvailability(Availability a) {
-        availability = a;
+    protected String getName() {
+        return name;
+    }
+    
+    protected int getPhone() {
+        return phone;
+    }
+
+    protected String getEmail() {
+        return email;
+    }
+
+    protected Availability getAvailability() {
+        return availability;
     }
 
     protected Headquarter getHeadquarter() {
         return headquarter;
     }
 
-    protected String getName() {
-        return name;
+    protected void setAvailability(Availability a) {
+        availability = a;
+    }
+
+    protected void setHeadquarter(Headquarter h) {
+        headquarter = h;
     }
 }
