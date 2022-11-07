@@ -23,25 +23,39 @@ public class Delegate extends Member {
         dependents.add(r);
     }
 
-    public Image genDelegateQR(QRLib q) { // mal
+    public Image genDelegateQR() {
         String text = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch.";
-        Image image = new Image("Lab3/Association/img", 600, 600);
+        if(headOf != null) { text = text.concat("\\n - ").concat(getName()); } 
+        Image image = new Image("Lab3/Association/img/del-".concat(String.valueOf(getPhone())).concat(".jpg"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
         image.getBitmap();
+        image.save(); // save??
+        setQR(image);
         return image;
     }
 
-    /*public Image genRegularQR(QRLib q) {
-        // finish
-    }*/
+    public Image genRegularQR() {
+        String text = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors.";
+        Image image = new Image("Lab3/Association/img/reg-".concat(String.valueOf(getPhone())).concat(".jpg"), 600, 600);
+        image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
+        image.getBitmap();
+        System.out.println("awelo??");
+        image.save(); // save??
+        setQR(image);
+        return image;
+    }
 
-    /*public boolean signUpDelegate(Delegate d, QRLib q, Image i) {
-        
-    }*/
+    public boolean signUpDelegate(Delegate d) {
+        if(headOf != null) {
+            d.setQR(genDelegateQR());
+            return true;
+        }
+        return false;
+    }
 
-    /*public boolean signUpRegular(Regular r, QRLib q, Image i) {
-        // finish
-    }*/
+    public void signUpRegular(Regular r) {
+        r.setQR(genRegularQR());
+    }
 
     public void proposeAction(Action a) {
         headOf.getOrganization().addAction(a); // check
@@ -51,9 +65,5 @@ public class Delegate extends Member {
         // The head of a headquarter can propose new actions to the organization. The
         // delegates can sign up the headquarter for an action developed on a specific date
         // indicating how many of its dependent members will participate.
-    }
-
-    protected String getName() {
-        return super.getName();
     }
 }

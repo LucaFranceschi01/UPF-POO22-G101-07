@@ -4,12 +4,14 @@ public class Member {
     private String email;
     private Availability availability;
     private Headquarter headquarter;
+    private Image personalQR;
 
     public Member(String n, int p, String e, Headquarter h) {
         name = n;
         phone = p;
         email = e;
         headquarter = h;
+        personalQR = null;
     }
 
     protected String getName() {
@@ -32,11 +34,19 @@ public class Member {
         return headquarter;
     }
 
+    protected Image getQR() {
+        return personalQR;
+    }
+
     protected void setAvailability(Availability a) {
         availability = a;
     }
 
     protected void setHeadquarter(Headquarter h) {
         headquarter = h;
+    }
+
+    protected void setQR(Image qr) {
+        personalQR = qr;
     }
 }

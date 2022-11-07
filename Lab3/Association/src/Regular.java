@@ -7,7 +7,9 @@ public class Regular extends Member{
     public Regular(String n, int p, String e, Headquarter h, Delegate r) {
         super(n, p, e, h);
         responsible = r;
+        r.addDependents(this);
         vehicles = new LinkedList<Vehicle>();
+        r.signUpRegular(this);
     }
 
     public void addVehicle(Vehicle v) {

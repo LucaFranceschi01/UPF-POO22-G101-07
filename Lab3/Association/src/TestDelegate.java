@@ -7,7 +7,10 @@ public class TestDelegate {
 
     public static void main(String[] args) {
         TestDelegate myOrganization = new TestDelegate();
-        System.out.println(myOrganization.delegates.getFirst().getName());
+        // System.out.println(myOrganization.delegates.getFirst().getName());
+        //myOrganization.delegates.getFirst().genDelegateQR();
+        //myOrganization.delegates.getFirst().genRegularQR();
+        Regular abuelo = new Regular("Papa francisco", 666666666, "papa@vaticano.god", myOrganization.headquarters.getFirst(), myOrganization.headquarters.getFirst().getHead());
     }
 
     public TestDelegate() {
