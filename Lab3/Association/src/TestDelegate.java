@@ -1,18 +1,18 @@
 import java.util.LinkedList;
-public class TestOrganization {
+public class TestDelegate {
     private LinkedList<Region> regions;
     private LinkedList<Delegate> delegates;
     private LinkedList<Headquarter> headquarters;
     private Organization organization;
 
     public static void main(String[] args) {
-        TestOrganization myOrganization = new TestOrganization();
+        TestDelegate myOrganization = new TestDelegate();
         System.out.println(myOrganization.delegates.getFirst().getName());
     }
 
-    public TestOrganization() {
+    public TestDelegate() {
         organization = new Organization("MyOrganization");
-        regions = readRegions(); // maybe not working bc local creation
+        regions = readRegions();
         headquarters = readHeadquarters();
         delegates = readHeads();
     }
