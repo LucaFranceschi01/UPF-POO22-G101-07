@@ -55,6 +55,10 @@ public class Headquarter {
         return cities;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public String toString() {
         return name;
     }

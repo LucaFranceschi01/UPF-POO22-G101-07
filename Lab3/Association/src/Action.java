@@ -1,4 +1,3 @@
-import java.lang.ProcessHandle.Info;
 import java.time.Duration;
 import java.util.Date;
 import java.util.LinkedList;
@@ -22,6 +21,18 @@ public class Action {
 
     public Date getDate() {
         return date;
+    }
+
+    public String getPurpose() {
+        return purpose;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public LinkedList<InfoAction> getDevelopedAction() {
+        return developedAction;
     }
 
     public boolean isPerforming(Date d) {

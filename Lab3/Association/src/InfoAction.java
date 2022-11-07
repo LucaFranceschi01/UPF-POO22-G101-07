@@ -13,11 +13,23 @@ public class InfoAction {
         pressCoverage = pc;
     }
 
-    /*public void setHeadquarter(Headquarter h) {
-        headquarter = h;
-    }*/
-
     public Action getAction() {
         return action;
+    }
+
+    public Headquarter getHeadquarter() {
+        return headquarter;
+    }
+
+    public int getNumMembers() {
+        return numMembers;
+    }
+
+    public int getNumNonMembers() {
+        return numNonMembers;
+    }
+
+    public boolean getPressCoverage() {
+        return pressCoverage;
     }
 }
