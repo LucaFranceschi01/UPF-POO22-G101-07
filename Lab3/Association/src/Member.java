@@ -49,4 +49,8 @@ public class Member {
     protected void setQR(Image qr) {
         personalQR = qr;
     }
+
+    public String toString() {
+        return name;
+    }
 }

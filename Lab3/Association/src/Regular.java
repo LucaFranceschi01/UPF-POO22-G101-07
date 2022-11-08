@@ -9,6 +9,7 @@ public class Regular extends Member{
         responsible = r;
         r.addDependents(this);
         vehicles = new LinkedList<Vehicle>();
+        h.addMember(this);
         r.signUpRegular(this);
     }
 
@@ -18,9 +19,5 @@ public class Regular extends Member{
 
     public Delegate getResponsible() {
         return responsible;
-    }
-
-    public String toString() {
-        return String.valueOf(getPhone());
     }
 }

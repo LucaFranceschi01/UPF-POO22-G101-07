@@ -62,4 +62,8 @@ public class Headquarter {
     public String toString() {
         return name;
     }
+
+    public LinkedList<Member> getMembers() {
+        return members;
+    }
 }

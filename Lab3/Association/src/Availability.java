@@ -27,4 +27,8 @@ public class Availability {
     public LinkedList<String> getHours() {
         return hours;
     }
+
+    public String toString() {
+        return days.toString().concat("\n").concat(hours.toString());
+    }
 }

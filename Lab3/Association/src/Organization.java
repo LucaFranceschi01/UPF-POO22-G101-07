@@ -50,4 +50,11 @@ public class Organization {
         }
         return heads;
     }
+
+    public void printMembers() {
+        for(Headquarter h : headquarters) {
+            System.out.printf("%s: ", h.toString());
+            System.out.println(h.getMembers().toString());
+        }
+    }
 }

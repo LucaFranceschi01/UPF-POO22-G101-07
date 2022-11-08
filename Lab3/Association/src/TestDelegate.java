@@ -7,10 +7,8 @@ public class TestDelegate {
 
     public static void main(String[] args) {
         TestDelegate myOrganization = new TestDelegate();
-        // System.out.println(myOrganization.delegates.getFirst().getName());
-        // myOrganization.delegates.getFirst().genDelegateQR();
-        // myOrganization.delegates.getFirst().genRegularQR();
         Regular reg1 = new Regular("Papa Francisco", 666666666, "papa@vaticano.god", myOrganization.headquarters.getFirst(), myOrganization.headquarters.getFirst().getHead());
+        myOrganization.organization.printMembers();
     }
 
     public TestDelegate() {
@@ -68,6 +66,7 @@ public class TestDelegate {
             head.setAvailability(availability);
             head.setHeadOf(headquarter);
             headquarter.setHead(head);
+            headquarter.addMember(head);
             headsList.add(head);
         }
         return headsList;

@@ -5,7 +5,7 @@ return head delegates of every headq DONE
 generate qrs gendelegateqr genregularqr
 signup new members signupdelegate signupregular
 texts for qrs
-print all members of organization
+print all members of organization DONE
 actions, infoaction
 delegate proposenewactions and signupaction
 testear cosas
