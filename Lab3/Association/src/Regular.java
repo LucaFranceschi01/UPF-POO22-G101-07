@@ -19,4 +19,8 @@ public class Regular extends Member{
     public Delegate getResponsible() {
         return responsible;
     }
+
+    public String toString() {
+        return String.valueOf(getPhone());
+    }
 }

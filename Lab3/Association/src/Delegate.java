@@ -19,14 +19,18 @@ public class Delegate extends Member {
         return headOf;
     }
 
+    public LinkedList<Regular> getDependents() {
+        return dependents;
+    }
+
     public void addDependents(Regular r) {
         dependents.add(r);
     }
 
-    public Image genDelegateQR() {
+    public Image genDelegateQR(Delegate d) {
         String text = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch.";
         if(headOf != null) { text = text.concat("\\n - ").concat(getName()); } 
-        Image image = new Image("Lab3/Association/img/del-".concat(String.valueOf(getPhone())).concat(".jpg"), 600, 600);
+        Image image = new Image("Lab3/Association/img/del-".concat(String.valueOf(d.getPhone())).concat(".jpg"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
         image.getBitmap();
         image.save(); // save??
@@ -34,12 +38,11 @@ public class Delegate extends Member {
         return image;
     }
 
-    public Image genRegularQR() {
+    public Image genRegularQR(Regular r) {
         String text = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors.";
-        Image image = new Image("Lab3/Association/img/reg-".concat(String.valueOf(getPhone())).concat(".jpg"), 600, 600);
+        Image image = new Image("Lab3/Association/img/reg-".concat(String.valueOf(r.getPhone())).concat(".jpg"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
         image.getBitmap();
-        System.out.println("awelo??");
         image.save(); // save??
         setQR(image);
         return image;
@@ -47,14 +50,14 @@ public class Delegate extends Member {
 
     public boolean signUpDelegate(Delegate d) {
         if(headOf != null) {
-            d.setQR(genDelegateQR());
+            d.setQR(genDelegateQR(d));
             return true;
         }
         return false;
     }
 
     public void signUpRegular(Regular r) {
-        r.setQR(genRegularQR());
+        r.setQR(genRegularQR(r));
     }
 
     public void proposeAction(Action a) {
