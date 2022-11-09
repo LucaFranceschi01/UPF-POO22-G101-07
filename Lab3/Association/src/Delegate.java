@@ -35,7 +35,7 @@ public class Delegate extends Member {
     public Image genDelegateQR(Delegate d) {
         String text = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch.";
         if(d.getHeadOf() != null) {
-            text = text.concat("\\n - ").concat(getName());
+            text = getName().concat(". ").concat(text);
         }
         Image image = new Image("Lab3/Association/qr/del-".concat(String.valueOf(d.getPhone())).concat(".png"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
