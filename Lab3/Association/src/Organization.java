@@ -27,7 +27,7 @@ public class Organization {
         return name;
     }
 
-    public LinkedList<Headquarter> gteHeadquarters() {
+    public LinkedList<Headquarter> getHeadquarters() {
         return headquarters;
     }
 

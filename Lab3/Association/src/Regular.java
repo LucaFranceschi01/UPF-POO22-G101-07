@@ -4,13 +4,12 @@ public class Regular extends Member{
     private Delegate responsible;
     private LinkedList<Vehicle> vehicles;
 
-    public Regular(String n, int p, String e, Headquarter h, Delegate r) {
+    public Regular(String n, int p, String e, Headquarter h, Delegate d) {
         super(n, p, e, h);
-        responsible = r;
-        r.addDependents(this);
         vehicles = new LinkedList<Vehicle>();
-        h.addMember(this);
-        r.signUpRegular(this);
+        responsible = d;
+        d.addDependents(this);
+        d.signUpRegular(this);
     }
 
     public void addVehicle(Vehicle v) {

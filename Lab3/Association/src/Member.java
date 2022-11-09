@@ -11,6 +11,7 @@ public class Member {
         phone = p;
         email = e;
         headquarter = h;
+        h.addMember(this);
         personalQR = null;
     }
 

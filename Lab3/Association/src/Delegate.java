@@ -9,10 +9,19 @@ public class Delegate extends Member {
         super(n, p, e, h);
         dependents = new LinkedList<Regular>();
         headOf = null;
+        if(h.getMembers().size() == 1) {
+            headOf = h;
+            h.setHead(this);
+        }
+        h.getHead().signUpDelegate(this);
     }
 
     public void setHeadOf(Headquarter h) {
         headOf = h;
+    }
+
+    public Headquarter getHeadOf() {
+        return headOf;
     }
 
     public Headquarter getHeadquarter() {
@@ -29,12 +38,14 @@ public class Delegate extends Member {
 
     public Image genDelegateQR(Delegate d) {
         String text = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch.";
-        if(headOf != null) { text = text.concat("\\n - ").concat(getName()); } 
+        if(d.getHeadOf() != null) {
+            text = text.concat("\\n - ").concat(getName());
+        }
         Image image = new Image("Lab3/Association/img/del-".concat(String.valueOf(d.getPhone())).concat(".jpg"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
-        image.getBitmap();
-        image.save(); // save??
-        setQR(image);
+        image.getBitmap(); // to set bitmap
+        // image.save(); // save??
+        // setQR(image);
         return image;
     }
 
@@ -42,9 +53,9 @@ public class Delegate extends Member {
         String text = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors.";
         Image image = new Image("Lab3/Association/img/reg-".concat(String.valueOf(r.getPhone())).concat(".jpg"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
-        image.getBitmap();
-        image.save(); // save??
-        setQR(image);
+        image.getBitmap(); // to set bitmap
+        // image.save(); // save??
+        // setQR(image);
         return image;
     }
 

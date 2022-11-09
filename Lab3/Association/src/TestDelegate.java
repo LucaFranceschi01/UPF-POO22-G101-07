@@ -1,22 +1,23 @@
 import java.util.LinkedList;
 public class TestDelegate {
     private LinkedList<Region> regions;
-    private LinkedList<Delegate> delegates;
-    private LinkedList<Headquarter> headquarters;
     private Organization organization;
 
     public static void main(String[] args) {
-        TestDelegate myOrganization = new TestDelegate();
-        Regular reg1 = new Regular("Papa Francisco", 666666666, "papa@vaticano.god", myOrganization.headquarters.getFirst(), myOrganization.headquarters.getFirst().getHead());
-        myOrganization.organization.printMembers();
+        TestDelegate testing = new TestDelegate();
+        Regular reg1 = new Regular("Papa Francisco", 666666666, "papa@vaticano.god", testing.organization.getHeadquarters().getFirst(), testing.organization.getHeadquarters().getFirst().getHead());
+        Delegate del1 = new Delegate("Someone", 333333333, "someone@association.idk", testing.organization.getHeadquarters().getFirst());
+        testing.organization.printMembers();
+        testing.organization.getHeadquarters().getFirst().getMembers().get(0).getQR().save();
+        testing.organization.getHeadquarters().getFirst().getMembers().get(1).getQR().save();
+        testing.organization.getHeadquarters().getFirst().getMembers().get(2).getQR().save();
     }
 
     public TestDelegate() {
         organization = new Organization("MyOrganization");
         regions = readRegions();
-        headquarters = readHeadquarters();
-        delegates = readHeads();
-        organization.setHeadquarters(headquarters);
+        readHeadquarters();
+        readHeads();
     }
 
     public LinkedList<Region> readRegions() {
@@ -34,7 +35,7 @@ public class TestDelegate {
         return regionList;
     }
 
-    public LinkedList<Headquarter> readHeadquarters() {
+    public void readHeadquarters() {
         LinkedList<Headquarter> headquarterList = new LinkedList<Headquarter>();
         LinkedList<String[]> hea = Utility.readXML("headquarter");
         for(String[] arr : hea) {
@@ -42,7 +43,7 @@ public class TestDelegate {
             headquarter.setCities(getCitiesFromRegions(arr));
             headquarterList.add(headquarter);
         }
-        return headquarterList;
+        organization.setHeadquarters(headquarterList);
     }
 
     public LinkedList<City> getCitiesFromRegions(String[] array) {
@@ -56,19 +57,15 @@ public class TestDelegate {
         return cities;
     }
 
-    public LinkedList<Delegate> readHeads() {
+    public void readHeads() {
         LinkedList<Delegate> headsList = new LinkedList<Delegate>();
         LinkedList<String[]> hea = Utility.readXML("head");
         for(String[] arr : hea) {
-            Headquarter headquarter = Utility.getObject(arr[3], headquarters);
+            Headquarter headquarter = Utility.getObject(arr[3], organization.getHeadquarters());
             Availability availability = new Availability(arr[4], arr[5]);
             Delegate head = new Delegate(arr[0], Integer.parseInt(arr[1]), arr[2], headquarter);
             head.setAvailability(availability);
-            head.setHeadOf(headquarter);
-            headquarter.setHead(head);
-            headquarter.addMember(head);
             headsList.add(head);
         }
-        return headsList;
     }
 }
