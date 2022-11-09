@@ -3,7 +3,7 @@ import java.util.LinkedList;
 
 public class Delegate extends Member {
     private LinkedList<Regular> dependents;
-    private Headquarter headOf; // can be null?
+    private Headquarter headOf; // if not null, is head of a headquarter
 
     public Delegate(String n, int p, String e, Headquarter h) {
         super(n, p, e, h);
@@ -24,10 +24,6 @@ public class Delegate extends Member {
         return headOf;
     }
 
-    public Headquarter getHeadquarter() {
-        return headOf;
-    }
-
     public LinkedList<Regular> getDependents() {
         return dependents;
     }
@@ -44,8 +40,6 @@ public class Delegate extends Member {
         Image image = new Image("Lab3/Association/img/del-".concat(String.valueOf(d.getPhone())).concat(".jpg"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
         image.getBitmap(); // to set bitmap
-        // image.save(); // save??
-        // setQR(image);
         return image;
     }
 
@@ -54,12 +48,10 @@ public class Delegate extends Member {
         Image image = new Image("Lab3/Association/img/reg-".concat(String.valueOf(r.getPhone())).concat(".jpg"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
         image.getBitmap(); // to set bitmap
-        // image.save(); // save??
-        // setQR(image);
         return image;
     }
 
-    public boolean signUpDelegate(Delegate d) {
+    public boolean signUpDelegate(Delegate d) { // as we use it, always true
         if(headOf != null) {
             d.setQR(genDelegateQR(d));
             return true;
@@ -79,5 +71,9 @@ public class Delegate extends Member {
         // The head of a headquarter can propose new actions to the organization. The
         // delegates can sign up the headquarter for an action developed on a specific date
         // indicating how many of its dependent members will participate.
+    }
+
+    public String checkClass() {
+        return "Delegate";
     }
 }

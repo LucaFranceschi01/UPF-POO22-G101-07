@@ -54,4 +54,8 @@ public class Member {
     public String toString() {
         return name;
     }
+
+    public String checkClass() {
+        return "Member";
+    }
 }

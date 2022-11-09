@@ -5,12 +5,12 @@ public class TestDelegate {
 
     public static void main(String[] args) {
         TestDelegate testing = new TestDelegate();
-        Regular reg1 = new Regular("Papa Francisco", 666666666, "papa@vaticano.god", testing.organization.getHeadquarters().getFirst(), testing.organization.getHeadquarters().getFirst().getHead());
-        Delegate del1 = new Delegate("Someone", 333333333, "someone@association.idk", testing.organization.getHeadquarters().getFirst());
+        LinkedList<Headquarter> headquarters = testing.organization.getHeadquarters();
+        new Delegate("Some Delegate", 333333333, "someone@association.idk", headquarters.getFirst());
+        new Regular("Papa Francisco", 666666666, "papa@vaticano.god", headquarters.getFirst(), headquarters.getFirst().getDelegates().getFirst());
+        new Regular("New Papa Francisco", 666666667, "papa@vaticano.god", headquarters.getFirst(), headquarters.getFirst().getDelegates().get(1));
         testing.organization.printMembers();
-        testing.organization.getHeadquarters().getFirst().getMembers().get(0).getQR().save();
-        testing.organization.getHeadquarters().getFirst().getMembers().get(1).getQR().save();
-        testing.organization.getHeadquarters().getFirst().getMembers().get(2).getQR().save();
+        // headquarters.getFirst().getMembers().get(0).getQR().save();
     }
 
     public TestDelegate() {
@@ -40,7 +40,11 @@ public class TestDelegate {
         LinkedList<String[]> hea = Utility.readXML("headquarter");
         for(String[] arr : hea) {
             Headquarter headquarter = new Headquarter(arr[0], arr[1], organization);
-            headquarter.setCities(getCitiesFromRegions(arr));
+            LinkedList<City> cities  = getCitiesFromRegions(arr);
+            headquarter.setCities(cities);
+            for(City c : cities) {
+                c.addHeadquarter(headquarter);
+            }
             headquarterList.add(headquarter);
         }
         organization.setHeadquarters(headquarterList);
@@ -58,14 +62,12 @@ public class TestDelegate {
     }
 
     public void readHeads() {
-        LinkedList<Delegate> headsList = new LinkedList<Delegate>();
         LinkedList<String[]> hea = Utility.readXML("head");
         for(String[] arr : hea) {
             Headquarter headquarter = Utility.getObject(arr[3], organization.getHeadquarters());
             Availability availability = new Availability(arr[4], arr[5]);
             Delegate head = new Delegate(arr[0], Integer.parseInt(arr[1]), arr[2], headquarter);
             head.setAvailability(availability);
-            headsList.add(head);
         }
     }
 }

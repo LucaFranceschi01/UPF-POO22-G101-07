@@ -23,20 +23,8 @@ public class Headquarter {
         members.add(m);
     }
 
-    public void signUpAction(Action a, int nm, int nnm, boolean pc) {
-        InfoAction info = new InfoAction(a, this, nm, nnm, pc); // wat
-        actionsDeveloped.add(info);
-    }
-
     public Organization getOrganization() {
         return organization;
-    }
-
-    public Action getAction(Date d) {
-        for(int i=0; i<actionsDeveloped.size(); i++) {
-            if(actionsDeveloped.get(i).getAction().isPerforming(d)) { return actionsDeveloped.get(i).getAction(); }
-        }
-        return null; // check
     }
 
     public void setHead(Delegate h) {
@@ -65,5 +53,37 @@ public class Headquarter {
 
     public LinkedList<Member> getMembers() {
         return members;
+    }
+
+    public LinkedList<Delegate> getDelegates() {
+        LinkedList<Delegate> delegates = new LinkedList<Delegate>();
+        for(Member m : members) {
+            if(m.checkClass().equals("Delegate")) {
+                delegates.add((Delegate) m);
+            }
+        }
+        return delegates;
+    }
+
+    public LinkedList<Regular> getRegulars() {
+        LinkedList<Regular> regulars = new LinkedList<Regular>();
+        for(Member m : members) {
+            if(m.checkClass().equals("Regular")) {
+                regulars.add((Regular) m);
+            }
+        }
+        return regulars;
+    }
+
+    public Action getAction(Date d) {
+        for(int i=0; i<actionsDeveloped.size(); i++) {
+            if(actionsDeveloped.get(i).getAction().isPerforming(d)) { return actionsDeveloped.get(i).getAction(); }
+        }
+        return null; // check
+    }
+
+    public void signUpAction(Action a, int nm, int nnm, boolean pc) {
+        InfoAction info = new InfoAction(a, this, nm, nnm, pc); // wat
+        actionsDeveloped.add(info);
     }
 }
