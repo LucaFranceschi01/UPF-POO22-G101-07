@@ -13,7 +13,7 @@ public class Delegate extends Member {
             headOf = h;
             h.setHead(this);
         }
-        h.getHead().signUpDelegate(this);
+        //h.getHead().signUpDelegate(this);     lo comento pq no se q hace y daba error :p
     }
 
     public void setHeadOf(Headquarter h) {
@@ -39,8 +39,6 @@ public class Delegate extends Member {
         }
         Image image = new Image("Lab3/Association/qr/del-".concat(String.valueOf(d.getPhone())).concat(".png"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
-        image.getBitmap(); // to set bitmap
-        image.save();
         return image;
     }
 
@@ -48,21 +46,29 @@ public class Delegate extends Member {
         String text = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors.";
         Image image = new Image("Lab3/Association/qr/reg-".concat(String.valueOf(r.getPhone())).concat(".png"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
-        image.getBitmap(); // to set bitmap
-        image.save();
         return image;
     }
 
-    public boolean signUpDelegate(Delegate d) { // as we use it, always true
-        if(headOf != null) {
-            d.setQR(genDelegateQR(d));
+    public boolean signUpDelegate(Delegate d, Image i) { // no estoy seguro del todo y faltan cositas for sure, pero es un draft
+        String delText = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch.";
+        Image decodedQR = new Image("Lab3/Association/qr/delCheck", 600, 600);
+        decodedQR.setBitMatrix(QRLib.generateQRCodeImage(delText, 600, 600));
+        if (QRLib.decodeQRCodeImage(i.getBitmap()).contains(QRLib.decodeQRCodeImage(decodedQR.getBitmap()))) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
-    public void signUpRegular(Regular r) {
-        r.setQR(genRegularQR(r));
+    public boolean signUpRegular(Regular r, Image i) { // same for this one here xd
+        String regText = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors.";
+        Image decodedQR = new Image("Lab3/Association/qr/regCheck", 600, 600);
+        decodedQR.setBitMatrix(QRLib.generateQRCodeImage(regText, 600, 600));
+        if (QRLib.decodeQRCodeImage(i.getBitmap()).equals(QRLib.decodeQRCodeImage(decodedQR.getBitmap()))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void proposeAction(Action a) {
