@@ -13,7 +13,7 @@ public class Delegate extends Member {
             headOf = h;
             h.setHead(this);
         }
-        //h.getHead().signUpDelegate(this);     lo comento pq no se q hace y daba error :p
+        h.getHead().signUpDelegate(this);
     }
 
     public void setHeadOf(Headquarter h) {
@@ -34,20 +34,33 @@ public class Delegate extends Member {
 
     public Image genDelegateQR(Delegate d) {
         String text = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch.";
-        text = getName().concat(". ").concat(text); // to generate a delegate you must be the head, the head shows up in every qr code
+        text = getHeadquarter().getHead().getName().concat(". ").concat(text); // to generate a delegate you must be the head, the head shows up in every qr code
         Image image = new Image("Lab3/Association/qr/del-".concat(String.valueOf(d.getPhone())).concat(".png"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
+        image.getBitmap(); // to set bitmap
+        image.save();
         return image;
     }
 
     public Image genRegularQR(Regular r) {
         String text = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors.";
-        text = getName().concat(". ").concat(text); // to generate a regular you must be the responsible delegate, it shows up in every qr code
+        text = getHeadquarter().getHead().getName().concat(". ").concat(text); // to generate a regular you must be the responsible delegate, it shows up in every qr code
         Image image = new Image("Lab3/Association/qr/reg-".concat(String.valueOf(r.getPhone())).concat(".png"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
+        image.getBitmap(); // to set bitmap
+        image.save();
         return image;
     }
 
+    public boolean signUpDelegate(Delegate d) { // as we use it, always true
+        if(headOf != null) {
+            d.setQR(genDelegateQR(d));
+            return true;
+        }
+        return false;
+    }
+
+    /*
     public boolean signUpDelegate(Delegate d, Image i) { // no estoy seguro del todo y faltan cositas for sure, pero es un draft
         String delText = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch.";
         Image decodedQR = new Image("Lab3/Association/qr/delCheck", 600, 600);
@@ -58,17 +71,25 @@ public class Delegate extends Member {
             return false;
         }
     }
+    */
+    
 
+    public void signUpRegular(Regular r) {
+        r.setQR(genRegularQR(r));
+    }
+
+    /*
     public boolean signUpRegular(Regular r, Image i) { // same for this one here xd
         String regText = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors.";
         Image decodedQR = new Image("Lab3/Association/qr/regCheck", 600, 600);
         decodedQR.setBitMatrix(QRLib.generateQRCodeImage(regText, 600, 600));
-        if (QRLib.decodeQRCodeImage(i.getBitmap()).equals(QRLib.decodeQRCodeImage(decodedQR.getBitmap()))) {
+        if (QRLib.decodeQRCodeImage(i.getBitmap()).contains(QRLib.decodeQRCodeImage(decodedQR.getBitmap()))) {
             return true;
         } else {
             return false;
         }
     }
+    */
 
     public void proposeAction(Action a) {
         headOf.getOrganization().addAction(a); // check

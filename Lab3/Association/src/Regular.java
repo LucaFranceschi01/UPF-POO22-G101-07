@@ -9,7 +9,7 @@ public class Regular extends Member{
         vehicles = new LinkedList<Vehicle>();
         responsible = d;
         d.addDependents(this);
-        //d.signUpRegular(this);            same as the delegate xdd
+        d.signUpRegular(this);
     }
 
     public void addVehicle(Vehicle v) {
