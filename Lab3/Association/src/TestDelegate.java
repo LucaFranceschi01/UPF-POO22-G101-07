@@ -6,11 +6,32 @@ public class TestDelegate {
     public static void main(String[] args) {
         TestDelegate testing = new TestDelegate();
         LinkedList<Headquarter> headquarters = testing.organization.getHeadquarters();
-        new Delegate("Some Delegate", 1000000000, "someone@association.idk", headquarters.getFirst());
-        new Regular("Papa Francisco", 1100000000, "papa@vaticano.god", headquarters.getFirst(), headquarters.getFirst().getDelegates().getFirst());
-        new Regular("New Papa Francisco", 111000000, "papa@vaticano.god", headquarters.getFirst(), headquarters.getFirst().getDelegates().get(1));
         testing.organization.printMembers();
-        // headquarters.getFirst().getMembers().get(0).getQR().save();
+        Availability gA = new Availability("dilluns.dimarts.dijous", "9.10.11.15.16.17.18"); // generic Availability
+        Headquarter firstHeadquarter = headquarters.get(0);
+        Delegate firstHead = firstHeadquarter.getHead();
+        Headquarter secondHeadquarter = headquarters.get(1);
+        Delegate secondHead = secondHeadquarter.getHead();
+
+        //ADD
+        testing.organization.addDelegate(firstHead, new Delegate("a", 1, "@", firstHeadquarter), gA);
+        Delegate firstDelegate = firstHeadquarter.getDelegates().get(1);
+        //ADD
+        testing.organization.addDelegate(firstHead, new Delegate("b", 1, "@", firstHeadquarter), gA);
+        Delegate secondDelegate = firstHeadquarter.getDelegates().get(2);
+        //DOES NOT ADD
+        testing.organization.addDelegate(secondHead, new Delegate("c", 1, "@", firstHeadquarter), gA);
+        //ADD
+        testing.organization.addRegular(firstHead, new Regular("d", 1, "@", firstHeadquarter, firstHead), gA); // head adds and it is responsible
+        //ADD
+        testing.organization.addRegular(firstHead, new Regular("e", 1, "@", firstHeadquarter, firstDelegate), gA); // head adds and it is not responsible
+        //ADD
+        testing.organization.addRegular(firstDelegate, new Regular("f", 1, "@", firstHeadquarter, firstDelegate), gA); // delegate adds and it is responsible
+        //ADD
+        testing.organization.addRegular(firstDelegate, new Regular("g", 1, "@", firstHeadquarter, secondDelegate), gA); // delegate adds and it is not responsible
+        //DOES NOT ADD
+        testing.organization.addRegular(secondHead, new Regular("h", 1, "@", firstHeadquarter, secondHead), gA); // not correct headquarter
+        testing.organization.printMembers();
     }
 
     public TestDelegate() {
@@ -68,6 +89,7 @@ public class TestDelegate {
             Availability availability = new Availability(arr[4], arr[5]);
             Delegate head = new Delegate(arr[0], Integer.parseInt(arr[1]), arr[2], headquarter);
             head.setAvailability(availability);
+            headquarter.addMember((Member) head);
         }
     }
 }

@@ -3,17 +3,16 @@ import java.util.LinkedList;
 
 public class Delegate extends Member {
     private LinkedList<Regular> dependents;
-    private Headquarter headOf; // if not null, is head of a headquarter
+    private Headquarter headOf; // If null, not head of headquarter
 
     public Delegate(String n, int p, String e, Headquarter h) {
         super(n, p, e, h);
         dependents = new LinkedList<Regular>();
         headOf = null;
-        if(h.getMembers().size() == 1) {
+        if(h.getMembers().size() == 0) {
             headOf = h;
             h.setHead(this);
         }
-        h.getHead().signUpDelegate(this);
     }
 
     public void setHeadOf(Headquarter h) {
@@ -32,64 +31,43 @@ public class Delegate extends Member {
         dependents.add(r);
     }
 
+    // Creates qr image for a delegate
     public Image genDelegateQR(Delegate d) {
-        String text = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch.";
-        text = getHeadquarter().getHead().getName().concat(". ").concat(text); // to generate a delegate you must be the head, the head shows up in every qr code
+        String text = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch. " + getHeadquarter().getHead().getName();
         Image image = new Image("Lab3/Association/qr/del-".concat(String.valueOf(d.getPhone())).concat(".png"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
-        image.getBitmap(); // to set bitmap
-        image.save();
+        image.getBitmap();
         return image;
     }
 
+    // Creates qr image for regular
     public Image genRegularQR(Regular r) {
-        String text = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors.";
-        text = getHeadquarter().getHead().getName().concat(". ").concat(text); // to generate a regular you must be the responsible delegate, it shows up in every qr code
+        String text = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors. " + getHeadquarter().getHead().getName();
         Image image = new Image("Lab3/Association/qr/reg-".concat(String.valueOf(r.getPhone())).concat(".png"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
-        image.getBitmap(); // to set bitmap
-        image.save();
+        image.getBitmap();
         return image;
     }
 
-    public boolean signUpDelegate(Delegate d) { // as we use it, always true
-        if(headOf != null) {
-            d.setQR(genDelegateQR(d));
-            return true;
-        }
-        return false;
-    }
-
-    /*
-    public boolean signUpDelegate(Delegate d, Image i) { // no estoy seguro del todo y faltan cositas for sure, pero es un draft
-        String delText = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch.";
-        Image decodedQR = new Image("Lab3/Association/qr/delCheck", 600, 600);
-        decodedQR.setBitMatrix(QRLib.generateQRCodeImage(delText, 600, 600));
-        if (QRLib.decodeQRCodeImage(i.getBitmap()).contains(QRLib.decodeQRCodeImage(decodedQR.getBitmap()))) {
+    // Checks if image parameter text matches the text that the delegate should have and returns validity
+    public boolean signUpDelegate(Delegate d, Image i) {
+        String delText = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch. " + d.getHeadquarter().getHead();
+        if (QRLib.decodeQRCodeImage(i.getBitmap()).equals(delText)) {
             return true;
         } else {
             return false;
         }
     }
-    */
-    
 
-    public void signUpRegular(Regular r) {
-        r.setQR(genRegularQR(r));
-    }
-
-    /*
-    public boolean signUpRegular(Regular r, Image i) { // same for this one here xd
-        String regText = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors.";
-        Image decodedQR = new Image("Lab3/Association/qr/regCheck", 600, 600);
-        decodedQR.setBitMatrix(QRLib.generateQRCodeImage(regText, 600, 600));
-        if (QRLib.decodeQRCodeImage(i.getBitmap()).contains(QRLib.decodeQRCodeImage(decodedQR.getBitmap()))) {
+    // Checks if image parameter text matches the text that the regular should have and returns validity
+    public boolean signUpRegular(Regular r, Image i) {
+        String regText = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors. " + r.getHeadquarter().getHead();
+        if (QRLib.decodeQRCodeImage(i.getBitmap()).equals(regText)) {
             return true;
         } else {
             return false;
         }
     }
-    */
 
     public void proposeAction(Action a) {
         headOf.getOrganization().addAction(a); // check

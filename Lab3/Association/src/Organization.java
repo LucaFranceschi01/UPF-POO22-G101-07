@@ -56,5 +56,24 @@ public class Organization {
             System.out.printf("%s: ", h.toString());
             System.out.println(h.getMembers().toString());
         }
+        System.out.println("-----------------------------------------------------");
+    }
+    /*
+     * Delegate d: the delegate that wants to signup a member
+     * String type: the type of the newDel member
+     * Member m: the newDel member
+     */
+    public void addDelegate(Delegate d, Delegate newDel, Availability a) {
+        if(d.signUpDelegate(newDel, d.genDelegateQR(newDel)) == true) {
+            d.getHeadquarter().addMember((Member) newDel);
+            newDel.setAvailability(a);
+        }
+    }
+
+    public void addRegular(Delegate d, Regular newReg, Availability a) {
+        if(d.signUpRegular(newReg, d.genRegularQR(newReg)) == true) {
+            d.getHeadquarter().addMember((Member) newReg);
+            newReg.setAvailability(a);
+        }
     }
 }
