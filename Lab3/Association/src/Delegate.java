@@ -34,9 +34,7 @@ public class Delegate extends Member {
 
     public Image genDelegateQR(Delegate d) {
         String text = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch.";
-        if(d.getHeadOf() != null) {
-            text = getName().concat(". ").concat(text);
-        }
+        text = getName().concat(". ").concat(text); // to generate a delegate you must be the head, the head shows up in every qr code
         Image image = new Image("Lab3/Association/qr/del-".concat(String.valueOf(d.getPhone())).concat(".png"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
         return image;
@@ -44,6 +42,7 @@ public class Delegate extends Member {
 
     public Image genRegularQR(Regular r) {
         String text = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors.";
+        text = getName().concat(". ").concat(text); // to generate a regular you must be the responsible delegate, it shows up in every qr code
         Image image = new Image("Lab3/Association/qr/reg-".concat(String.valueOf(r.getPhone())).concat(".png"), 600, 600);
         image.setBitMatrix(QRLib.generateQRCodeImage(text, 600, 600));
         return image;
