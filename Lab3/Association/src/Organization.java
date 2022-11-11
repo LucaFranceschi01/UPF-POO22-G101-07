@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 public class Organization {
@@ -79,7 +79,7 @@ public class Organization {
         actions.add(a);
     }
 
-    public Action getAction(Date d) {
+    public Action getAction(LocalDateTime d) {
         for(Action a : actions) {
             if(a.isPerforming(d)) { return a; }
         }

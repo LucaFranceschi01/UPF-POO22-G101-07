@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 public class Headquarter {
@@ -7,7 +7,7 @@ public class Headquarter {
     private Delegate head;
     private Organization organization;
     private LinkedList<Member> members;
-    private LinkedList<InfoAction> actionsDeveloped;
+    private LinkedList<InfoAction> developedActions;
     private LinkedList<City> cities;
 
     public Headquarter(String n, String e, Organization o) {
@@ -15,7 +15,7 @@ public class Headquarter {
         email = e;
         organization = o;
         members = new LinkedList<Member>();
-        actionsDeveloped = new LinkedList<InfoAction>();
+        developedActions = new LinkedList<InfoAction>();
         cities = new LinkedList<City>();
     }
 
@@ -75,15 +75,23 @@ public class Headquarter {
         return regulars;
     }
 
-    public Action getAction(Date d) {
-        for(int i=0; i<actionsDeveloped.size(); i++) {
-            if(actionsDeveloped.get(i).getAction().isPerforming(d)) { return actionsDeveloped.get(i).getAction(); }
+    public Action getAction(LocalDateTime d) {
+        for(int i=0; i<developedActions.size(); i++) {
+            if(developedActions.get(i).getAction().isPerforming(d)) { return developedActions.get(i).getAction(); }
         }
         return null; // check
     }
 
+    /**
+     * Will add the action to the Action.linkedlist of infoactions and Headquarter.actionsdeveloped
+     * The headquarter will perform that action.
+     * @param a Action that is going to be signed up (developed)
+     * @param nm
+     * @param nnm
+     * @param pc
+     */
     public void signUpAction(Action a, int nm, int nnm, boolean pc) {
         InfoAction info = new InfoAction(a, this, nm, nnm, pc); // wat
-        actionsDeveloped.add(info);
+        developedActions.add(info);
     }
 }

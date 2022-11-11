@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 public class Delegate extends Member {
@@ -81,11 +81,19 @@ public class Delegate extends Member {
         }
     }
 
+    /**
+     * Action.infoactions add but check headquarter before adding
+     * @param a
+     */
     public void proposeAction(Action a) {
-        headOf.getOrganization().addAction(a); // check
+        // headOf.getOrganization().addAction(a); // check
     }
 
-    public void signUpAction(Date d) {
+    /**
+     * Put delegate and dependents in the list of assisting members. Needs to check availability of assisting members
+     * @param d
+     */
+    public void signUpAction(LocalDateTime d) {
         // The head of a headquarter can propose new actions to the organization. The
         // delegates can sign up the headquarter for an action developed on a specific date
         // indicating how many of its dependent members will participate.

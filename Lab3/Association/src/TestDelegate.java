@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 public class TestDelegate {
     private LinkedList<Region> regions;
@@ -34,7 +35,28 @@ public class TestDelegate {
         //DOES NOT ADD
         testing.organization.addRegular(secondHead, new Regular("h", 1, "@", firstHeadquarter, secondHead), gA); // not correct headquarter
         testing.organization.printMembers();
+
+        /* ------------------------------------------ ACTIONS ------------------------------------------ */
+
+        /*
+         * THERE IS A LIST OF ACTIONS THAT CAN BE PERFORMED OR NOT INSIDE ORGANIZATION
+         * ----If a delegate/head wants to perform one in its headquarter, will propose it ACTION
+         * --------The action will be added to the actions of a specific headquarter HEADQUARTER.ADDACTION
+         * --------Need to check availability of all members of organization from Availability: checkAvailability(Action a)
+         * ------------assisting members counter increase if true
+         * --------Create infoaction with all info INFOACTION
+         * --------Link infoaction to action by action.addheadquarter / add infoaction to infoactionlist inside ACTION
+         */
+
+        LocalDateTime d = LocalDateTime.of(2022, 11, 23, 16, 0, 0);
+        Action action1 = new Action("Action1", d, 60);
+        Action action2 = new Action("Action2", d.plusDays(1), 60);
+        LinkedList<Action> actions = new LinkedList<Action>();
+        actions.add(action1);
+        actions.add(action2);
+        testing.organization.setActions(actions);
     }
+
     // Constructor of TestDelegate, where we call the methods to read XML files
     public TestDelegate() {
         organization = new Organization("MyOrganization");
