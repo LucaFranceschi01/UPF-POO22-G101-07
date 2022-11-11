@@ -6,9 +6,11 @@ public class Delegate extends Member {
     private Headquarter headOf; // If null, not head of headquarter
 
     public Delegate(String n, int p, String e, Headquarter h) {
-        super(n, p, e, h);
+        super(n, p, e, h); // call to Member constructor
         dependents = new LinkedList<Regular>();
         headOf = null;
+
+        // The first delegate assigned to a headquarter is the head
         if(h.getMembers().size() == 0) {
             headOf = h;
             h.setHead(this);
@@ -31,7 +33,7 @@ public class Delegate extends Member {
         dependents.add(r);
     }
 
-    // Creates qr image for a delegate
+    // Creates QR Image for a Delegate d
     public Image genDelegateQR(Delegate d) {
         String text = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch. " + getHeadquarter().getHead().getName();
         Image image = new Image("Lab3/Association/qr/del-".concat(String.valueOf(d.getPhone())).concat(".png"), 600, 600);
@@ -40,7 +42,7 @@ public class Delegate extends Member {
         return image;
     }
 
-    // Creates qr image for regular
+    // Creates QR Image for a Regular d
     public Image genRegularQR(Regular r) {
         String text = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors. " + getHeadquarter().getHead().getName();
         Image image = new Image("Lab3/Association/qr/reg-".concat(String.valueOf(r.getPhone())).concat(".png"), 600, 600);
@@ -49,7 +51,12 @@ public class Delegate extends Member {
         return image;
     }
 
-    // Checks if image parameter text matches the text that the delegate should have and returns validity
+    /**
+     * Checks if the Delegate can be signed up using the specified QR Image: Essentially, checks if the text it should have is the same as the text of the decoded Image.
+     * @param d The Delegate we want to sign up.
+     * @param i The Image of which validity is being tested.
+     * @return If the signup operation can be performed.
+     */
     public boolean signUpDelegate(Delegate d, Image i) {
         String delText = "This is a QR for a Delegate Member. You don\'t have to care about rising sea levels, if you live on a mega yatch. " + d.getHeadquarter().getHead();
         if (QRLib.decodeQRCodeImage(i.getBitmap()).equals(delText)) {
@@ -59,7 +66,12 @@ public class Delegate extends Member {
         }
     }
 
-    // Checks if image parameter text matches the text that the regular should have and returns validity
+    /**
+     * Checks if the Regular can be signed up using the specified QR Image: Essentially, checks if the text it should have is the same as the text of the decoded Image.
+     * @param r The Regular we want to sign up.
+     * @param i The image of which validity is being tested.
+     * @return If the signup operation can be performed.
+     */
     public boolean signUpRegular(Regular r, Image i) {
         String regText = "This is a QR for a Regular Member. Climate change doesn\'t matter, if you stay indoors. " + r.getHeadquarter().getHead();
         if (QRLib.decodeQRCodeImage(i.getBitmap()).equals(regText)) {

@@ -8,19 +8,7 @@ public class Organization {
     
     public Organization(String n) {
         name = n;
-        headquarters = new LinkedList<Headquarter>();
         actions = new LinkedList<Action>();
-    }
-
-    public void addAction(Action a) {
-        actions.add(a);
-    }
-
-    public Action getAction(Date d) {
-        for(Action a : actions) {
-            if(a.isPerforming(d)) { return a; }
-        }
-        return null; // check
     }
 
     public String getName() {
@@ -43,6 +31,7 @@ public class Organization {
         actions = a;
     }
 
+    // Returns a linkedlist with the heads of each headquarter of the organization
     public LinkedList<Delegate> getHeads() {
         LinkedList<Delegate> heads = new LinkedList<Delegate>();
         for(Headquarter h : headquarters) {
@@ -51,29 +40,49 @@ public class Organization {
         return heads;
     }
 
+    // Prints the members of each headquarter in a legible way
     public void printMembers() {
         for(Headquarter h : headquarters) {
-            System.out.printf("%s: ", h.toString());
+            System.out.printf("%-15s: ", h.toString());
             System.out.println(h.getMembers().toString());
         }
-        System.out.println("-----------------------------------------------------");
+        System.out.println("-".repeat(50));
     }
-    /*
-     * Delegate d: the delegate that wants to signup a member
-     * String type: the type of the newDel member
-     * Member m: the newDel member
+    /**
+     * This method tries to add a new Delegate to the Organization. Essentially, it checks that the two delegates belong to the same headquarter.
+     * @param del The Delegate that tries to add a new Delegate to the organization.
+     * @param newDel The Delegate that is being created.
+     * @param a The availability of the new Delegate.
      */
-    public void addDelegate(Delegate d, Delegate newDel, Availability a) {
-        if(d.signUpDelegate(newDel, d.genDelegateQR(newDel)) == true) {
-            d.getHeadquarter().addMember((Member) newDel);
+    public void addDelegate(Delegate del, Delegate newDel, Availability a) {
+        if(del.signUpDelegate(newDel, del.genDelegateQR(newDel)) == true) {
+            del.getHeadquarter().addMember((Member) newDel);
             newDel.setAvailability(a);
         }
     }
 
-    public void addRegular(Delegate d, Regular newReg, Availability a) {
-        if(d.signUpRegular(newReg, d.genRegularQR(newReg)) == true) {
-            d.getHeadquarter().addMember((Member) newReg);
+    /**
+     * This method tries to add a new Regular to the Organization. Essentially, it checks that the Delegate and the Regular belong to the same headquarter.
+     * @param del The Delegate that tries to add a new Regular to the organization.
+     * @param newReg The Regular that is being created.
+     * @param a The availability of the new Regular.
+     */
+    public void addRegular(Delegate del, Regular newReg, Availability a) {
+        if(del.signUpRegular(newReg, del.genRegularQR(newReg)) == true) {
+            del.getHeadquarter().addMember((Member) newReg);
+            del.addDependents(newReg);
             newReg.setAvailability(a);
         }
+    }
+
+    public void addAction(Action a) {
+        actions.add(a);
+    }
+
+    public Action getAction(Date d) {
+        for(Action a : actions) {
+            if(a.isPerforming(d)) { return a; }
+        }
+        return null; // check
     }
 }

@@ -8,7 +8,6 @@ public class Regular extends Member{
         super(n, p, e, h);
         vehicles = new LinkedList<Vehicle>();
         responsible = d;
-        d.addDependents(this);
     }
         
     public void addVehicle(Vehicle v) {

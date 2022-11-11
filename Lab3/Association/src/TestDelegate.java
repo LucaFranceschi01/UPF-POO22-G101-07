@@ -5,9 +5,11 @@ public class TestDelegate {
 
     public static void main(String[] args) {
         TestDelegate testing = new TestDelegate();
-        LinkedList<Headquarter> headquarters = testing.organization.getHeadquarters();
         testing.organization.printMembers();
+
+        // We need to create some variables for the code to look cleaner
         Availability gA = new Availability("dilluns.dimarts.dijous", "9.10.11.15.16.17.18"); // generic Availability
+        LinkedList<Headquarter> headquarters = testing.organization.getHeadquarters();
         Headquarter firstHeadquarter = headquarters.get(0);
         Delegate firstHead = firstHeadquarter.getHead();
         Headquarter secondHeadquarter = headquarters.get(1);
@@ -15,10 +17,10 @@ public class TestDelegate {
 
         //ADD
         testing.organization.addDelegate(firstHead, new Delegate("a", 1, "@", firstHeadquarter), gA);
-        Delegate firstDelegate = firstHeadquarter.getDelegates().get(1);
+        Delegate firstDelegate = firstHeadquarter.getDelegates().get(1); // first delegate non-head of firstHeadquarter
         //ADD
         testing.organization.addDelegate(firstHead, new Delegate("b", 1, "@", firstHeadquarter), gA);
-        Delegate secondDelegate = firstHeadquarter.getDelegates().get(2);
+        Delegate secondDelegate = firstHeadquarter.getDelegates().get(2); // second delegate non-head of firstHeadquarter
         //DOES NOT ADD
         testing.organization.addDelegate(secondHead, new Delegate("c", 1, "@", firstHeadquarter), gA);
         //ADD
@@ -33,7 +35,7 @@ public class TestDelegate {
         testing.organization.addRegular(secondHead, new Regular("h", 1, "@", firstHeadquarter, secondHead), gA); // not correct headquarter
         testing.organization.printMembers();
     }
-
+    // Constructor of TestDelegate, where we call the methods to read XML files
     public TestDelegate() {
         organization = new Organization("MyOrganization");
         regions = readRegions();
@@ -41,6 +43,7 @@ public class TestDelegate {
         readHeads();
     }
 
+    // Reads XML of regions and returns a list of regions following the data given
     public LinkedList<Region> readRegions() {
         LinkedList<Region> regionList = new LinkedList<Region>();
         LinkedList<String[]> reg = Utility.readXML("region");
@@ -56,6 +59,7 @@ public class TestDelegate {
         return regionList;
     }
 
+    // Reads XML of headquarters and assigns the data given to the attributes of organization
     public void readHeadquarters() {
         LinkedList<Headquarter> headquarterList = new LinkedList<Headquarter>();
         LinkedList<String[]> hea = Utility.readXML("headquarter");
@@ -71,7 +75,8 @@ public class TestDelegate {
         organization.setHeadquarters(headquarterList);
     }
 
-    public LinkedList<City> getCitiesFromRegions(String[] array) {
+    // From an array containing cities, returns the corresponding cities in the corresponding class
+    private LinkedList<City> getCitiesFromRegions(String[] array) {
         LinkedList<City> cities = new LinkedList<City>();
         for(int i=2; i< array.length; i++) {
             for(Region region : regions) {
@@ -82,6 +87,7 @@ public class TestDelegate {
         return cities;
     }
 
+    // Reads XML of heads and assigns the data given to the attributes of organization
     public void readHeads() {
         LinkedList<String[]> hea = Utility.readXML("head");
         for(String[] arr : hea) {
