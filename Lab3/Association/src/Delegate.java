@@ -82,21 +82,28 @@ public class Delegate extends Member {
     }
 
     /**
-     * Action.infoactions add but check headquarter before adding
-     * @param a
+     * The head of a headquarter can propose new actions to the organization.
+     * @param a The new action that is being proposed to the organization.
      */
     public void proposeAction(Action a) {
-        // headOf.getOrganization().addAction(a); // check
+        if(headOf != null) {
+            headOf.getOrganization().addAction(a);
+            // If a head proposes an action, for sure that headquarter will signup for the action
+            int nm = signUpAction(a.getDate());
+            headOf.signUpAction(a, nm, 0, false); // when signed up there are no assistants
+        } else {
+            System.out.println("Only heads of headquarters can propose new actions!");
+        }
     }
 
     /**
      * Put delegate and dependents in the list of assisting members. Needs to check availability of assisting members
      * @param d
+     * @return
      */
-    public void signUpAction(LocalDateTime d) {
-        // The head of a headquarter can propose new actions to the organization. The
-        // delegates can sign up the headquarter for an action developed on a specific date
-        // indicating how many of its dependent members will participate.
+    public int signUpAction(LocalDateTime d) {
+        // RETURNS ALL ITS DEPENDENT MEMBERS THAT WILL BE AVAILABLE AT A CERTAIN DATETIME
+        return 0;
     }
 
     public String checkClass() {

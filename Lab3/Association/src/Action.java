@@ -39,4 +39,16 @@ public class Action {
         if (d.compareTo(date) >= 0 && d.compareTo(LocalDateTime.from(date.toInstant(null).plus(Duration.ofMinutes(duration)))) < 0) { return true; }
         return false;
     }
+
+    public void addInfoActions(InfoAction a) {
+        infoActions.add(a);
+    }
+
+    public LinkedList<Headquarter> getHeadquarters() {
+        LinkedList<Headquarter> hList = new LinkedList<Headquarter>();
+        for(InfoAction info : infoActions) {
+            hList.add(info.getHeadquarter());
+        }
+        return hList;
+    }
 }

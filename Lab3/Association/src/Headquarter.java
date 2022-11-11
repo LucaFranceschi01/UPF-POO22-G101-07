@@ -82,6 +82,9 @@ public class Headquarter {
         return null; // check
     }
 
+    public void addAction(InfoAction a) {
+        developedActions.add(a);
+    }
     /**
      * Will add the action to the Action.linkedlist of infoactions and Headquarter.actionsdeveloped
      * The headquarter will perform that action.
@@ -91,7 +94,8 @@ public class Headquarter {
      * @param pc
      */
     public void signUpAction(Action a, int nm, int nnm, boolean pc) {
-        InfoAction info = new InfoAction(a, this, nm, nnm, pc); // wat
-        developedActions.add(info);
+        InfoAction info = new InfoAction(a, this, nm, nnm, pc);
+        a.addInfoActions(info);
+        addAction(info);
     }
 }

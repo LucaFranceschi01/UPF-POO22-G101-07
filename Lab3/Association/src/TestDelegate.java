@@ -48,6 +48,7 @@ public class TestDelegate {
          * --------Link infoaction to action by action.addheadquarter / add infoaction to infoactionlist inside ACTION
          */
 
+        // Initial organization actions
         LocalDateTime d = LocalDateTime.of(2022, 11, 23, 16, 0, 0);
         Action action1 = new Action("Action1", d, 60);
         Action action2 = new Action("Action2", d.plusDays(1), 60);
@@ -55,6 +56,12 @@ public class TestDelegate {
         actions.add(action1);
         actions.add(action2);
         testing.organization.setActions(actions);
+        testing.organization.printActions();
+
+        firstHead.proposeAction(new Action("Action3", d.plusDays(1), 90));
+        testing.organization.printActions();
+
+
     }
 
     // Constructor of TestDelegate, where we call the methods to read XML files

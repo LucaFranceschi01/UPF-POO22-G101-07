@@ -81,8 +81,16 @@ public class Organization {
 
     public Action getAction(LocalDateTime d) {
         for(Action a : actions) {
-            if(a.isPerforming(d)) { return a; }
+            if(a.isPerforming(d)) { return a; } // we suppose that there cannot be more than one action given a date
         }
         return null; // check
+    }
+
+    public void printActions() {
+        for(Action a : actions) {
+            System.out.printf("%s: %s%n", a.getPurpose(), a.getHeadquarters().toString());
+        }
+        System.out.println("-".repeat(50));
+
     }
 }
