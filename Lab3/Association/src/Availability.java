@@ -9,7 +9,7 @@ public class Availability {
     private LinkedList<Integer> hours;
 
     /**
-     * Creates an Availability from two strings: days and hours availability
+     * Creates an Availability from two strings: days and hours
      * @param d Days available in the form of a string so that it matches the RegEx "([a-z]+)"
      * @param h Hours available in the form of a string so that it matches the RegEx "([0-9]+)"
      */
@@ -17,12 +17,12 @@ public class Availability {
         days = new LinkedList<Integer>();
         hours = new LinkedList<Integer>();
         String[] daysOfWeek = {"dilluns", "dimarts", "dimecres", "dijous", "divendres", "dissabte", "diumenge"};
-        ArrayList<String> daysArray = new ArrayList<String>(Arrays.asList(daysOfWeek)); // we'll use indexOf(element) to convert from string to int
+        ArrayList<String> daysArray = new ArrayList<String>(Arrays.asList(daysOfWeek));     // we use indexOf(element) to convert from string to int
 
         Pattern p = Pattern.compile("([a-z]+|[0-9]+)");
         Matcher m = p.matcher(d);
         while(m.find()) {
-            days.add(daysArray.indexOf(m.group(0))+1); // to match getDayOfWeek()
+            days.add(daysArray.indexOf(m.group(0))+1);      // we add 1 to match the method getDayOfWeek()
         }
         m = p.matcher(h);
         while(m.find()) {

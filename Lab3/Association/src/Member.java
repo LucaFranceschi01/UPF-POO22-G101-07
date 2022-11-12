@@ -42,6 +42,11 @@ public class Member {
         headquarter = h;
     }
 
+    /**
+     * Checks if a specific member is available to assist to a given action.
+     * @param a The action we want to check the availability of the member.
+     * @return True if the member is available, false if not.
+     */
     protected boolean checkAvailabity(Action a) {
         if(availability.getDays().contains(a.getDate().getDayOfWeek().getValue())) {
             for(int h : availability.getHours()) {

@@ -31,7 +31,10 @@ public class Organization {
         actions = a;
     }
 
-    // Returns a linkedlist with the heads of each headquarter of the organization
+    /**
+     * Gets all the heads of an organization.
+     * @return A list will all the heads of the organization.
+     */
     public LinkedList<Delegate> getHeads() {
         LinkedList<Delegate> heads = new LinkedList<Delegate>();
         for(Headquarter h : headquarters) {
@@ -46,7 +49,9 @@ public class Organization {
             System.out.printf("%-15s: ", h.toString());
             System.out.println(h.getMembers().toString());
         }
-        System.out.println("-".repeat(50));
+        System.out.println();                                        // Empty line to make the print better-looking
+        System.out.println("-".repeat(50));                   // Print lines to distinguish better the prints
+        System.out.println();                                       // Empty line to make the print better-looking
     }
     /**
      * This method tries to add a new Delegate to the Organization. Essentially, it checks that the two delegates belong to the same headquarter.
@@ -79,13 +84,20 @@ public class Organization {
         actions.add(a);
     }
 
+    /**
+     * Gets the action (if any) that is being performed at a given date.
+     * @param d The date we want to know if there is any action happening.
+     * @return The action that is being performed, or null if there is not any.
+     */
     public Action getAction(LocalDateTime d) {
         for(Action a : actions) {
             if(a.isPerforming(d)) { return a; } // we suppose that there cannot be more than one action given a date
         }
-        return null; // check
+        return null;
     }
 
+    // Prints the purpose of the action, the headquarters participating, 
+    // the number of participating members of each headquarter, and a list with their names.
     public void printActions() {
         for(Action a : actions) {
             System.out.printf("%s: %s%n", a.getPurpose(), a.getHeadquarters().toString());
