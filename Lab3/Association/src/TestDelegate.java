@@ -64,8 +64,8 @@ public class TestDelegate {
         action1.addHeadquarter(secondHeadquarter);
         // añade un headquarter pero solo vacío, habria q buscar la manera de q lo rellene
         testing.organization.printActions();
-
-
+        System.out.println(action3.getInfoActions().getFirst().getNumMembers()); 
+        // aqui se comprueba q no hay members, tocaria hacer el check availability
     }
 
     // Constructor of TestDelegate, where we call the methods to read XML files

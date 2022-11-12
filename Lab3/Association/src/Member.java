@@ -40,6 +40,11 @@ public class Member {
         headquarter = h;
     }
 
+    public boolean checkAvailabity() {
+        // por hacer, toca checkear si el member está disponible a esa hora
+        return false; // de momento pa q no quede en rojito feo
+    }
+
     public String toString() {
         return name;
     }

@@ -32,7 +32,7 @@ public class Action {
         return duration;
     }
 
-    public LinkedList<InfoAction> getDevelopedAction() {
+    public LinkedList<InfoAction> getInfoActions() {
         return infoActions;
     }
 
