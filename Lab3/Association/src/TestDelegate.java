@@ -127,18 +127,18 @@ public class TestDelegate {
         // Action 1
         secondHead.proposeAction(action1);
         fourthHead.proposeAction(action1);
-        fifthHead.proposeAction(action1);
-        seventhHead.proposeAction(action1);
+        ninthHead.proposeAction(action1);
+        eleventhHead.proposeAction(action1);
         // Action 2
-        firstHead.proposeAction(action2);
         thirdHead.proposeAction(action2);
-        fifthHead.proposeAction(action2);
-        eigthHead.proposeAction(action2);
+        sixthHead.proposeAction(action2);
+        ninthHead.proposeAction(action2);
+        secondHead.proposeAction(action2);
         // Action 3
-        firstHead.proposeAction(action3);
-        secondHead.proposeAction(action3);
-        fourthHead.proposeAction(action3);
+        seventhHead.proposeAction(action3);
+        eigthHead.proposeAction(action3);
         ninthHead.proposeAction(action3);
+        eleventhHead.proposeAction(action3);
         // Action 4
         thirdHead.proposeAction(action4);
         sixthHead.proposeAction(action4);

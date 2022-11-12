@@ -131,15 +131,18 @@ public class Headquarter {
      * @param a The action we want to know the participants.
      * @return  A list containing the number of members participating.
      */
-    public LinkedList<LinkedList<Member>> getAssistingMembers(Action a) {
-        LinkedList<LinkedList<Member>> members = new LinkedList<LinkedList<Member>>();
+    public LinkedList<Member> getAssistingMembers(Action a) {
+        LinkedList<Member> members = new LinkedList<Member>();
         for(Delegate d : getDelegates()) {
             if(d.checkAvailabity(a) == true) {
-                LinkedList<Member> del = new LinkedList<Member>();
-                del.add(d);
-                members.add(del);
+                //LinkedList<Member> del = new LinkedList<Member>();
+                //del.add(d);
+                members.add(d);
             }
-            members.add(d.getAssistingRegulars(a));
+            for(Member m : d.getAssistingRegulars(a)) {
+                members.add(m);
+            }
+            
         }
         return members;
     }
