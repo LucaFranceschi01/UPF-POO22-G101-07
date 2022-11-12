@@ -98,4 +98,26 @@ public class Headquarter {
         a.addInfoActions(info);
         addAction(info);
     }
+
+    public int countAssistingMembers(Action a) {
+        int counter = 0;
+        for(Delegate d : getDelegates()) {
+            if(d.checkAvailabity(a) == true) { counter++; }
+            counter += d.countAssistingRegulars(a);
+        }
+        return counter;
+    }
+
+    public LinkedList<LinkedList<Member>> getAssistingMembers(Action a) {
+        LinkedList<LinkedList<Member>> members = new LinkedList<LinkedList<Member>>();
+        for(Delegate d : getDelegates()) {
+            if(d.checkAvailabity(a) == true) {
+                LinkedList<Member> del = new LinkedList<Member>();
+                del.add(d);
+                members.add(del);
+            }
+            members.add(d.getAssistingRegulars(a));
+        }
+        return members;
+    }
 }

@@ -1,4 +1,3 @@
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
@@ -15,11 +14,6 @@ public class Action {
         infoActions = new LinkedList<InfoAction>();
     }
     
-    public void addHeadquarter(Headquarter h) { // links infoaction with headquarter
-        InfoAction info = new InfoAction(this, h, 0, 0, false); // empty info action
-        addInfoActions(info);
-    }
-
     public LocalDateTime getDate() {
         return date;
     }
@@ -36,8 +30,8 @@ public class Action {
         return infoActions;
     }
 
-    public boolean isPerforming(LocalDateTime d) {
-        if (d.compareTo(date) >= 0 && d.compareTo(LocalDateTime.from(date.toInstant(null).plus(Duration.ofMinutes(duration)))) < 0) { return true; }
+    public boolean isPerforming(LocalDateTime d) { // esta date tiene que ser de la availability de member
+        if(d.compareTo(date) >= 0 && d.compareTo(date.plusMinutes(duration)) < 0) { return true; }
         return false;
     }
 
@@ -51,5 +45,14 @@ public class Action {
             hList.add(info.getHeadquarter());
         }
         return hList;
+    }
+
+    public int getAssistingNumMembers(Headquarter h) {
+        for(InfoAction info : infoActions) {
+            if(info.getHeadquarter() == h) {
+                return info.getNumMembers();
+            }
+        }
+        return 0;
     }
 }

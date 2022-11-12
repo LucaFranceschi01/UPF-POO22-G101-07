@@ -10,11 +10,16 @@ public class TestDelegate {
 
         // We need to create some variables for the code to look cleaner
         Availability gA = new Availability("dilluns.dimarts.dijous", "9.10.11.15.16.17.18"); // generic Availability
+        Availability gB = new Availability("dilluns.dimecres.dijous", "9.10.11.12"); // generic Availability
+
         LinkedList<Headquarter> headquarters = testing.organization.getHeadquarters();
         Headquarter firstHeadquarter = headquarters.get(0);
         Delegate firstHead = firstHeadquarter.getHead();
         Headquarter secondHeadquarter = headquarters.get(1);
         Delegate secondHead = secondHeadquarter.getHead();
+
+        Headquarter fourthHeadquarter = headquarters.get(3);
+        Delegate fourthHead = fourthHeadquarter.getHead();
 
         //ADD
         testing.organization.addDelegate(firstHead, new Delegate("a", 1, "@", firstHeadquarter), gA);
@@ -27,13 +32,15 @@ public class TestDelegate {
         //ADD
         testing.organization.addRegular(firstHead, new Regular("d", 1, "@", firstHeadquarter, firstHead), gA); // head adds and it is responsible
         //ADD
-        testing.organization.addRegular(firstHead, new Regular("e", 1, "@", firstHeadquarter, firstDelegate), gA); // head adds and it is not responsible
+        testing.organization.addRegular(firstHead, new Regular("e", 1, "@", firstHeadquarter, firstDelegate), gB); // head adds and it is not responsible
         //ADD
         testing.organization.addRegular(firstDelegate, new Regular("f", 1, "@", firstHeadquarter, firstDelegate), gA); // delegate adds and it is responsible
         //ADD
         testing.organization.addRegular(firstDelegate, new Regular("g", 1, "@", firstHeadquarter, secondDelegate), gA); // delegate adds and it is not responsible
         //DOES NOT ADD
         testing.organization.addRegular(secondHead, new Regular("h", 1, "@", firstHeadquarter, secondHead), gA); // not correct headquarter
+
+        testing.organization.addRegular(fourthHead, new Regular("actiontesting", 1, "@", fourthHeadquarter, fourthHead), gA);
         testing.organization.printMembers();
 
         /* ------------------------------------------ ACTIONS ------------------------------------------ */
@@ -60,11 +67,13 @@ public class TestDelegate {
 
         Action action3 = new Action("Action3", d.plusDays(1), 90);
         firstHead.proposeAction(action3);
-        action3.addHeadquarter(secondHeadquarter); // testeando si el addHeadquarter va
-        action1.addHeadquarter(secondHeadquarter);
-        // añade un headquarter pero solo vacío, habria q buscar la manera de q lo rellene
+        // secondHead.proposeAction(action3);
+        secondHead.proposeAction(action1);
+        fourthHead.proposeAction(action1);
+        fourthHead.proposeAction(action3);
+
         testing.organization.printActions();
-        System.out.println(action3.getInfoActions().getFirst().getNumMembers()); 
+        //System.out.println(action3.getInfoActions().getFirst().getNumMembers()); 
         // aqui se comprueba q no hay members, tocaria hacer el check availability
     }
 

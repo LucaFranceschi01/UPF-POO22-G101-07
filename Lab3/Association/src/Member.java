@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 public class Member {
     private String name;
     private int phone;
@@ -40,9 +42,14 @@ public class Member {
         headquarter = h;
     }
 
-    public boolean checkAvailabity() {
-        // por hacer, toca checkear si el member está disponible a esa hora
-        return false; // de momento pa q no quede en rojito feo
+    protected boolean checkAvailabity(Action a) {
+        if(availability.getDays().contains(a.getDate().getDayOfWeek().getValue())) {
+            for(int h : availability.getHours()) {
+                LocalDateTime avDateTime = a.getDate().withHour(h);
+                if(a.isPerforming(avDateTime)) { return true; }
+            }
+        }
+        return false;
     }
 
     public String toString() {

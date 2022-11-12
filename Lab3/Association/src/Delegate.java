@@ -1,4 +1,3 @@
-import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 public class Delegate extends Member {
@@ -87,9 +86,11 @@ public class Delegate extends Member {
      */
     public void proposeAction(Action a) {
         if(headOf != null) {
-            headOf.getOrganization().addAction(a);
+            if(headOf.getOrganization().getActions().contains(a) == false) {
+                headOf.getOrganization().addAction(a);
+            }
             // If a head proposes an action, for sure that headquarter will signup for the action
-            int nm = signUpAction(a.getDate());
+            int nm = headOf.countAssistingMembers(a);
             headOf.signUpAction(a, nm, 0, false); // when signed up there are no assistants
         } else {
             System.out.println("Only heads of headquarters can propose new actions!");
@@ -101,10 +102,27 @@ public class Delegate extends Member {
      * @param d
      * @return
      */
-    public int signUpAction(LocalDateTime d) {
-        // RETURNS ALL ITS DEPENDENT MEMBERS THAT WILL BE AVAILABLE AT A CERTAIN DATETIME
-        return 0;
+    public int countAssistingRegulars(Action a) {
+        int members = 0;
+        for(Regular r : getDependents()) {
+            if(r.checkAvailabity(a) == true) {
+                members++;
+            }
+        }
+        return members;
     }
+
+    public LinkedList<Member> getAssistingRegulars(Action a) {
+        LinkedList<Member> regulars = new LinkedList<Member>();
+        for(Regular r : getDependents()) {
+            if(r.checkAvailabity(a) == true) {
+                regulars.add(r);
+            }
+        }
+        return regulars;
+    }
+
+
 
     public String checkClass() {
         return "Delegate";

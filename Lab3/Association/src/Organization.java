@@ -89,6 +89,9 @@ public class Organization {
     public void printActions() {
         for(Action a : actions) {
             System.out.printf("%s: %s%n", a.getPurpose(), a.getHeadquarters().toString());
+            for(Headquarter h : a.getHeadquarters()) {
+                System.out.printf("    >> %-15s: %d    Assisting members: %s%n", h.toString(), a.getAssistingNumMembers(h), h.getAssistingMembers(a));
+            }
         }
         System.out.println("-".repeat(50));
 
