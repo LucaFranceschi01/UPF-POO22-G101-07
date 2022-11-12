@@ -15,9 +15,10 @@ public class Action {
         infoActions = new LinkedList<InfoAction>();
     }
     
-    /*public void addHeadquarter(Headquarter h) {
-        developedAction.setHeadquarter(h); // links infoaction with headquarter
-    }*/
+    public void addHeadquarter(Headquarter h) { // links infoaction with headquarter
+        InfoAction info = new InfoAction(this, h, 0, 0, false); // empty info action
+        addInfoActions(info);
+    }
 
     public LocalDateTime getDate() {
         return date;

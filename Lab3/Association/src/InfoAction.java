@@ -21,6 +21,10 @@ public class InfoAction {
         return headquarter;
     }
 
+    public void setHeadquarter(Headquarter h) {
+        headquarter = h;
+    }
+
     public int getNumMembers() {
         return numMembers;
     }

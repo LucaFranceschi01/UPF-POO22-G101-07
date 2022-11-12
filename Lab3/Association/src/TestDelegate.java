@@ -58,7 +58,11 @@ public class TestDelegate {
         testing.organization.setActions(actions);
         testing.organization.printActions();
 
-        firstHead.proposeAction(new Action("Action3", d.plusDays(1), 90));
+        Action action3 = new Action("Action3", d.plusDays(1), 90);
+        firstHead.proposeAction(action3);
+        action3.addHeadquarter(secondHeadquarter); // testeando si el addHeadquarter va
+        action1.addHeadquarter(secondHeadquarter);
+        // añade un headquarter pero solo vacío, habria q buscar la manera de q lo rellene
         testing.organization.printActions();
 
 
