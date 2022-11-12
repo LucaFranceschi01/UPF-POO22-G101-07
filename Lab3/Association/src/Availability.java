@@ -17,12 +17,13 @@ public class Availability {
         days = new LinkedList<Integer>();
         hours = new LinkedList<Integer>();
         String[] daysOfWeek = {"dilluns", "dimarts", "dimecres", "dijous", "divendres", "dissabte", "diumenge"};
-        ArrayList<String> daysArray = new ArrayList<String>(Arrays.asList(daysOfWeek));     // we use indexOf(element) to convert from string to int
+        // We use indexOf(element) to convert from string to int, and ArrayList gives us that predefined method.
+        ArrayList<String> daysArray = new ArrayList<String>(Arrays.asList(daysOfWeek));
 
         Pattern p = Pattern.compile("([a-z]+|[0-9]+)");
         Matcher m = p.matcher(d);
         while(m.find()) {
-            days.add(daysArray.indexOf(m.group(0))+1);      // we add 1 to match the method getDayOfWeek()
+            days.add(daysArray.indexOf(m.group(0))+1); // We add 1 to match the method LocalDateTime.getDayOfWeek()
         }
         m = p.matcher(h);
         while(m.find()) {

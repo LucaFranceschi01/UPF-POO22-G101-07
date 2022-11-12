@@ -15,11 +15,12 @@ public class City {
         headquarters.add(h);
     }
 
-    public String toString() {
-        return name;
-    }
-
     public int getPopulation() {
         return population;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

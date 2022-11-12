@@ -16,6 +16,7 @@ public class Region {
         return cities;
     }
 
+    @Override
     public String toString() {
         return name.concat(":").concat(cities.toString());
     }

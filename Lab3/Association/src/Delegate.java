@@ -2,10 +2,10 @@ import java.util.LinkedList;
 
 public class Delegate extends Member {
     private LinkedList<Regular> dependents;
-    private Headquarter headOf;                     // If null, not head of headquarter
+    private Headquarter headOf; // If null, not head of headquarter
 
     public Delegate(String n, int p, String e, Headquarter h) {
-        super(n, p, e, h);                          // call to Member constructor
+        super(n, p, e, h); // Call to Member constructor
         dependents = new LinkedList<Regular>();
         headOf = null;
 
@@ -33,7 +33,8 @@ public class Delegate extends Member {
     }
 
     /**
-     * Generates a QR image for a delegate with the text for delegates plus the name of the head of its headquarter and returns the image.
+     * Generates a QR image for a delegate with the text for delegates and the name of
+     * the head of its headquarter and returns the image.
      * @param d The Delegate d we want to create a QR image for.
      * @return The image created with the corresponding information.
      */
@@ -46,7 +47,8 @@ public class Delegate extends Member {
     }
 
     /**
-     * Generates a QR image for a regular with the text for regulars plus the name of the head of its headquarter and returns the image.
+     * Generates a QR image for a regular with the text for regulars and the name of
+     * the head of its headquarter and returns the image.
      * @param r The Regular r we want to create a QR image for.
      * @return The image created with the corresponding information.
      */
@@ -59,7 +61,8 @@ public class Delegate extends Member {
     }
 
     /**
-     * Checks if the Delegate can be signed up using the specified QR Image: Essentially, checks if the text it should have is the same as the text of the decoded Image.
+     * Checks if the Delegate can be signed up using the specified QR Image.
+     * Essentially, checks if the text it should have is the same as the text of the decoded Image.
      * @param d The Delegate we want to sign up.
      * @param i The Image of which validity is being tested.
      * @return If the signup operation can be performed.
@@ -74,7 +77,8 @@ public class Delegate extends Member {
     }
 
     /**
-     * Checks if the Regular can be signed up using the specified QR Image: Essentially, checks if the text it should have is the same as the text of the decoded Image.
+     * Checks if the Regular can be signed up using the specified QR Image.
+     * Essentially, checks if the text it should have is the same as the text of the decoded Image.
      * @param r The Regular we want to sign up.
      * @param i The image of which validity is being tested.
      * @return If the signup operation can be performed.
@@ -128,11 +132,5 @@ public class Delegate extends Member {
             }
         }
         return regulars;
-    }
-
-
-
-    public String checkClass() {
-        return "Delegate";
     }
 }

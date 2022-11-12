@@ -9,6 +9,10 @@ public class Regular extends Member{
         vehicles = new LinkedList<Vehicle>();
         responsible = d;
     }
+
+    public LinkedList<Vehicle> getVehicles() {
+        return vehicles;
+    }
         
     public void addVehicle(Vehicle v) {
         vehicles.add(v);
@@ -16,9 +20,5 @@ public class Regular extends Member{
 
     public Delegate getResponsible() {
         return responsible;
-    }
-
-    public String checkClass() {
-        return "Regular";
     }
 }

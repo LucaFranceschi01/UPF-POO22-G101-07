@@ -1,4 +1,3 @@
-import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 public class Organization {
@@ -30,6 +29,10 @@ public class Organization {
     public void setActions(LinkedList<Action> a) {
         actions = a;
     }
+    
+    public void addAction(Action a) {
+        actions.add(a);
+    }
 
     /**
      * Gets all the heads of an organization.
@@ -43,18 +46,9 @@ public class Organization {
         return heads;
     }
 
-    // Prints the members of each headquarter in a legible way
-    public void printMembers() {
-        for(Headquarter h : headquarters) {
-            System.out.printf("%-15s: ", h.toString());
-            System.out.println(h.getMembers().toString());
-        }
-        System.out.println();                                        // Empty line to make the print better-looking
-        System.out.println("-".repeat(50));                   // Print lines to distinguish better the prints
-        System.out.println();                                       // Empty line to make the print better-looking
-    }
     /**
-     * This method tries to add a new Delegate to the Organization. Essentially, it checks that the two delegates belong to the same headquarter.
+     * This method tries to add a new Delegate to the Organization.
+     * Essentially, it checks that the two delegates belong to the same headquarter.
      * @param del The Delegate that tries to add a new Delegate to the organization.
      * @param newDel The Delegate that is being created.
      * @param a The availability of the new Delegate.
@@ -67,7 +61,8 @@ public class Organization {
     }
 
     /**
-     * This method tries to add a new Regular to the Organization. Essentially, it checks that the Delegate and the Regular belong to the same headquarter.
+     * This method tries to add a new Regular to the Organization.
+     * Essentially, it checks that the Delegate and the Regular belong to the same headquarter.
      * @param del The Delegate that tries to add a new Regular to the organization.
      * @param newReg The Regular that is being created.
      * @param a The availability of the new Regular.
@@ -79,33 +74,24 @@ public class Organization {
             newReg.setAvailability(a);
         }
     }
-
-    public void addAction(Action a) {
-        actions.add(a);
-    }
-
-    /**
-     * Gets the action (if any) that is being performed at a given date.
-     * @param d The date we want to know if there is any action happening.
-     * @return The action that is being performed, or null if there is not any.
-     */
-    public Action getAction(LocalDateTime d) {
-        for(Action a : actions) {
-            if(a.isPerforming(d)) { return a; } // we suppose that there cannot be more than one action given a date
+    
+    // Prints the members of each headquarter in a legible way
+    public void printMembers() {
+        for(Headquarter h : headquarters) {
+            System.out.printf("%-15s: %s%n", h.toString(), h.getMembers().toString());
         }
-        return null;
+        System.out.printf("%n%s%n", "-".repeat(50)); // Print lines to distinguish better the prints
     }
 
-    // Prints the purpose of the action, the headquarters participating, 
-    // the number of participating members of each headquarter, and a list with their names.
+    // Prints the purpose of the action, the headquarters participating, the number
+    // of participating members of each headquarter, and a list with their names.
     public void printActions() {
         for(Action a : actions) {
-            System.out.printf("%s: %s%n", a.getPurpose(), a.getHeadquarters().toString());
+            System.out.printf("%n%s: %s%n", a.getPurpose(), a.getHeadquarters().toString());
             for(Headquarter h : a.getHeadquarters()) {
-                System.out.printf("    >> %-15s: %d    Assisting members: %s%n", h.toString(), a.getAssistingNumMembers(h), h.getAssistingMembers(a));
+                System.out.printf("    >> %-15s: %d Assisting members --> %s%n", h.toString(), a.getAssistingNumMembers(h), h.getAssistingMembers(a));
             }
         }
-        System.out.println("-".repeat(50));
-
+        System.out.printf("%n%s%n", "-".repeat(50));
     }
 }

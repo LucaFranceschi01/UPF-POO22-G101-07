@@ -1,4 +1,3 @@
-import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 public class Headquarter {
@@ -18,43 +17,47 @@ public class Headquarter {
         developedActions = new LinkedList<InfoAction>();
         cities = new LinkedList<City>();
     }
-
-    public void addMember(Member m) {
-        members.add(m);
+    
+    public String toString() {
+        return name;
     }
-
-    public Organization getOrganization() {
-        return organization;
-    }
-
-    public void setHead(Delegate h) {
-        head = h;
-    }
-
-    public Delegate getHead() {
-        return head;
-    }
-
-    public void setCities(LinkedList<City> cityList) {
-        cities = cityList;
-    }
-
-    public LinkedList<City> getCities() {
-        return cities;
-    }
-
+    
     public String getEmail() {
         return email;
     }
-
-    public String toString() {
-        return name;
+    
+    public Delegate getHead() {
+        return head;
+    }
+    
+    public Organization getOrganization() {
+        return organization;
+    }
+    
+    public LinkedList<City> getCities() {
+        return cities;
     }
 
     public LinkedList<Member> getMembers() {
         return members;
     }
+    
+    public void addAction(InfoAction a) {
+        developedActions.add(a);
+    }
+    
+    public void setHead(Delegate h) {
+        head = h;
+    }
 
+    public void setCities(LinkedList<City> cityList) {
+        cities = cityList;
+    }
+    
+    public void addMember(Member m) {
+        members.add(m);
+    }
+    
     /**
      * Checks all members of the headquarter and selects only the delegates.
      * @return A list will all the delegates of the headquarter.
@@ -62,7 +65,7 @@ public class Headquarter {
     public LinkedList<Delegate> getDelegates() {
         LinkedList<Delegate> delegates = new LinkedList<Delegate>();
         for(Member m : members) {
-            if(m.checkClass().equals("Delegate")) {
+            if(m instanceof Delegate) {
                 delegates.add((Delegate) m);
             }
         }
@@ -76,7 +79,7 @@ public class Headquarter {
     public LinkedList<Regular> getRegulars() {
         LinkedList<Regular> regulars = new LinkedList<Regular>();
         for(Member m : members) {
-            if(m.checkClass().equals("Regular")) {
+            if(m instanceof Regular) {
                 regulars.add((Regular) m);
             }
         }
@@ -84,23 +87,8 @@ public class Headquarter {
     }
 
     /**
-     * Checks if an action is performed at a specific date.
-     * @param d The specific date we want to check. 
-     * @return The action being performed at that date, or null if there is no action being performed at the date.
-     */
-    public Action getAction(LocalDateTime d) {
-        for(int i=0; i<developedActions.size(); i++) {
-            if(developedActions.get(i).getAction().isPerforming(d)) { return developedActions.get(i).getAction(); }
-        }
-        return null;
-    }
-
-    public void addAction(InfoAction a) {
-        developedActions.add(a);
-    }
-
-    /**
-     * Will add the action to the Action.linkedlist of infoactions and Headquarter.developedActions. The headquarter will perform that action.
+     * Will create an Infoaction for the specific case of an action, a headquarter that will perform it and some more attributes
+     * and will link that infoaction to the appropiate Action and Headquarter classes.
      * @param a Action that is going to be signed up (developed)
      * @param nm Number of members of the headquarter participating.
      * @param nnm Number of non-members of the headquarter participating.
@@ -135,14 +123,11 @@ public class Headquarter {
         LinkedList<Member> members = new LinkedList<Member>();
         for(Delegate d : getDelegates()) {
             if(d.checkAvailabity(a) == true) {
-                //LinkedList<Member> del = new LinkedList<Member>();
-                //del.add(d);
                 members.add(d);
             }
             for(Member m : d.getAssistingRegulars(a)) {
                 members.add(m);
             }
-            
         }
         return members;
     }

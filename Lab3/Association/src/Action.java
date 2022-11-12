@@ -29,6 +29,10 @@ public class Action {
     public LinkedList<InfoAction> getInfoActions() {
         return infoActions;
     }
+    
+    public void addInfoActions(InfoAction a) {
+        infoActions.add(a);
+    }
 
     /**
      * Given a specific date, it checks if the action is being performed at the date or not.
@@ -39,13 +43,9 @@ public class Action {
         if(d.compareTo(date) >= 0 && d.compareTo(date.plusMinutes(duration)) < 0) { return true; }
         return false;
     }
-
-    public void addInfoActions(InfoAction a) {
-        infoActions.add(a);
-    }
-
+ 
     /**
-     * Creates and returns a list of headquarters for each infoAction inside infoActions of a specific action.
+     * Creates and returns a list of headquarters that will perform the action. 
      * @return A list of the headquarters where that action is being performed.
      */
     public LinkedList<Headquarter> getHeadquarters() {

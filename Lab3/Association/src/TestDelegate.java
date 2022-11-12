@@ -104,8 +104,7 @@ public class TestDelegate {
         
 
         // Printing final members
-        System.out.println("Final members:");
-        System.out.println();                       // Empty line
+        System.out.printf("%nFinal members:%n%n");
         testing.organization.printMembers();        // We print original members (heads only)
 
         /* ------------------------------------------ ADDING ACTIONS ------------------------------------------ */

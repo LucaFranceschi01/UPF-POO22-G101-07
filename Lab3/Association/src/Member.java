@@ -1,5 +1,3 @@
-import java.time.LocalDateTime;
-
 public class Member {
     private String name;
     private int phone;
@@ -50,18 +48,14 @@ public class Member {
     protected boolean checkAvailabity(Action a) {
         if(availability.getDays().contains(a.getDate().getDayOfWeek().getValue())) {
             for(int h : availability.getHours()) {
-                LocalDateTime avDateTime = a.getDate().withHour(h);
-                if(a.isPerforming(avDateTime)) { return true; }
+                if(a.isPerforming(a.getDate().withHour(h))) { return true; }
             }
         }
         return false;
     }
 
+    @Override
     public String toString() {
         return name;
-    }
-
-    public String checkClass() {
-        return "Member";
     }
 }
