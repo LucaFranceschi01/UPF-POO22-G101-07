@@ -4,8 +4,12 @@ public class Vector {
     private ArrayList<Double> values;
     private int dimension;
 
-    public Vector(int dim) {
+    public Vector(int dim) {        // this way works, we'll try mf luca's way later
         values = new ArrayList<Double>();
+        // values = new ArrayList<Double>(Collections.nCopies(dim, null));
+        for (int i = 0; i < dim; i++) {
+            values.add(null);
+        }
         dimension = dim;
     }
 
@@ -51,5 +55,22 @@ public class Vector {
 
     public void print() {
         System.out.println(values.toString());
+    }
+
+    public void set3D(double a, double b, double c) {
+        if(dimension == 3) {
+            set(0, a);
+            set(1, b);
+            set(2, c);
+        }
+    }
+
+    public void matrixMultiply(Matrix m) {        // modifica la matrix, not so good
+        if(getDimension() == m.getRows()) {
+            for(int i = 0; i < getDimension(); i++) {
+                m.getVectors().get(i).multiply(get(0));
+                set(i, m.getVectors().get(i).sumElements());
+            }
+        }
     }
 }
