@@ -1,0 +1,55 @@
+import java.util.ArrayList;
+
+public class Vector {
+    private ArrayList<Double> values;
+    private int dimension;
+
+    public Vector(int dim) {
+        values = new ArrayList<Double>();
+        dimension = dim;
+    }
+
+    public int getDimension() {
+        return dimension;
+    }
+
+    public void set(int i, double val) {
+        values.set(i, val);
+    }
+
+    public double get(int i) {
+        return values.get(i);
+    }
+
+    public void multiply(double s) { // same
+        for(int i=0; i<dimension; i++) {
+            set(i, get(i)*s);
+        }
+    }
+
+    public void zero() {
+        for(int i=0; i<dimension; i++) {
+            set(i, 0);
+        }
+    }
+
+    public double sumElements() {
+        double counter = 0;
+        for(int i=0; i<dimension; i++) {
+            counter += get(i);
+        }
+        return counter;
+    }
+
+    public void vectorSum(Vector v) { // can be done returning instead of setting
+        if(getDimension() == v.getDimension()) {
+            for(int i=0; i<dimension; i++) {
+                set(i, get(i)+v.get(i));
+            }
+        }
+    }
+
+    public void print() {
+        System.out.println(values.toString());
+    }
+}
