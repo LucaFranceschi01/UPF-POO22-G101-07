@@ -73,8 +73,10 @@ public class Vector {
     public void matrixMultiply(Matrix m) {
         if(getDimension() == m.getRows()) {
             for(int i = 0; i < getDimension(); i++) {
-                m.getVectors().get(i).multiply(get(0));  //check these 2 lines, not sure
-                set(i, m.getVectors().get(i).sumElements());
+                double first = m.getVectors().get(i).get(0) * get(0);  //check these 2 lines, not sure
+                double second = m.getVectors().get(i).get(1) * get(1);  //check these 2 lines, not sure
+                double third = m.getVectors().get(i).get(2) * get(2);  //check these 2 lines, not sure
+                set(i, first + second + third);
             }
         }
     }
