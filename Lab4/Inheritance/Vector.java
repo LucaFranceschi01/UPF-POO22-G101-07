@@ -4,7 +4,7 @@ public class Vector {
     private ArrayList<Double> values;
     private int dimension;
 
-    public Vector(int dim) {        // this way works, we'll try mf luca's way later
+    public Vector(int dim) {
         values = new ArrayList<Double>();
         // values = new ArrayList<Double>(Collections.nCopies(dim, null));
         for (int i = 0; i < dim; i++) {
@@ -25,10 +25,12 @@ public class Vector {
         return values.get(i);
     }
 
-    public void multiply(double s) { // same
+    public Vector multiply(double s) {
+        Vector v = new Vector(getDimension());
         for(int i=0; i<dimension; i++) {
-            set(i, get(i)*s);
+            v.set(i, get(i)*s);
         }
+        return v;
     }
 
     public void zero() {
@@ -45,12 +47,15 @@ public class Vector {
         return counter;
     }
 
-    public void vectorSum(Vector v) { // can be done returning instead of setting
+    public Vector vectorSum(Vector v) { // returns a new vector with the sum
         if(getDimension() == v.getDimension()) {
+            Vector sum = new Vector(getDimension());
             for(int i=0; i<dimension; i++) {
-                set(i, get(i)+v.get(i));
+                sum.set(i, get(i)+v.get(i));
             }
+            return sum;
         }
+        return null;                    // if not the same lenght, sum will be null
     }
 
     public void print() {
@@ -65,10 +70,10 @@ public class Vector {
         }
     }
 
-    public void matrixMultiply(Matrix m) {        // modifica la matrix, not so good
+    public void matrixMultiply(Matrix m) {
         if(getDimension() == m.getRows()) {
             for(int i = 0; i < getDimension(); i++) {
-                m.getVectors().get(i).multiply(get(0));
+                m.getVectors().get(i).multiply(get(0));  //check these 2 lines, not sure
                 set(i, m.getVectors().get(i).sumElements());
             }
         }

@@ -30,10 +30,14 @@ public class Matrix {
         return vectors.get(i).get(j);
     }
 
-    public void multiply(double s) {
+    public Matrix multiply(double s) {
+        Matrix mult = new Matrix(getRows(), getCols());
+        int idx = 0;
         for(Vector v : vectors) {
-            v.multiply(s);
+            mult.setVector(v.multiply(s), idx);
+            idx++;
         }
+        return mult;
     }
 
     public void print() {
@@ -58,5 +62,11 @@ public class Matrix {
 
     public ArrayList<Vector> getVectors() {
         return vectors;
+    }
+
+    public void setVector(Vector v, int idx) {
+        for (int i = 0; i < getCols(); i++) {
+            vectors.get(idx).set(i, v.get(i));
+        }
     }
 }
