@@ -15,3 +15,5 @@ Authors : Luca Franceschi and Alejandro González
 
 * [Code](Lab3) : Code for Lab 3
 * [Report](Lab3/POO22-G101-07-3-Report.pdf) : Report for Lab 3
+
+Since we got some errors because of the project management, we moved the settings.json to specific Lab3 project. Now, when testing or using in general this repository in VS Code, we need to open a specific project (i.e. Lab1) as a workspace, unless won't compile properly. We don't know exactly how to solve that problem and that way projects work without giving us errors.
