@@ -1,4 +1,4 @@
-public class TestingInheritance {
+public class TestInheritance {
     public static void main(String[] args) {
         
         // Testing for Vector
@@ -31,9 +31,11 @@ public class TestingInheritance {
         v2.set3D(1, 0, 0);
 
         Matrix m2 = new Matrix(3, 3);
-        m2.create3DRotationZ(Math.PI/4);
+        m2.create3DRotationZ(Math.PI/2);
 
         v2.print();
+        System.out.println();
+        m2.print();
         System.out.println();
         v2.matrixMultiply(m2);
         v2.print();

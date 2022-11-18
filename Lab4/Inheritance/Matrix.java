@@ -6,12 +6,12 @@ public class Matrix {
 
     public Matrix(int n, int m) {
         vectors = new ArrayList<Vector>();
+        rows = n;
+        cols = m;
         for (int i = 0; i < n; i++) {
             Vector v = new Vector(m);
             vectors.add(v);
         }
-        rows = n;
-        cols = m;
     }
 
     public int getRows() {
@@ -31,13 +31,19 @@ public class Matrix {
     }
 
     public Matrix multiply(double s) {
-        Matrix mult = new Matrix(getRows(), getCols());
+        Matrix mult = new Matrix(rows, cols);
         int idx = 0;
         for(Vector v : vectors) {
-            mult.setVector(v.multiply(s), idx);
+            mult.setVector(idx, v.multiply(s));
             idx++;
         }
         return mult;
+    }
+
+    public void setVector(int idx, Vector v) {
+        for (int i = 0; i < cols; i++) {
+            vectors.get(idx).set(i, v.get(i));
+        }
     }
 
     public void print() {
@@ -52,21 +58,15 @@ public class Matrix {
         }
     }
 
-    public void create3DRotationZ(double val) {
+    public void create3DRotationZ(double val) { // this value in radians
         if(rows == 3 && cols == 3) {
-            vectors.get(0).set3D(Math.cos(val), -Math.sin(val), 0);
-            vectors.get(0).set3D(Math.sin(val), Math.cos(val), 0);
-            vectors.get(0).set3D(0, 0, 1);
+            vectors.get(0).set3D(Math.round(Math.cos(val)), Math.round(-Math.sin(val)), 0);
+            vectors.get(1).set3D(Math.round(Math.sin(val)), Math.round(Math.cos(val)), 0);
+            vectors.get(2).set3D(0, 0, 1);
         }
     }
 
     public ArrayList<Vector> getVectors() {
         return vectors;
-    }
-
-    public void setVector(Vector v, int idx) {
-        for (int i = 0; i < getCols(); i++) {
-            vectors.get(idx).set(i, v.get(i));
-        }
     }
 }
