@@ -17,6 +17,10 @@ public class Vector {
         return dimension;
     }
 
+    public void setArray(Vector v) {
+        values = v.getArray();
+    }
+
     public ArrayList<Double> getArray() {
         return values;
     }
