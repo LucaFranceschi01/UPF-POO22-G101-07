@@ -1,30 +1,27 @@
 public class TestInheritance {
     public static void main(String[] args) {
         
-        // Testing for Vector
+        System.out.println("---------- Testing a simple Vector ----------");
         Vector v = new Vector(3);
         v.set(0, 1);
         v.set(1, 2);
         v.set(2, 3);
 
-        v.print();
-        System.out.println();
+        v.print("A simple vector:");
         v.zero();
-        v.print();
-        System.out.println();
-
-        // Testing for Matrix
+        v.print("Now we set it to a zero vector:");
+        
+        System.out.println("---------- Testing a simple Matrix ----------");
         Matrix m = new Matrix(2, 2);
         m.set(0, 0, 1);
         m.set(0, 1, 0);
         m.set(1, 0, 0);
         m.set(1, 1, 1);
 
-        m.print();
-        System.out.println();
+        m.print("A simple matrix:");
         m.zero();
-        m.print();
-        System.out.println();
+        m.print("Now we set it to a zero matrix:");
+        
 
         // Testing for Rotation Matrix
         Vector v2 = new Vector(3);
@@ -33,12 +30,12 @@ public class TestInheritance {
         Matrix m2 = new Matrix(3, 3);
         m2.create3DRotationZ(Math.PI/2);
 
-        v2.print();
-        System.out.println();
-        m2.print();
-        System.out.println();
+        System.out.println("---------- Testing the 3D Rotation Z ----------");
+        v2.print("The vector:");
+        m2.print("The matrix:");
+        
         v2.matrixMultiply(m2);
-        v2.print();
-        System.out.println();
+        v2.print("The result:");
+        
     }
 }

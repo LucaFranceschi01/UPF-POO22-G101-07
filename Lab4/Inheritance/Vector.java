@@ -17,6 +17,10 @@ public class Vector {
         return dimension;
     }
 
+    public ArrayList<Double> getArray() {
+        return values;
+    }
+
     public void set(int i, double val) {
         values.set(i, val);
     }
@@ -58,8 +62,15 @@ public class Vector {
         return null; // if not the same lenght, sum will be null
     }
 
-    public void print() {
-        System.out.println(values.toString());
+    public void print(String text) {
+        if (text != null) {
+            System.out.println(text);
+            System.out.println(values.toString());
+            System.out.println();
+        } else {
+            System.out.println(values.toString());
+        }
+
     }
 
     public void set3D(double a, double b, double c) {
@@ -72,16 +83,13 @@ public class Vector {
 
     public void matrixMultiply(Matrix m) {
         if(dimension == m.getRows()) {
+            Vector out = new Vector(dimension);
             for(int i = 0; i < dimension; i++) {
-                // double first = m.getVectors().get(i).get(0) * get(0);  //check these 2 lines, not sure
-                // double second = m.getVectors().get(i).get(1) * get(1);  //check these 2 lines, not sure
-                // double third = m.getVectors().get(i).get(2) * get(2);  //check these 2 lines, not sure
                 Vector v = m.getVectors().get(i);
                 v = multiplyElements(v);
-                v.sumElements();
-                set(i, v.sumElements());
-                // set(i, first + second + third);
+                out.set(i, v.sumElements()); // problem
             }
+            values = out.getArray();
         }
     }
 

@@ -46,10 +46,12 @@ public class Matrix {
         }
     }
 
-    public void print() {
+    public void print(String text) {
+        System.out.println(text);
         for(Vector v : vectors) {
-            v.print();
+            v.print(null);
         }
+        System.out.println();
     }
 
     public void zero() {
