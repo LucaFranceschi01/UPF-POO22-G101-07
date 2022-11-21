@@ -36,5 +36,12 @@ public class TestInheritance {
         
         v2.matrixMultiply(m2);
         v2.print("The result:");
+
+        System.out.println("---------- Testing BWFrame ----------");
+        BWFrame bwFrame = new BWFrame(5, 5);
+
+        bwFrame.print("First iteration");
+        bwFrame.changeBrightness(0.2);
+        bwFrame.print("Second iteration");
     }
 }

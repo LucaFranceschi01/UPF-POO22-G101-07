@@ -6,7 +6,27 @@ public class ColorFrame extends Frame {
 
     @Override
     public void changeBrightness(double delta) {
+        for(Vector v : getVectors()) {
+            for(int i = 0; i<v.getDimension(); i++) {
+                int[] rgb = valToRGB(v.get(i));
+                rgb[0] = (int) min(255, rgb[0] + 255*delta);
+                rgb[1] = (int) min(255, rgb[1] + 255*delta);
+                rgb[2] = (int) min(255, rgb[2] + 255*delta);
+                v.set(i, RGBToVal(rgb));
+            }
+        }
+    }
 
+    public void changeRGB(int[] deltas) {
+        for(Vector v : getVectors()) {
+            for(int i = 0; i<v.getDimension(); i++) {
+                int[] rgb = valToRGB(v.get(i));
+                rgb[0] = (int) min(255, rgb[0] + 255*deltas[0]);
+                rgb[1] = (int) min(255, rgb[1] + 255*deltas[1]);
+                rgb[2] = (int) min(255, rgb[2] + 255*deltas[2]);
+                v.set(i, RGBToVal(rgb));
+            }
+        }
     }
     
     private int[] valToRGB(double rgb) {
