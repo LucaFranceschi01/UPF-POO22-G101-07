@@ -6,6 +6,15 @@ public class ColorFrame extends Frame {
         super(n, m);
     }
 
+    public ColorFrame(BufferedImage image) {
+        super(image.getHeight(), image.getWidth());
+        for(int i=0; i<image.getHeight(); i++) {
+            for(int j=0; j<image.getWidth(); j++) {
+                set(i, j, image.getRGB(i, j));
+            }
+        }
+    }
+
     @Override
     public void changeBrightness(double delta) {
         for(Vector v : getVectors()) {
@@ -47,6 +56,24 @@ public class ColorFrame extends Frame {
     private double RGBToVal(int[] rgb) {
         double ret = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
         return ret;
+    }
+
+    public BWFrame toBWFrame() {
+        BWFrame newBWFrame = new BWFrame(getRows(), getCols());
+        for(int i=0; i<getRows(); i++) {
+            for(int j=0; j<getCols(); j++) {
+                int p = (int)get(i, j);
+                int a = (p>>24)&0xff;
+                int r = (p>>16)&0xff;
+                int g = (p>>8)&0xff;
+                int b = p&0xff;
+                int avg = (r+g+b)/3;
+                double newvalue = (a<<24) | (avg<<16) | (avg<<8) | avg;
+                // System.out.println(newvalue);
+                newBWFrame.set(i, j, newvalue);
+            }
+        }
+        return newBWFrame;
     }
 
     // in lab also: constructor, set, get, changeBrighness and changeRGB

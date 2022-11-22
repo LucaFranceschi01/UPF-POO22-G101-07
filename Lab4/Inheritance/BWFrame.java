@@ -9,7 +9,7 @@ public class BWFrame extends Frame{
         super(n, m);
     }
 
-    public BWFrame(BufferedImage image) {
+    public BWFrame(BufferedImage image) { // creo que no está bien porque lo tratamos como un colorframe (rango de valores mal)
         super(image.getHeight(), image.getWidth());
         for(int i=0; i<image.getHeight(); i++) {
             for(int j=0; j<image.getWidth(); j++) {

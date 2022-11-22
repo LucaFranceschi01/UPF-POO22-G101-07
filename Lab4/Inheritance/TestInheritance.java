@@ -66,14 +66,26 @@ public class TestInheritance extends JPanel{
         // addText("what is going on");
 
         try {
-            File input = new File("Inheritance/img/Grayscale_Lena.png");
+            // File input = new File("Inheritance/img/Grayscale_Lena.png");
+            // BufferedImage lena = ImageIO.read(input);
+            // BWFrame lenaframe = new BWFrame(lena);
+            // BufferedImage myLena = lenaframe.getImageFromFrame();
+            // showImage(myLena);
+            // lenaframe.changeBrightness(0.2);
+            // BufferedImage myLena2 = lenaframe.getImageFromFrame();
+            // showImage(myLena2);
+
+            File input = new File("Inheritance/img/Color_Lena.png");
             BufferedImage lena = ImageIO.read(input);
-            BWFrame lenaframe = new BWFrame(lena);
-            BufferedImage myLena = lenaframe.getImageFromFrame();
-            showImage(myLena);
-            lenaframe.changeBrightness(0.2);
-            BufferedImage myLena2 = lenaframe.getImageFromFrame();
+            ColorFrame colorlenaframe = new ColorFrame(lena);
+            BWFrame graylenaframe = colorlenaframe.toBWFrame();
+            BufferedImage myLena2 = graylenaframe.getImageFromFrame();
             showImage(myLena2);
+            graylenaframe.changeBrightness(0.2);
+            BufferedImage myLena3 = graylenaframe.getImageFromFrame();
+            showImage(myLena3);
+
+
         } catch (IOException e) {}
 
 
