@@ -1,3 +1,5 @@
+import java.awt.image.BufferedImage;
+
 public abstract class Frame extends Matrix {
 
     public Frame(int n, int m) {
@@ -10,4 +12,6 @@ public abstract class Frame extends Matrix {
         if(a<b) { return a;}
         return b;
     }
+
+    public abstract BufferedImage getImageFromFrame();
 }

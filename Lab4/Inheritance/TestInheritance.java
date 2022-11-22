@@ -1,4 +1,13 @@
-public class TestInheritance {
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.awt.Component;
+import java.awt.Container;
+
+import javax.swing.*;
+
+public class TestInheritance extends JPanel{
+
+    private static JFrame jframe;
     public static void main(String[] args) {
         
         System.out.println("---------- Testing a simple Vector ----------");
@@ -38,10 +47,55 @@ public class TestInheritance {
         v2.print("The result:");
 
         System.out.println("---------- Testing BWFrame ----------");
-        BWFrame bwFrame = new BWFrame(5, 5);
+        BWFrame bwFrame = new BWFrame(20, 20);
+        bwFrame.print("Full black");
 
-        bwFrame.print("First iteration");
+        createWindow();
+
+        BufferedImage image1 = bwFrame.getImageFromFrame();
+        showImage(image1);
+
+        addButton("Button2");
+
         bwFrame.changeBrightness(0.2);
-        bwFrame.print("Second iteration");
+        bwFrame.print("Shouldn't be full black");
+        BufferedImage image2 = bwFrame.getImageFromFrame();
+        showImage(image2);
+
+        addText("what is going on");
+        System.out.println("finished");
+    }
+
+    private static void createWindow() {
+        jframe = new JFrame("Testing Frames");
+        jframe.setPreferredSize(new Dimension(400, 400));
+        jframe.getContentPane().setLayout(new BoxLayout(jframe.getContentPane(), BoxLayout.PAGE_AXIS));
+
+        jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        jframe.pack();
+        jframe.setVisible(true);
+    }
+
+    private static void showImage(BufferedImage im) {
+        JLabel jLabel = new JLabel(new ImageIcon(im));
+        jLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        jframe.getContentPane().add(jLabel);
+        jframe.setVisible(true);
+    }
+
+    private static void addButton(String text) {
+        JButton button = new JButton(text);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        jframe.getContentPane().add(button);
+        jframe.setVisible(true);
+
+    }
+
+    private static void addText(String text) {
+        JLabel jLabel = new JLabel(text);
+        jLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        jframe.getContentPane().add(jLabel);
+        jframe.setVisible(true);
+
     }
 }

@@ -1,3 +1,5 @@
+import java.awt.image.BufferedImage;
+
 public class ColorFrame extends Frame {
     // in this class, values of rgb will range fom 0-255. Before changing them, we need to ensure that the values are in the range
     public ColorFrame(int n, int m) {
@@ -15,6 +17,11 @@ public class ColorFrame extends Frame {
                 v.set(i, RGBToVal(rgb));
             }
         }
+    }
+
+    @Override
+    public BufferedImage getImageFromFrame() {
+        return null;
     }
 
     public void changeRGB(int[] deltas) {
