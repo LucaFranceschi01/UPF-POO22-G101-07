@@ -1,8 +1,9 @@
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.Component;
-import java.awt.Container;
-
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class TestInheritance extends JPanel{
@@ -47,28 +48,41 @@ public class TestInheritance extends JPanel{
         v2.print("The result:");
 
         System.out.println("---------- Testing BWFrame ----------");
-        BWFrame bwFrame = new BWFrame(20, 20);
-        bwFrame.print("Full black");
+        // BWFrame bwFrame = new BWFrame(20, 20);
+        // bwFrame.print("Full black");
 
         createWindow();
 
-        BufferedImage image1 = bwFrame.getImageFromFrame();
-        showImage(image1);
+        // BufferedImage image1 = bwFrame.getImageFromFrame();
+        // showImage(image1);
 
-        addButton("Button2");
+        // addButton("Button2");
 
-        bwFrame.changeBrightness(0.2);
-        bwFrame.print("Shouldn't be full black");
-        BufferedImage image2 = bwFrame.getImageFromFrame();
-        showImage(image2);
+        // bwFrame.changeBrightness(0.2);
+        // bwFrame.print("Shouldn't be full black");
+        // BufferedImage image2 = bwFrame.getImageFromFrame();
+        // showImage(image2);
 
-        addText("what is going on");
+        // addText("what is going on");
+
+        try {
+            File input = new File("Inheritance/img/Grayscale_Lena.png");
+            BufferedImage lena = ImageIO.read(input);
+            BWFrame lenaframe = new BWFrame(lena);
+            BufferedImage myLena = lenaframe.getImageFromFrame();
+            showImage(myLena);
+            lenaframe.changeBrightness(0.2);
+            BufferedImage myLena2 = lenaframe.getImageFromFrame();
+            showImage(myLena2);
+        } catch (IOException e) {}
+
+
         System.out.println("finished");
     }
 
     private static void createWindow() {
         jframe = new JFrame("Testing Frames");
-        jframe.setPreferredSize(new Dimension(400, 400));
+        jframe.setPreferredSize(new Dimension(400, 600));
         jframe.getContentPane().setLayout(new BoxLayout(jframe.getContentPane(), BoxLayout.PAGE_AXIS));
 
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

@@ -9,6 +9,15 @@ public class BWFrame extends Frame{
         super(n, m);
     }
 
+    public BWFrame(BufferedImage image) {
+        super(image.getHeight(), image.getWidth());
+        for(int i=0; i<image.getHeight(); i++) {
+            for(int j=0; j<image.getWidth(); j++) {
+                set(i, j, image.getRGB(i, j));
+            }
+        }
+    }
+
     @Override
     public void changeBrightness(double delta) { // comment in pdf
         for(Vector v : getVectors()) {
@@ -20,11 +29,11 @@ public class BWFrame extends Frame{
 
     @Override
     public BufferedImage getImageFromFrame() {
-        BufferedImage image = new BufferedImage(getCols(), getRows(), BufferedImage.TYPE_BYTE_GRAY);
+        BufferedImage image = new BufferedImage(getCols(), getRows(), BufferedImage.TYPE_INT_RGB);
         for(int i=0; i<getRows(); i++) {
             for(int j=0; j<getCols(); j++) {
                 int a = (int)get(i, j);
-                Color newcolor = new Color(a, a, a);
+                Color newcolor = new Color(a);
                 image.setRGB(i, j, newcolor.getRGB());
             }
         }
