@@ -48,22 +48,8 @@ public class TestInheritance extends JPanel{
         v2.print("The result:");
 
         System.out.println("---------- Testing BWFrame ----------");
-        // BWFrame bwFrame = new BWFrame(20, 20);
-        // bwFrame.print("Full black");
 
         createWindow();
-
-        // BufferedImage image1 = bwFrame.getImageFromFrame();
-        // showImage(image1);
-
-        // addButton("Button2");
-
-        // bwFrame.changeBrightness(0.2);
-        // bwFrame.print("Shouldn't be full black");
-        // BufferedImage image2 = bwFrame.getImageFromFrame();
-        // showImage(image2);
-
-        // addText("what is going on");
 
         try {
             // File input = new File("Inheritance/img/Grayscale_Lena.png");
@@ -71,21 +57,28 @@ public class TestInheritance extends JPanel{
             // BWFrame lenaframe = new BWFrame(lena);
             // BufferedImage myLena = lenaframe.getImageFromFrame();
             // showImage(myLena);
-            // lenaframe.changeBrightness(0.2);
+            // lenaframe.changeBrightness(100);
             // BufferedImage myLena2 = lenaframe.getImageFromFrame();
             // showImage(myLena2);
+
+            // File input2 = new File("Inheritance/img/Color_Lena.png");
+            // BufferedImage lena2 = ImageIO.read(input2);
+            // ColorFrame colorlenaframe = new ColorFrame(lena2);
+            // BWFrame graylenaframe = colorlenaframe.toBWFrame();
+            // graylenaframe.print("FIRST GRAY FRAME");
+            // BufferedImage myLena3 = graylenaframe.getImageFromFrame();
+            // showImage(myLena3);
+            // graylenaframe.changeBrightness(0.5);
+            // graylenaframe.print("SECOND GRAY FRAME");
+            // BufferedImage myLena4 = graylenaframe.getImageFromFrame();
+            // showImage(myLena4);
 
             File input = new File("Inheritance/img/Color_Lena.png");
             BufferedImage lena = ImageIO.read(input);
             ColorFrame colorlenaframe = new ColorFrame(lena);
-            BWFrame graylenaframe = colorlenaframe.toBWFrame();
-            BufferedImage myLena2 = graylenaframe.getImageFromFrame();
-            showImage(myLena2);
-            graylenaframe.changeBrightness(0.2);
-            BufferedImage myLena3 = graylenaframe.getImageFromFrame();
-            showImage(myLena3);
-
-
+            showImage(colorlenaframe.getImageFromFrame());
+            colorlenaframe.changeBrightness(0.5);
+            showImage(colorlenaframe.getImageFromFrame());
         } catch (IOException e) {}
 
 

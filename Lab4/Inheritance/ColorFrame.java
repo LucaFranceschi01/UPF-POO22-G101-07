@@ -1,4 +1,5 @@
 import java.awt.image.BufferedImage;
+import java.awt.Color;
 
 public class ColorFrame extends Frame {
     // in this class, values of rgb will range fom 0-255. Before changing them, we need to ensure that the values are in the range
@@ -30,8 +31,15 @@ public class ColorFrame extends Frame {
 
     @Override
     public BufferedImage getImageFromFrame() {
-        return null;
-    }
+        BufferedImage image = new BufferedImage(getCols(), getRows(), BufferedImage.TYPE_INT_RGB);
+        for(int i=0; i<getRows(); i++) {
+            for(int j=0; j<getCols(); j++) {
+                int a = (int)get(i, j);
+                Color newcolor = new Color(a);
+                image.setRGB(i, j, newcolor.getRGB());
+            }
+        }
+        return image;    }
 
     public void changeRGB(int[] deltas) {
         for(Vector v : getVectors()) {
@@ -58,19 +66,16 @@ public class ColorFrame extends Frame {
         return ret;
     }
 
-    public BWFrame toBWFrame() {
+    public BWFrame toBWFrame() { // hacer bien porque lo hace con otros rangos
         BWFrame newBWFrame = new BWFrame(getRows(), getCols());
         for(int i=0; i<getRows(); i++) {
             for(int j=0; j<getCols(); j++) {
-                int p = (int)get(i, j);
-                int a = (p>>24)&0xff;
+                int p = (int)get(i, j); // ponerlo en funcion de nuestros metodos
                 int r = (p>>16)&0xff;
                 int g = (p>>8)&0xff;
                 int b = p&0xff;
-                int avg = (r+g+b)/3;
-                double newvalue = (a<<24) | (avg<<16) | (avg<<8) | avg;
-                // System.out.println(newvalue);
-                newBWFrame.set(i, j, newvalue);
+                int grayscale = (int) (0.21*r + 0.72*g + 0.07*b);
+                newBWFrame.set(i, j, grayscale);
             }
         }
         return newBWFrame;

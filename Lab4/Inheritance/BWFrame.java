@@ -1,5 +1,5 @@
 import java.awt.image.BufferedImage;
-import java.awt.Color;
+import java.awt.image.WritableRaster;
 
 public class BWFrame extends Frame{
     // in this class, values will range between [0-255], meaning [white, black]
@@ -13,7 +13,7 @@ public class BWFrame extends Frame{
         super(image.getHeight(), image.getWidth());
         for(int i=0; i<image.getHeight(); i++) {
             for(int j=0; j<image.getWidth(); j++) {
-                set(i, j, image.getRGB(i, j));
+                set(i, j, image.getRGB(i, j)); // nooooo set rgb mal hay que hacerlo con writableraster
             }
         }
     }
@@ -25,18 +25,29 @@ public class BWFrame extends Frame{
                 v.set(i, min(255, v.get(i) + (255*delta))); // does increase or decrease brighness??
             }
         }
+        /* for(Vector v : getVectors()) {
+            for(int i = 0; i<v.getDimension(); i++) {
+                int[] rgb = valToRGB(v.get(i));
+                rgb[0] = (int) min(255, rgb[0] + 255*delta);
+                rgb[1] = (int) min(255, rgb[1] + 255*delta);
+                rgb[2] = (int) min(255, rgb[2] + 255*delta);
+                v.set(i, RGBToVal(rgb));
+            }
+        }*/
     }
 
     @Override
     public BufferedImage getImageFromFrame() {
-        BufferedImage image = new BufferedImage(getCols(), getRows(), BufferedImage.TYPE_INT_RGB);
+        int[] pixels = new int[getRows()*getCols()];
         for(int i=0; i<getRows(); i++) {
             for(int j=0; j<getCols(); j++) {
-                int a = (int)get(i, j);
-                Color newcolor = new Color(a);
-                image.setRGB(i, j, newcolor.getRGB());
+                pixels[i*getRows()+j] = (int) get(i, j);
             }
         }
+        BufferedImage image = new BufferedImage(getCols(), getRows(), BufferedImage.TYPE_BYTE_GRAY);
+        WritableRaster raster = image.getRaster();
+        raster.setSamples(0, 0, getCols(), getRows(), 0, pixels);
+
         return image;
     }
     
