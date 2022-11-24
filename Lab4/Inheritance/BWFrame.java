@@ -9,15 +9,6 @@ public class BWFrame extends Frame{
         super(n, m);
     }
 
-    public BWFrame(BufferedImage image) { // creo que no está bien porque lo tratamos como un colorframe (rango de valores mal)
-        super(image.getHeight(), image.getWidth());
-        for(int i=0; i<image.getHeight(); i++) {
-            for(int j=0; j<image.getWidth(); j++) {
-                set(i, j, image.getRGB(i, j)); // nooooo set rgb mal hay que hacerlo con writableraster
-            }
-        }
-    }
-
     @Override
     public void changeBrightness(double delta) { // comment in pdf
         for(Vector v : getVectors()) {
@@ -25,23 +16,14 @@ public class BWFrame extends Frame{
                 v.set(i, min(255, v.get(i) + (255*delta))); // does increase or decrease brighness??
             }
         }
-        /* for(Vector v : getVectors()) {
-            for(int i = 0; i<v.getDimension(); i++) {
-                int[] rgb = valToRGB(v.get(i));
-                rgb[0] = (int) min(255, rgb[0] + 255*delta);
-                rgb[1] = (int) min(255, rgb[1] + 255*delta);
-                rgb[2] = (int) min(255, rgb[2] + 255*delta);
-                v.set(i, RGBToVal(rgb));
-            }
-        }*/
     }
 
     @Override
     public BufferedImage getImageFromFrame() {
         int[] pixels = new int[getRows()*getCols()];
-        for(int i=0; i<getRows(); i++) {
-            for(int j=0; j<getCols(); j++) {
-                pixels[i*getRows()+j] = (int) get(i, j);
+        for(int i=0; i<getCols(); i++) { // FLIPPED TO MATCH WRITABLERASTER WAY (FIRST COLUMNS, THEN ROWS)
+            for(int j=0; j<getRows(); j++) {
+                pixels[j*getRows()+i] = (int) get(i, j);
             }
         }
         BufferedImage image = new BufferedImage(getCols(), getRows(), BufferedImage.TYPE_BYTE_GRAY);

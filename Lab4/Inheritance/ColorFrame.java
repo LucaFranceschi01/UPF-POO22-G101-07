@@ -66,15 +66,12 @@ public class ColorFrame extends Frame {
         return ret;
     }
 
-    public BWFrame toBWFrame() { // hacer bien porque lo hace con otros rangos
+    public BWFrame toBWFrame() {
         BWFrame newBWFrame = new BWFrame(getRows(), getCols());
         for(int i=0; i<getRows(); i++) {
             for(int j=0; j<getCols(); j++) {
-                int p = (int)get(i, j); // ponerlo en funcion de nuestros metodos
-                int r = (p>>16)&0xff;
-                int g = (p>>8)&0xff;
-                int b = p&0xff;
-                int grayscale = (int) (0.21*r + 0.72*g + 0.07*b);
+                int[] rgb = valToRGB(get(i, j));
+                int grayscale = (int) (0.21*rgb[0] + 0.72*rgb[1] + 0.07*rgb[2]);
                 newBWFrame.set(i, j, grayscale);
             }
         }
