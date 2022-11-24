@@ -2,22 +2,32 @@ import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 
 public class BWFrame extends Frame{
-    // in this class, values will range between [0-255], meaning [white, black]
-    // i think we'll need to use integer numbers and not doubles for that   
-    // changeBrightness will change those values but will never exceed the range
+    
+    /**
+     * Creates an instance of BWFrame by calling the superclass constructor. This type of Frame will have values that are in the range
+     * [0, 255], where 0 is white and 255 is black, and the values in between are lighter/darker versions of them.
+     * @param n The number of rows of the BWFrame we want to create.
+     * @param m The number of columns of the BWFrame we want to create.
+     */
     public BWFrame(int n, int m) {
         super(n, m);
     }
 
+    /**
+     * Changes each value of the Frame to the minimum value between 255 (max possible value, black) and current value + 255*delta.
+     * This way we are increasing the brightness of the Frame, while at the same time we ensure no value will get out of range.
+     * @param delta The value we want to increase the brightness by.
+     */
     @Override
-    public void changeBrightness(double delta) { // comment in pdf
+    public void changeBrightness(double delta) {
         for(Vector v : getVectors()) {
             for(int i = 0; i<v.getDimension(); i++) {
-                v.set(i, min(255, v.get(i) + (255*delta))); // does increase or decrease brighness??
+                v.set(i, min(255, v.get(i) + (255*delta)));
             }
         }
     }
 
+    // Returns an image as an instance of BufferedImage from the Frame
     @Override
     public BufferedImage getImageFromFrame() {
         int[] pixels = new int[getRows()*getCols()];
@@ -32,6 +42,4 @@ public class BWFrame extends Frame{
 
         return image;
     }
-    
-    // in lab design: constructor, get, set, and cangeBrightness
 }

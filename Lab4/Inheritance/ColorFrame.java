@@ -3,6 +3,14 @@ import java.awt.Color;
 
 public class ColorFrame extends Frame {
     // in this class, values of rgb will range fom 0-255. Before changing them, we need to ensure that the values are in the range
+    
+    /**
+     * Creates an instance of ColorFrame by calling the superclass constructor. This type of Frame will be composed of values, where
+     * each of the values will have inside R, G, B and A values. Each of these R, G, B, and A values will be in the range [0,255],
+     * and their combinations are the different colors.
+     * @param n The number of rows of the ColorFrame we want to create.
+     * @param m The number of columns of the ColorFrame we want to create.
+     */
     public ColorFrame(int n, int m) {
         super(n, m);
     }
@@ -29,6 +37,7 @@ public class ColorFrame extends Frame {
         }
     }
 
+    // Returns an image as an instance of BufferedImage from the Frame
     @Override
     public BufferedImage getImageFromFrame() {
         BufferedImage image = new BufferedImage(getCols(), getRows(), BufferedImage.TYPE_INT_RGB);
@@ -77,6 +86,4 @@ public class ColorFrame extends Frame {
         }
         return newBWFrame;
     }
-
-    // in lab also: constructor, set, get, changeBrighness and changeRGB
 }
