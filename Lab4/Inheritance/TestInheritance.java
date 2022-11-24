@@ -59,11 +59,11 @@ public class TestInheritance extends JPanel{
             BWFrame graylenaframe = colorlenaframe.toBWFrame();
 
             showImage(colorlenaframe.getImageFromFrame());
-            colorlenaframe.changeBrightness(0.5);
+            colorlenaframe.changeBrightness(-0.5);
             showImage(colorlenaframe.getImageFromFrame());
 
             showImage(graylenaframe.getImageFromFrame());
-            graylenaframe.changeBrightness(0.5);
+            graylenaframe.changeBrightness(-0.5);
             showImage(graylenaframe.getImageFromFrame());
 
         } catch (IOException e) {}

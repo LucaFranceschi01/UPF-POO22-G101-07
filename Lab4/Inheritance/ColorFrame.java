@@ -29,9 +29,9 @@ public class ColorFrame extends Frame {
         for(Vector v : getVectors()) {
             for(int i = 0; i<v.getDimension(); i++) {
                 int[] rgb = valToRGB(v.get(i));
-                rgb[0] = (int) min(255, rgb[0] + 255*delta);
-                rgb[1] = (int) min(255, rgb[1] + 255*delta);
-                rgb[2] = (int) min(255, rgb[2] + 255*delta);
+                rgb[0] = (int) min(255, max(0, rgb[0] + 255*delta));
+                rgb[1] = (int) min(255, max(0, rgb[1] + 255*delta));
+                rgb[2] = (int) min(255, max(0, rgb[2] + 255*delta));
                 v.set(i, RGBToVal(rgb));
             }
         }

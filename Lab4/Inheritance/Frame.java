@@ -25,6 +25,11 @@ public abstract class Frame extends Matrix {
         return b;
     }
 
+    protected double max(double a, double b) {
+        if(a>b) { return a;}
+        return b;
+    }
+
     // Abstract method to get the image from the frame that will be overriden in each subclass.
     public abstract BufferedImage getImageFromFrame();
 }

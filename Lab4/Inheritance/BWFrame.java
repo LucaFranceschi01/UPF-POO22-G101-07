@@ -22,7 +22,7 @@ public class BWFrame extends Frame{
     public void changeBrightness(double delta) {
         for(Vector v : getVectors()) {
             for(int i = 0; i<v.getDimension(); i++) {
-                v.set(i, min(255, v.get(i) + (255*delta)));
+                v.set(i, min(255, max(0, v.get(i) + (255*delta))));
             }
         }
     }
