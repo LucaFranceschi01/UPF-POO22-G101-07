@@ -38,7 +38,7 @@ public class LenaGUI extends JFrame implements ActionListener{
       
       //C Increase Brightness button
       CIB = new JButton("Increase brightness by 10%");
-      CIB.setBounds(50,600,200,30);
+      CIB.setBounds(100,600,200,30);
       CIB.setFont(new Font("MV Boli", Font.PLAIN, 12));
       CIB.setForeground(Color.black);
       CIB.setBackground(Color.lightGray);
@@ -47,7 +47,7 @@ public class LenaGUI extends JFrame implements ActionListener{
       
       //C Decrease Brightness button
       CDB = new JButton("Decrease brightness by 10%");
-      CDB.setBounds(400,600,200,30);
+      CDB.setBounds(450,600,200,30);
       CDB.setFont(new Font("MV Boli", Font.PLAIN, 12));
       CDB.setForeground(Color.black);
       CDB.setBackground(Color.lightGray);
@@ -62,7 +62,7 @@ public class LenaGUI extends JFrame implements ActionListener{
       ColorFrame.setVerticalTextPosition(JLabel.TOP);
       ColorFrame.setFont(new Font("MV Boli", Font.PLAIN, 18));
       ColorFrame.setIconTextGap(20);
-      ColorFrame.setBounds(200, 100, 400, 400);
+      ColorFrame.setBounds(250, 100, 400, 400);
   
       //Add the buttons and labels
       add(ColorFrame);
@@ -71,7 +71,7 @@ public class LenaGUI extends JFrame implements ActionListener{
       
       //BW Increase Brightness button
       BWIB = new JButton("Increase brightness by 10%");
-      BWIB.setBounds(800,600,200,30);
+      BWIB.setBounds(850,600,200,30);
       BWIB.setFont(new Font("MV Boli", Font.PLAIN, 12));
       BWIB.setForeground(Color.black);
       BWIB.setBackground(Color.lightGray);
@@ -80,7 +80,7 @@ public class LenaGUI extends JFrame implements ActionListener{
       
       //BW Decrease Brightness button
       BWDB = new JButton("Decrease brightness by 10%");
-      BWDB.setBounds(1150,600,200,30);
+      BWDB.setBounds(1200,600,200,30);
       BWDB.setFont(new Font("MV Boli", Font.PLAIN, 12));
       BWDB.setForeground(Color.black);
       BWDB.setBackground(Color.lightGray);
@@ -95,7 +95,7 @@ public class LenaGUI extends JFrame implements ActionListener{
       BWFrame.setVerticalTextPosition(JLabel.TOP);
       BWFrame.setFont(new Font("MV Boli", Font.PLAIN, 18));
       BWFrame.setIconTextGap(20);
-      BWFrame.setBounds(950, 100, 400, 400);
+      BWFrame.setBounds(1000, 100, 400, 400);
   
       //Add the buttons and labels
       add(BWIB);
