@@ -54,14 +54,26 @@ public class ColorFrame extends Frame {
         for(Vector v : getVectors()) {
             for(int i = 0; i<v.getDimension(); i++) {
                 int[] rgb = valToRGB(v.get(i));
-                rgb[0] = (int) min(255, rgb[0] + 255*deltas[0]);
-                rgb[1] = (int) min(255, rgb[1] + 255*deltas[1]);
-                rgb[2] = (int) min(255, rgb[2] + 255*deltas[2]);
+                rgb[0] = (int) min(255, min(0, rgb[0] + 255*deltas[0]));
+                rgb[1] = (int) min(255, min(0, rgb[1] + 255*deltas[1]));
+                rgb[2] = (int) min(255, min(0, rgb[2] + 255*deltas[2]));
                 v.set(i, RGBToVal(rgb));
             }
         }
     }
-    
+
+    public void changeRGB(int r, int g, int b) {
+        for(Vector v : getVectors()) {
+            for(int i = 0; i<v.getDimension(); i++) {
+                int[] rgb = valToRGB(v.get(i));
+                rgb[0] = (int) min(255, min(0, rgb[0] + 255*r));
+                rgb[1] = (int) min(255, min(0, rgb[1] + 255*g));
+                rgb[2] = (int) min(255, min(0, rgb[2] + 255*b));
+                v.set(i, RGBToVal(rgb));
+            }
+        }
+    }
+
     private int[] valToRGB(double rgb) {
         int[] ret = new int[3];
         ret[0] = ((int) rgb >> 16) & 255;
