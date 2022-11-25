@@ -1,8 +1,3 @@
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-
 public class TestInheritance{
 
     public static void main(String[] args) {
@@ -42,8 +37,6 @@ public class TestInheritance{
         
         v2.matrixMultiply(m2);
         v2.print("The result:");
-
-        System.out.println("---------- Testing BWFrame ----------");
 
         new LenaGUI();
     }
