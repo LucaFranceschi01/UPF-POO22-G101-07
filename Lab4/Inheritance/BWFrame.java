@@ -14,8 +14,9 @@ public class BWFrame extends Frame{
     }
 
     /**
-     * Changes each value of the Frame to the minimum value between 255 (max possible value, black) and current value + 255*delta.
-     * This way we are increasing the brightness of the Frame, while at the same time we ensure no value will get out of range.
+     * Changes each value of the Frame to the minimum value between 255 (max possible value, black) 
+     * and the max of the values 0 (min possible value, white) and the current value + 255*delta.
+     * This way we are increasing the brightness of the Frame, while at the same time we ensure no value will get out of range [0,255].
      * @param delta The value we want to increase the brightness by.
      */
     @Override

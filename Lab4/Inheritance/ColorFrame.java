@@ -15,6 +15,11 @@ public class ColorFrame extends Frame {
         super(n, m);
     }
 
+    /**
+     * An overloaded constructor for ColorFrame, creates the instance for the ColorFrame
+     * from an instance of BufferedImage received as parameter.
+     * @param image The BufferedImage instance from which we create the ColorFrame.
+     */
     public ColorFrame(BufferedImage image) {
         super(image.getHeight(), image.getWidth());
         for(int i=0; i<image.getHeight(); i++) {
@@ -24,6 +29,12 @@ public class ColorFrame extends Frame {
         }
     }
 
+    /**
+     * Changes each value of the ColorFrame (each R, G, B value) to the minimum value of 255 (max possible value for each)
+     * and the max of 0 (min possible value for each) and the current value of each R, G, B, + 255*delta.
+     * This way we are increasing the brightness of the Frame, while at the same time we ensure no value of R, G, B will get out of range.
+     * @param delta The value we want to increase the brightness by.
+     */
     @Override
     public void changeBrightness(double delta) {
         for(Vector v : getVectors()) {
@@ -50,6 +61,10 @@ public class ColorFrame extends Frame {
         }
         return image;    }
 
+    /**
+     * Changes the value of each R, G, B by the corresponding value of delta inside the array deltas received as parameter.
+     * @param deltas The array with each delta value: R in deltas[0], G in deltas[1], B in deltas[2].
+     */
     public void changeRGB(int[] deltas) {
         for(Vector v : getVectors()) {
             for(int i = 0; i<v.getDimension(); i++) {
@@ -61,19 +76,12 @@ public class ColorFrame extends Frame {
             }
         }
     }
-
-    public void changeRGB(int r, int g, int b) {
-        for(Vector v : getVectors()) {
-            for(int i = 0; i<v.getDimension(); i++) {
-                int[] rgb = valToRGB(v.get(i));
-                rgb[0] = (int) min(255, min(0, rgb[0] + 255*r));
-                rgb[1] = (int) min(255, min(0, rgb[1] + 255*g));
-                rgb[2] = (int) min(255, min(0, rgb[2] + 255*b));
-                v.set(i, RGBToVal(rgb));
-            }
-        }
-    }
-
+    
+    /**
+     * Receives a value in form of double, and return the corresponding values for R, G, B in an array of integers.
+     * @param rgb The value we want to convert to RGB.
+     * @return An array with the R, G, B values in order.
+     */
     private int[] valToRGB(double rgb) {
         int[] ret = new int[3];
         ret[0] = ((int) rgb >> 16) & 255;
@@ -82,11 +90,17 @@ public class ColorFrame extends Frame {
         return ret;
     }
 
+    /**
+     * Receives an array of integers with the corresponding R, G, B values and converts it to a value in the form of a double.
+     * @param rgb The array with the R, G, B values we want to convert.
+     * @return The value of the result in form of a double.
+     */
     private double RGBToVal(int[] rgb) {
         double ret = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
         return ret;
     }
 
+    // Creates a new instance of BWFrame from the ColorFrame and returns it.
     public BWFrame toBWFrame() {
         BWFrame newBWFrame = new BWFrame(getRows(), getCols());
         for(int i=0; i<getRows(); i++) {
