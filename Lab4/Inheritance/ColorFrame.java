@@ -65,7 +65,7 @@ public class ColorFrame extends Frame {
      * Changes the value of each R, G, B by the corresponding value of delta inside the array deltas received as parameter.
      * @param deltas The array with each delta value: R in deltas[0], G in deltas[1], B in deltas[2].
      */
-    public void changeRGB(int[] deltas) {
+    public void changeRGB(double[] deltas) {
         for(Vector v : getVectors()) {
             for(int i = 0; i<v.getDimension(); i++) {
                 int[] rgb = valToRGB(v.get(i));
@@ -83,7 +83,7 @@ public class ColorFrame extends Frame {
      * @param g delta value for Green
      * @param b delta value for Blue
      */
-    public void changeRGB(int r, int g, int b) {
+    public void changeRGB(double r, double g, double b) {
         for(Vector v : getVectors()) {
             for(int i = 0; i<v.getDimension(); i++) {
                 int[] rgb = valToRGB(v.get(i));

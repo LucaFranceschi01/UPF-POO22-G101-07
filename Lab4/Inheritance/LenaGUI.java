@@ -11,9 +11,10 @@ import java.awt.image.BufferedImage;
 public class LenaGUI extends JFrame implements ActionListener{
 
 	private JButton BWIB, BWDB, CIB, CDB;
+    private JButton IR, IG, IB, DR, DG, DB;
 	private JLabel BWFrame, ColorFrame;
-	ColorFrame LenaColorFrame;
-	BWFrame LenaBWFrame;
+	private ColorFrame LenaColorFrame;
+	private BWFrame LenaBWFrame;
 
   	public LenaGUI() {
 
@@ -27,7 +28,7 @@ public class LenaGUI extends JFrame implements ActionListener{
 
 			//Set the initial window conditions
 			setLayout(null);
-			setBounds(0,0,1500,800);
+			setBounds(0,0,855,700);
 			setTitle("Lena GUI");
 			setResizable(false);
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -41,42 +42,72 @@ public class LenaGUI extends JFrame implements ActionListener{
 
 			//ColorFrame Increase Brightness button
 			CIB = new JButton("Increase brightness by 10%");
-			CIB.setBounds(100,600,200,30);
+			CIB.setBounds(100,400,255,30);
             genericButton(CIB, smallFont);
 			
-
 			//ColorFrame Decrease Brightness buttons
 			CDB = new JButton("Decrease brightness by 10%");
-			CDB.setBounds(450,600,200,30);
+			CDB.setBounds(100,450,255,30);
 			genericButton(CDB, smallFont);
+
+            //ColorFrame Change RGB
+            IR = new JButton("+10% Red");
+            IR.setBounds(100, 500, 79, 30);
+            genericButton(IR, smallFont);
+
+            DR = new JButton("-10% Red");
+            DR.setBounds(100, 550, 79, 30);
+            genericButton(DR, smallFont);
+
+            IG = new JButton("+10% Green");
+            IG.setBounds(188, 500, 79, 30);
+            genericButton(IG, smallFont);
+
+            DG = new JButton("-10% Green");
+            DG.setBounds(188, 550, 79, 30);
+            genericButton(DG, smallFont);
+
+            IB = new JButton("+10% Blue");
+            IB.setBounds(276, 500, 79, 30);
+            genericButton(IB, smallFont);
+
+            DB = new JButton("-10% Blue");
+            DB.setBounds(276, 550, 79, 30);
+            genericButton(DB, smallFont);
 
 			//Label with ColorFrame of the Image
 			ColorFrame = new JLabel();
 			ColorFrame.setText("Lena ColorFrame");
 			ColorFrame.setIcon(new ImageIcon(LenaColorFrame.getImageFromFrame()));
-			ColorFrame.setBounds(250, 100, 400, 400);
+			ColorFrame.setBounds(100, 50, 255, 300);
 			genericLabel(ColorFrame, bigFont);
 
 			//Add the buttons and labels
 			add(ColorFrame);
 			add(CIB);
 			add(CDB);
+            add(IR);
+            add(DR);
+            add(IG);
+            add(DG);
+            add(IB);
+            add(DB);
 
 			//BW Increase Brightness button
 			BWIB = new JButton("Increase brightness by 10%");
-			BWIB.setBounds(850,600,200,30);
+			BWIB.setBounds(500,400,255,30);
 			genericButton(BWIB, smallFont);
 
 			//BW Decrease Brightness button
 			BWDB = new JButton("Decrease brightness by 10%");
-			BWDB.setBounds(1200,600,200,30);
+			BWDB.setBounds(500,450,255,30);
 			genericButton(BWDB, smallFont);
 
 			//Label with BWFrame of the image
 			BWFrame = new JLabel();
 			BWFrame.setText("Lena BWFrame");
 			BWFrame.setIcon(new ImageIcon(LenaBWFrame.getImageFromFrame()));
-			BWFrame.setBounds(1000, 100, 400, 400);
+			BWFrame.setBounds(500, 50, 255, 300);
 			genericLabel(BWFrame, bigFont);
 
 			//Add the buttons and labels
@@ -105,6 +136,30 @@ public class LenaGUI extends JFrame implements ActionListener{
 		}
 		if (e.getSource() == CDB) {
 			LenaColorFrame.changeBrightness(-0.1);
+			ColorFrame.setIcon(new ImageIcon(LenaColorFrame.getImageFromFrame()));
+		}
+        if (e.getSource() == IR) {
+			LenaColorFrame.changeRGB(0.1, 0, 0);
+			ColorFrame.setIcon(new ImageIcon(LenaColorFrame.getImageFromFrame()));
+		}
+        if (e.getSource() == DR) {
+			LenaColorFrame.changeRGB(-0.1, 0, 0);
+			ColorFrame.setIcon(new ImageIcon(LenaColorFrame.getImageFromFrame()));
+		}
+        if (e.getSource() == IG) {
+			LenaColorFrame.changeRGB(0, 0.1, 0);
+			ColorFrame.setIcon(new ImageIcon(LenaColorFrame.getImageFromFrame()));
+		}
+        if (e.getSource() == DG) {
+			LenaColorFrame.changeRGB(0, -0.1, 0);
+			ColorFrame.setIcon(new ImageIcon(LenaColorFrame.getImageFromFrame()));
+		}
+        if (e.getSource() == IB) {
+			LenaColorFrame.changeRGB(0, 0, 0.1);
+			ColorFrame.setIcon(new ImageIcon(LenaColorFrame.getImageFromFrame()));
+		}
+        if (e.getSource() == DB) {
+			LenaColorFrame.changeRGB(0, 0, -0.1);
 			ColorFrame.setIcon(new ImageIcon(LenaColorFrame.getImageFromFrame()));
 		}
 	}
