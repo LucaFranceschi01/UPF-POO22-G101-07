@@ -140,6 +140,8 @@ public class TestGUI extends JFrame implements ActionListener{
         } catch (IOException e) {}
     }
 
+
+    //This method right here comes from the interface ActionListener and is the one that manages the actions after pressing buttons
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == BWIB) {
@@ -207,6 +209,11 @@ public class TestGUI extends JFrame implements ActionListener{
         }*/
     }
 
+    /**
+     * Applies the generic settings for a button from a JButton received as parameter and a Font received as parameter.
+     * @param b The button we want to apply the generic settings to.
+     * @param f The font we want to apply to the button.
+     */
     private void genericButton(JButton b, Font f) {
         b.setFont(f);
         b.setForeground(Color.black);
@@ -215,6 +222,11 @@ public class TestGUI extends JFrame implements ActionListener{
         b.addActionListener(this);
     }
 
+    /**
+     * Applies the generic settings for a label from a JLabel received as parameter and a Font received as parameter.
+     * @param l The label we want to apply the generic settings to.
+     * @param f The font we want to apply to the label.
+     */
     private void genericLabel (JLabel l, Font f) {
         l.setHorizontalTextPosition(JLabel.CENTER);
         l.setVerticalTextPosition(JLabel.TOP);

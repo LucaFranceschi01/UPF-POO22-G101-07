@@ -28,6 +28,12 @@ public abstract class Frame extends Matrix {
         return b;
     }
 
+    /**
+     * Method to calculate the maximum value given 2 values introduced as parameters, and return it as a double. Only accessible for subclasses.
+     * @param a First value we want to check.
+     * @param b Second value we want to check.
+     * @return The highest value of the two.
+     */
     protected double max(double a, double b) {
         if(a>b) { return a;}
         return b;

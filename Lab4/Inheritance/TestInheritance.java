@@ -37,6 +37,7 @@ public class TestInheritance{
         v2.matrixMultiply(m2);
         v2.print("The result:");
 
+        //Testing the GUI
         new TestGUI();
     }
 }
