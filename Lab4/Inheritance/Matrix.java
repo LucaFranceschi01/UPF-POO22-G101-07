@@ -29,6 +29,11 @@ public class Matrix {
         return cols;
     }
 
+    // Getter for the ArrayList of Vectors of the Matrix.
+    public ArrayList<Vector> getVectors() {
+        return vectors;
+    }
+
     /**
      * Sets the element of the Matrix at position (i,j) where i corresponds to row and j to column, to the value introduced as parameter.
      * @param i The row of the element we want to access.
@@ -47,6 +52,13 @@ public class Matrix {
      */
     public double get(int i, int j) {
         return vectors.get(i).get(j);
+    }
+    
+    // Sets all values of the Matrix to 0.0
+    public void zero() {
+        for(Vector v : vectors) {
+            v.zero();
+        }
     }
 
     /**
@@ -76,25 +88,6 @@ public class Matrix {
     }
 
     /**
-     * Prints to the Console the values of the Matrix alongside with the text introduced as parameter, if any.
-     * @param text The text we want to print before the values of the Matrix.
-     */
-    public void print(String text) {
-        System.out.println(text);
-        for(Vector v : vectors) {
-            v.print(null);
-        }
-        System.out.println();
-    }
-
-    // Sets all values of the Matrix to 0.0
-    public void zero() {
-        for(Vector v : vectors) {
-            v.zero();
-        }
-    }
-
-    /**
      * Sets the values of the elements in the Matrix to specific numbers depending on the value in radians introduced as parameter.
      * It will only work if the Matrix is a 3x3 (n and m equal to 3).
      * @param val The angle in radians we want to create the RotationZ Matrix for.
@@ -106,9 +99,16 @@ public class Matrix {
             vectors.get(2).set3D(0, 0, 1);
         }
     }
-
-    // Getter for the ArrayList of Vectors of the Matrix.
-    public ArrayList<Vector> getVectors() {
-        return vectors;
+    
+    /**
+     * Prints to the Console the values of the Matrix alongside with the text introduced as parameter, if any.
+     * @param text The text we want to print before the values of the Matrix.
+     */
+    public void print(String text) {
+        System.out.println(text);
+        for(Vector v : vectors) {
+            v.print(null);
+        }
+        System.out.println();
     }
 }

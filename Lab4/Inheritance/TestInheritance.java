@@ -23,7 +23,6 @@ public class TestInheritance{
         m.zero();
         m.print("Now we set it to a zero matrix:");
         
-
         // Testing for Rotation Matrix
         Vector v2 = new Vector(3);
         v2.set3D(1, 0, 0);
@@ -38,6 +37,6 @@ public class TestInheritance{
         v2.matrixMultiply(m2);
         v2.print("The result:");
 
-        new LenaGUI();
+        new TestGUI();
     }
 }

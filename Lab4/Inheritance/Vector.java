@@ -29,6 +29,13 @@ public class Vector {
     public void setArray(Vector v) {
         values = v.getArray();
     }
+    
+    // Sets all the values of a Vector to 0.0
+    public void zero() {
+        for(int i=0; i<dimension; i++) {
+            set(i, 0.0);
+        }
+    }
 
     // Getter for the values of the vector as an array list of doubles
     public ArrayList<Double> getArray() {
@@ -66,13 +73,6 @@ public class Vector {
         return v;
     }
 
-    // Sets all the values of a Vector to 0.0
-    public void zero() {
-        for(int i=0; i<dimension; i++) {
-            set(i, 0.0);
-        }
-    }
-
     // Returns the sum of all the values inside the Vector
     public double sumElements() {
         double counter = 0;
@@ -97,22 +97,23 @@ public class Vector {
         }
         return null;
     }
-
+    
     /**
-     * Prints to the Console the values of the Vector alongside with the text introduced as parameter, if any.
-     * @param text The text we want to print before the values of the Vector.
+     * Multiplies the values of the Vector by the values of the input Vector if possible, and returns the result Vector, if possible.
+     * @param v The Vector we want to multiply our Vector by.
+     * @return The resulting Vector if dimensions are equal, null otherwise.
      */
-    public void print(String text) {
-        if (text != null) {
-            System.out.println(text);
-            System.out.println(values.toString());
-            System.out.println();
-        } else {
-            System.out.println(values.toString());
+    public Vector multiplyElements(Vector v) {
+        if(dimension == v.getDimension()) {
+            Vector out = new Vector(dimension);
+            for(int i=0; i<dimension; i++) {
+                out.set(i, get(i)*v.get(i));
+            }
+            return out;
         }
-
+        return null;
     }
-
+    
     /**
      * Sets the values of the Vector to the values introduced as parameters if the dimension of the Vector equals 3.
      * @param a Value we want to store in position 0.
@@ -126,8 +127,7 @@ public class Vector {
             set(2, c);
         }
     }
-
-
+    
     /**
      * Multiplies the Vector by a Matrix introduced as parameter, and changes the values of the Vector accordingly.
      * @param m The Matrix we want to multiply our Vector by.
@@ -143,20 +143,19 @@ public class Vector {
             values = out.getArray();
         }
     }
-
+    
     /**
-     * Multiplies the values of the Vector by the values of the input Vector if possible, and returns the result Vector, if possible.
-     * @param v The Vector we want to multiply our Vector by.
-     * @return The resulting Vector if dimensions are equal, null otherwise.
+     * Prints to the Console the values of the Vector alongside with the text introduced as parameter, if any.
+     * @param text The text we want to print before the values of the Vector.
      */
-    public Vector multiplyElements(Vector v) {
-        if(dimension == v.getDimension()) {
-            Vector out = new Vector(dimension);
-            for(int i=0; i<dimension; i++) {
-                out.set(i, get(i)*v.get(i));
-            }
-            return out;
+    public void print(String text) {
+        if (text != null) {
+            System.out.println(text);
+            System.out.println(values.toString());
+            System.out.println();
+        } else {
+            System.out.println(values.toString());
         }
-        return null;
+
     }
 }
