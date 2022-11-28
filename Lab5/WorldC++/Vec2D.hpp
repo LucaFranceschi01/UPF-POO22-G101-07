@@ -34,6 +34,10 @@ public:
 		x = x / len;
 		y = y / len;
 	}
+
+	//do the product of a vector by a scalar value
+	Vec2D scalarProdVec2D(double scalar) { x = getX() * scalar; y = getY() * scalar; }
+
 };
 
 #endif
