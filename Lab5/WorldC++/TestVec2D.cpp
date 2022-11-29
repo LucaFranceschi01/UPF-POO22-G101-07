@@ -22,4 +22,9 @@ int main() {
 	// instances created using "new" have to be deleted
 	delete v3;
 	delete v4;
+
+	//Our own testing
+	Vec2D v5(1,3);
+	v5.scalarProdVec2D(4);
+	v5.print();
 }

@@ -2,7 +2,6 @@
 #define _VEC2D_
 
 #include <cmath>
-
 class Vec2D {
 	
 private:
@@ -41,6 +40,9 @@ public:
 		y = getY() * scalar;
 		return Vec2D(x, y);
 	}
+
+	//print the vector with 3 decimal places
+	void print() { printf("X: %.3f	Y: %.3f\n", getX(), getY()); }
 
 };
 

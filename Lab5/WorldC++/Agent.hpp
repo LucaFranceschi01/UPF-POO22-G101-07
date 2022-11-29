@@ -44,15 +44,15 @@ public:
         return false;
     }
 
-    //checks if the agents is colliding with another agent      --> not working yet
-    /*bool isColliding(Agent a) {
-        Vec2D difference = a->getPosition();
+    //checks if the agents is colliding with another agent      --> need to check if it works
+    bool isColliding(Agent * a) {
+        Vec2D * difference = &a->getPosition();
         difference->subtract(pos);
-        if(difference.length() <= a->getRadius()+getRadius()){
+        if(difference->length() <= a->getRadius()+getRadius()){
             return true;
         }
         return false;
-    }*/
+    }
 };
 
 #endif
