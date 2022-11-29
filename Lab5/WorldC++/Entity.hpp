@@ -6,6 +6,7 @@
 
 using namespace std;
 class Entity{
+
 private:
     Vec2D * pos;
     string name;
@@ -24,8 +25,6 @@ public:
     void setPosition(Vec2D * p) { pos = p; }
     void setName(string n) { name = n; }
     void setEnergy(int e) { energy = e; }
-
-
 };
 
 #endif

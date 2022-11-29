@@ -5,6 +5,7 @@
 #include "Entity.hpp"
 
 class Agent: public Entity{
+    
 private:
     Vec2D * pos;
     Vec2D * dir;

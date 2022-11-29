@@ -1,4 +1,3 @@
-
 #ifndef _NAMEABLE_
 #define _NAMEABLE_
 
@@ -10,4 +9,3 @@ class Nameable {
 };
 
 #endif
-

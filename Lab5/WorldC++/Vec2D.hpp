@@ -1,10 +1,10 @@
-
 #ifndef _VEC2D_
 #define _VEC2D_
 
 #include <cmath>
 
 class Vec2D {
+	
 private:
 	double x;
 	double y;
@@ -36,9 +36,12 @@ public:
 	}
 
 	//do the product of a vector by a scalar value
-	Vec2D scalarProdVec2D(double scalar) { x = getX() * scalar; y = getY() * scalar; }
+	Vec2D scalarProdVec2D(double scalar) {
+		x = getX() * scalar;
+		y = getY() * scalar;
+		return Vec2D(x, y);
+	}
 
 };
 
 #endif
-

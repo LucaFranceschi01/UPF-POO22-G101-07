@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include "Vec2D.hpp"
 
@@ -24,4 +23,3 @@ int main() {
 	delete v3;
 	delete v4;
 }
-
