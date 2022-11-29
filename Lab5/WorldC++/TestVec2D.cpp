@@ -24,7 +24,7 @@ int main() {
 	delete v4;
 
 	//Our own testing
-	Vec2D v5(1,3);
+	Vec2D v5(1, 3);
 	v5.scalarProdVec2D(4);
 	v5.print();
 }

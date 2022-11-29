@@ -26,13 +26,26 @@ public:
 
     //setters
     void setPosition(Vec2D * p) { pos = p; }
-    void setDirection(Vec2D * p) { dir = p; }
-    void setTarget(Vec2D * p) { target = p; }
+
+    void setDirection(Vec2D * p) {
+        dir = p;
+        dir->subtract(pos);
+        dir->normalize();
+    }
+
+    void setTarget(Vec2D * p) { 
+        target = p;
+        Vec2D * direction = new Vec2D(target);
+        direction->subtract(pos);
+        direction->normalize();
+        dir = direction;
+        }
+    
     void setRadius(double r) { radius = r; }
     void setSpeed(double s) { speed = s; }
 
     //update position of the agent
-    void update() { pos->add(&dir->scalarProdVec2D(speed)); }
+    //void update() { pos->add(dir.scalarProdVec2D(speed)); }
 
     //check if the agent has reached the target
     bool targetReached() {
@@ -45,14 +58,19 @@ public:
     }
 
     //checks if the agents is colliding with another agent      --> need to check if it works
-    bool isColliding(Agent * a) {
+    /*bool isColliding(Agent * a) {
         Vec2D * difference = &a->getPosition();
         difference->subtract(pos);
         if(difference->length() <= a->getRadius()+getRadius()){
             return true;
         }
         return false;
-    }
+    }*/
+
+    //printers
+    void printDirection() { printf("Direction: %.3f\n", getDirection()); }          //se q estan mal, hay q reworkearlos
+    void printPosition() { printf("Position: %.3f\n", getPosition()); }
+    void printTarget() { printf("Target: %.3f\n", getTarget()); }
 };
 
 #endif
