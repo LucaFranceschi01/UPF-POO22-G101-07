@@ -30,15 +30,17 @@ public:
 	// normalize to unit length
 	void normalize() {
 		double len = length();
-		x = x / len;
-		y = y / len;
+		if (len != 0) {
+			x = x / len;
+			y = y / len;
+		} else { x = 0; y = 0; }
 	}
 
 	//do the product of a vector by a scalar value
-	Vec2D scalarProdVec2D(double scalar) {					//not sure q esté bien pq da problemas en el testing
-		x = getX() * scalar;
-		y = getY() * scalar;
-		return Vec2D(x, y);
+	Vec2D scalarProdVec2D(double scalar) {					//not sure q esté bien pq da problemas en el testing		
+		double xLocal = getX() * scalar;
+		double yLocal = getY() * scalar;
+		return Vec2D(xLocal, yLocal);
 	}
 
 	//print the vector with 3 decimal places

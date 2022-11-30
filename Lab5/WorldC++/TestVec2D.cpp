@@ -25,6 +25,7 @@ int main() {
 
 	//Our own testing
 	Vec2D v5(1, 3);
-	v5.scalarProdVec2D(4);
+	Vec2D v6 = v5.scalarProdVec2D(4);
 	v5.print();
+	v6.print();
 }

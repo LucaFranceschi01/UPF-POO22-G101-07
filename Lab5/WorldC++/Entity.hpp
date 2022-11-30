@@ -7,17 +7,17 @@
 using namespace std;
 class Entity{
 
-private:
+protected:
     Vec2D * pos;
     string name;
     int energy;
 
 public:
     //constructor
-    Entity(Vec2D * pos, string n, int e) : pos(pos), name(n), energy(e) {}
+    Entity(Vec2D * p, string n, int e) : pos(p), name(n), energy(e) {}
 
     //getters
-    Vec2D getPosition() { return pos; }
+    Vec2D *getPosition() { return pos; }
     string getName() { return name; }
     int getEnergy() { return energy; }
 

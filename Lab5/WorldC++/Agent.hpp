@@ -7,7 +7,7 @@
 class Agent: public Entity{
     
 private:
-    Vec2D * pos;
+
     Vec2D * dir;
     Vec2D * target;
     double radius;
@@ -15,12 +15,17 @@ private:
 
 public:
     //constructor
-    Agent(Vec2D * p, string n, int e, double r) : Entity(p, n, e), radius(r){}
+    Agent(Vec2D * p, string n, int e, double r) : Entity(p, n, e) {
+        radius = r;
+        speed = 1;
+        dir = nullptr;
+        target = nullptr;
+    }
 
     //getters
-    Vec2D getPosition() { return pos; }
-    Vec2D getDirection() { return dir; }
-    Vec2D getTarget() { return target; }
+    Vec2D *getPosition() { return pos; }
+    Vec2D *getDirection() { return dir; }
+    Vec2D *getTarget() { return target; }
     double getRadius() { return radius; }
     double getSpeed() { return speed; }
 
@@ -34,18 +39,32 @@ public:
     }
 
     void setTarget(Vec2D * p) { 
-        target = p;
-        Vec2D * direction = new Vec2D(target);
-        direction->subtract(pos);
-        direction->normalize();
-        dir = direction;
-        }
+        Vec2D temp = Vec2D(*p);
+        target = &temp;
+
+        Vec2D temp2 = Vec2D(*p);
+        temp2.subtract(pos);
+        temp2.normalize();
+        dir = &temp2;
+    }
     
     void setRadius(double r) { radius = r; }
     void setSpeed(double s) { speed = s; }
 
     //update position of the agent
-    //void update() { pos->add(dir.scalarProdVec2D(speed)); }
+    void update() {
+        std::cout << "----------" << '\n';
+        pos->print();
+        dir->print();
+        Vec2D newdir = dir->scalarProdVec2D(speed);
+        std::cout << "----------" << '\n';
+        pos->print();
+        dir->print();
+
+        newdir.print();
+        std::cout << "-------------------" << '\n';
+        pos->add(&newdir);
+    }
 
     //check if the agent has reached the target
     bool targetReached() {
@@ -68,9 +87,21 @@ public:
     }*/
 
     //printers
-    void printDirection() { printf("Direction: %.3f\n", getDirection()); }          //se q estan mal, hay q reworkearlos
-    void printPosition() { printf("Position: %.3f\n", getPosition()); }
-    void printTarget() { printf("Target: %.3f\n", getTarget()); }
+    void print() {
+        std::cout << getName() << ' ' << getEnergy() << '\n';
+        printPosition();
+        if (getDirection() != nullptr) {
+            printDirection();
+        }
+        if (getTarget() != nullptr) {
+            printTarget();
+        }
+    }
+
+
+    void printPosition() { std::cout << "Position --> "; Vec2D *v = getPosition(); v->print(); }
+    void printDirection() { std::cout << "Direction --> "; Vec2D *v = getDirection(); v->print(); }
+    void printTarget() { std::cout << "Target --> "; Vec2D *v = getTarget(); v->print(); }
 };
 
 #endif
