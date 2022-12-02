@@ -18,6 +18,10 @@ public:
 	double getX() { return x; }
 	double getY() { return y; }
 
+	// setters
+	void setX(double d) { x = d; }
+	void setY(double d) { y = d;}
+
 	// add or subtract another vector
 	void add     (Vec2D * v) { x += v->getX(); y += v->getY(); }
 	void subtract(Vec2D * v) { x -= v->getX(); y -= v->getY(); }

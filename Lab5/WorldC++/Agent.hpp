@@ -7,7 +7,6 @@
 class Agent: public Entity{
     
 private:
-
     Vec2D * dir;
     Vec2D * target;
     double radius;
@@ -18,8 +17,6 @@ public:
     Agent(Vec2D * p, string n, int e, double r) : Entity(p, n, e) {
         radius = r;
         speed = 1;
-        dir = nullptr;
-        target = nullptr;
     }
 
     //getters
@@ -33,19 +30,15 @@ public:
     void setPosition(Vec2D * p) { pos = p; }
 
     void setDirection(Vec2D * p) {
-        dir = p;
+        Vec2D v(p);
+        dir = &v;
         dir->subtract(pos);
         dir->normalize();
     }
 
     void setTarget(Vec2D * p) { 
-        Vec2D temp = Vec2D(*p);
-        target = &temp;
-
-        Vec2D temp2 = Vec2D(*p);
-        temp2.subtract(pos);
-        temp2.normalize();
-        dir = &temp2;
+        target = p;
+        setDirection(p);
     }
     
     void setRadius(double r) { radius = r; }
@@ -53,17 +46,8 @@ public:
 
     //update position of the agent
     void update() {
-        std::cout << "----------" << '\n';
-        pos->print();
-        dir->print();
-        Vec2D newdir = dir->scalarProdVec2D(speed);
-        std::cout << "----------" << '\n';
-        pos->print();
-        dir->print();
-
-        newdir.print();
-        std::cout << "-------------------" << '\n';
-        pos->add(&newdir);
+        Vec2D temp = dir->scalarProdVec2D(speed);
+        pos->add(&temp);
     }
 
     //check if the agent has reached the target
@@ -90,18 +74,13 @@ public:
     void print() {
         std::cout << getName() << ' ' << getEnergy() << '\n';
         printPosition();
-        if (getDirection() != nullptr) {
-            printDirection();
-        }
-        if (getTarget() != nullptr) {
-            printTarget();
-        }
+        printDirection();
+        printTarget();
     }
 
-
-    void printPosition() { std::cout << "Position --> "; Vec2D *v = getPosition(); v->print(); }
-    void printDirection() { std::cout << "Direction --> "; Vec2D *v = getDirection(); v->print(); }
-    void printTarget() { std::cout << "Target --> "; Vec2D *v = getTarget(); v->print(); }
+    void printPosition() {  printf("Position -->  X: %.3lf\tY: %.3lf\n", pos->getX(), pos->getY()); }
+    void printDirection() { printf("Direction --> X: %.3lf\tY: %.3lf\n", dir->getX(), dir->getY()); }
+    void printTarget() {    printf("Target -->    X: %.3lf\tY: %.3lf\n", target->getX(), target->getY()); }
 };
 
 #endif
