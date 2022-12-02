@@ -40,16 +40,13 @@ public:
 		} else { x = 0; y = 0; }
 	}
 
-	//do the product of a vector by a scalar value
-	Vec2D scalarProdVec2D(double scalar) {					//not sure q esté bien pq da problemas en el testing		
-		double xLocal = getX() * scalar;
-		double yLocal = getY() * scalar;
-		return Vec2D(xLocal, yLocal);
+	Vec2D scalarProdVec2D(double scalar) {
+		return Vec2D(x*scalar, y*scalar);
 	}
 
-	//print the vector with 3 decimal places
-	void print() { printf("X: %.3f	Y: %.3f\n", getX(), getY()); }
-
+	void print() {
+		printf("X: %.3lf Y: %.3lf\n", x, y);
+	}
 };
 
 #endif
