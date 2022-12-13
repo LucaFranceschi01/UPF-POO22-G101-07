@@ -17,6 +17,8 @@ public:
     Agent(Vec2D * p, string n, int e, double r) : Entity(p, n, e) {
         radius = r;
         speed = 1;
+        Vec2D dir(0, 0);
+        Vec2D target(0, 0);
     }
 
     //getters
@@ -30,8 +32,8 @@ public:
     void setPosition(Vec2D * p) { pos = p; }
 
     void setDirection(Vec2D * p) {
-        Vec2D v(p);
-        dir = &v;
+        dir->setX(p->getX());
+        dir->setY(p->getY());
         dir->subtract(pos);
         dir->normalize();
     }
