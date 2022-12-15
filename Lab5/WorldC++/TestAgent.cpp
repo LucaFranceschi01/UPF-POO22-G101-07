@@ -10,6 +10,7 @@ int main() {
     //a1.printPosition();
     //Testing our methods on them
     a1.setTarget(&tarA1);
+    Vec2D* d = a1.getDirection();
     a1.print();
     printf("-------\n");
     a1.update();
