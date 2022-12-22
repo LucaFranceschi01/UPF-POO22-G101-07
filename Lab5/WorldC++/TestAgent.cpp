@@ -3,25 +3,34 @@
 #include "Vec2D.hpp"
 
 int main() {
-    //Creating 2 agents
-    Vec2D posA1 = Vec2D(0, 0);
-    Vec2D tarA1 = Vec2D(5, 5);
-    Agent a1(&posA1, "Paco", 10, 5);
-    //a1.printPosition();
-    //Testing our methods on them
-    a1.setTarget(&tarA1);
-    Vec2D* d = a1.getDirection();
-    a1.print();
-    printf("-------\n");
-    a1.update();
-    a1.print();
+    // Creating 2 agents and setting targets
+    Vec2D posAlex = Vec2D(0, 0);
+    Vec2D tarAlex = Vec2D(3, 3);
+    Agent alex(&posAlex, "Alex", 10, 1);
+    alex.setTarget(&tarAlex);
 
-    // a2.setTarget(&v1);
-    // a2.printPosition();
-    // a2.printDirection();
-    // a2.printTarget();
-    // a1.update();
-    // a1.printPosition();
-    // a1.printDirection();
-    // a1.printTarget();
+    Vec2D posLuca = Vec2D(5, 0);
+    Vec2D tarLuca = Vec2D(0, 5);
+    Agent luca(&posLuca, "Luca", 10, 1);
+    luca.setTarget(&tarLuca);
+
+    // Looping until both have reached their targets to test out methods
+
+    while (!alex.targetReached() || !luca.targetReached()) {
+        if (alex.isColliding(&luca)) { // same as luca.isColliding(&alex)
+            std::cout << "\nAlex and Luca ARE colliding\n\n";
+        } else {
+            std::cout << "\nAlex and Luca are NOT colliding\n\n";
+        }
+
+        alex.print();
+        luca.print();
+
+        alex.update();
+        luca.update();
+
+        if (alex.targetReached()) { std::cout << "---------- Alex has reached its target! ----------\n"; }
+        if (luca.targetReached()) { std::cout << "---------- Luca has reached its target! ----------\n"; }
+        std::cout << "--------------------------------------------------\n";
+    }
 }
